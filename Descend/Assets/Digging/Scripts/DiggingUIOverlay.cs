@@ -6,6 +6,6 @@ public class DiggingUIOverlay : MonoBehaviour
 {
     public void StopDigging()
     {
-        GameLoop.StopDigging();
+        GameLoopController.StopDigging();
     }
 }

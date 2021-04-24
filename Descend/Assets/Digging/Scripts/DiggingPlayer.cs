@@ -33,6 +33,12 @@ public class DiggingPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Ignore input and stuff while not in the digging scene
+        if (!GameLoopController.isDiggingScene())
+        {
+            return;
+        }
+
         float horz = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
 
