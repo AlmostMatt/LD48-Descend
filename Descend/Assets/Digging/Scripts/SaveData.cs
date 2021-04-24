@@ -15,4 +15,6 @@ public class SaveData
     }
 
     public int digSkill = 0;
+
+    public int[] inventory = new int[(int)ItemType.NUM_ITEMS];    
 }
