@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
+    public ItemType itemType;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DiggingPlayer player = collision.GetComponent<DiggingPlayer>();

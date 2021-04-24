@@ -115,6 +115,6 @@ public class DiggingPlayer : MonoBehaviour
 
     public void CollectItem(Collectible c)
     {
-
+        SaveData.Get().inventory[(int)c.itemType] += 1;
     }
 }
