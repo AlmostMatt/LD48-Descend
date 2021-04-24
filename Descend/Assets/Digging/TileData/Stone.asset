@@ -15,3 +15,8 @@ MonoBehaviour:
   tiles:
   - {fileID: 11400000, guid: e0328a702c4ac77478bc5d24f767c986, type: 2}
   requiredDigSkill: 1
+  introduceDepth: 15
+  backgroundDepth: 30
+  disappearDepthStart: 40
+  disappearDepthEnd: 45
+  maxClusterSize: 5
