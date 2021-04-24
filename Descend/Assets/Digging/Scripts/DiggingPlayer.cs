@@ -7,6 +7,7 @@ public class DiggingPlayer : MonoBehaviour
 {
     public TileManager tileManager;
     public Tilemap dirtTilemap;
+    public Tilemap fogTilemap;
 
     public float horizontalSpeed = 4f;
     public float verticalSpeed = 4f;
@@ -39,7 +40,6 @@ public class DiggingPlayer : MonoBehaviour
         
         float vertSpeed = vert != 0 ? verticalSpeed * Mathf.Sign(vert) : 0f;
 
-        
         if(transform.position.y >= GROUND_HEIGHT)
         {
             // can't move up when above ground
@@ -90,6 +90,15 @@ public class DiggingPlayer : MonoBehaviour
             blockingTile = dirtTilemap.WorldToCell(checkPos);
             DigTile(blockingTile);
         }
+
+
+        // reveal nearby tiles
+        Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
+        bottomLeft.x -= 2;
+        bottomLeft.y -= 2;
+        BoundsInt revealArea = new BoundsInt(bottomLeft, new Vector3Int(5, 7, 1));
+        TileBase[] emptyTiles = new TileBase[35];
+        fogTilemap.SetTilesBlock(revealArea, emptyTiles);
     }
 
     void DigTile(Vector3Int position)
