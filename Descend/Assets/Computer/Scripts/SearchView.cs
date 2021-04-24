@@ -31,4 +31,10 @@ public class SearchView : MonoBehaviour
         }
         mSearchResultGroup.UpdateRenderables(results);
     }
+
+    public void SelectResult(SearchResultButton searchResultButton)
+    {
+        // TODO: find the corresponding SearchResult struct
+        // TODO: render the corresponding detailed info.
+    }
 }

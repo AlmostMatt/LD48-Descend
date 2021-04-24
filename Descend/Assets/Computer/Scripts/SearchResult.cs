@@ -14,7 +14,8 @@ public struct SearchResult
 
     public static void RenderToListOfResults(SearchResult result, GameObject uiObject)
     {
-        uiObject.transform.GetChild(0).GetComponent<Text>().text = result.title;
-        uiObject.transform.GetChild(1).GetComponent<Text>().text = result.content;
+        uiObject.GetComponent<Button>().interactable = (result.title != "");
+        uiObject.transform.Find("Title").GetComponent<Text>().text = result.title;
+        uiObject.transform.Find("Content").GetComponent<Text>().text = result.content;
     }
 }

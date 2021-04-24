@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ShopView : MonoBehaviour
 {
     public Transform shopItemsContainer;
+    public Text balanceText;
 
     private RenderableGroup<ShopItem> mShopItemsGroup;
 
@@ -17,6 +18,10 @@ public class ShopView : MonoBehaviour
 
     public void Update()
     {
+        // Update the current balance
+        balanceText.text = "Balance: $" + PlayerState.Get().GetBalance(); 
+
+        // Update the list of items
         UpdateForSale();
     }
 
@@ -33,5 +38,11 @@ public class ShopView : MonoBehaviour
         results.Add(new ShopItem("Fancier pickaxe", "Lets you dig 50% faster", "pickaxeImage", 300));
         results.Add(new ShopItem("Fanciest pickaxe", "Lets you dig 100% faster", "pickaxeImage", 500));
         mShopItemsGroup.UpdateRenderables(results);
+    }
+
+    public void PurchaseItem(ShopItemButton shopItemButton)
+    {
+        // TODO: find the corresponding ShopItemButton struct
+        // TODO: purchase the corresponding item
     }
 }
