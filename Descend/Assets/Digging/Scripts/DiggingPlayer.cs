@@ -112,4 +112,9 @@ public class DiggingPlayer : MonoBehaviour
             }
         }
     }
+
+    public void CollectItem(Collectible c)
+    {
+
+    }
 }
