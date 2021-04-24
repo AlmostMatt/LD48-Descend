@@ -31,7 +31,9 @@ namespace UnityBaseCode
                 // Destroy any children other than the first
                 for (int i=container.childCount-1; i>0; i--)
                 {
-                    GameObject.Destroy(container.GetChild(i));
+                    Transform childObj = container.GetChild(i);
+                    childObj.SetParent(null, false);
+                    GameObject.Destroy(childObj.gameObject);
                 }
                 // Disable and detach the first child, we just want to be able to copy it later
                 GameObject child = container.GetChild(0).gameObject;

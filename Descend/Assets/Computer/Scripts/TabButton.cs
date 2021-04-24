@@ -7,6 +7,7 @@ public class TabButton : MonoBehaviour
 {
     public void Awake()
     {
+        // GetComponentInParent<ToggleGroup>().RegisterToggle(GetComponent<Toggle>());
         GetComponent<Toggle>().group = GetComponentInParent<ToggleGroup>();
     }
 
