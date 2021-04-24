@@ -15,7 +15,10 @@ public class TabButton : MonoBehaviour
     {
         if (GetComponent<Toggle>().isOn) {
             GetComponent<Toggle>().Select(); // This line is to handle an edge-case in the first frame.
-            GetComponentInParent<WebBrowser>().SelectTab(this);
+            if (GetComponentInParent<WebBrowser>() != null) // This line is to handle an edge-case when the game ends
+            {
+                GetComponentInParent<WebBrowser>().SelectTab(this);
+            }
         }
     }
 }
