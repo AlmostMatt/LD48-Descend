@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ComputerScene.unity
     guid: 62dce8e2ebdf9be45a26944e810cc121
+  - enabled: 0
+    path: Assets/Scenes/DiggingWithOverlay.unity
+    guid: f5aeb8d4886b7224fad9c3df45ad893d
+  - enabled: 1
+    path: Assets/Scenes/Digging.unity
+    guid: 0ad8666d78bfc404e831fc1420cb71f5
   m_configObjects: {}

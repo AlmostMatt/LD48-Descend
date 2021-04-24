@@ -8,6 +8,7 @@ public class WebBrowser : MonoBehaviour
 {
     public Text urlBox;
     public Transform contentViewsParent;
+    public Transform tabContainer;
 
     private string[] tabUrls = new string[] {
         "www.email.com",
@@ -18,11 +19,15 @@ public class WebBrowser : MonoBehaviour
 
     public void Start()
     {
-        // Disable all but the first content-view
-        for (int i=1; i< contentViewsParent.childCount; i++)
+        Debug.Log("Started WebBrowser");
+        int defaultTabIndex = 2;
+        // Initially disable all other views
+        for (int i=0; i< contentViewsParent.childCount; i++)
         {
-            contentViewsParent.GetChild(i).gameObject.SetActive(false);
+            contentViewsParent.GetChild(i).gameObject.SetActive(i == defaultTabIndex);
         }
+        // Then select the first tab
+        tabContainer.GetChild(defaultTabIndex).GetComponent<Toggle>().isOn = true;
     }
 
     public void SelectTab(TabButton tab)
