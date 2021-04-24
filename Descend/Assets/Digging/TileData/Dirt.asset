@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 11400000, guid: d0b45b11e305fdc4bb9eabdd0ed5803e, type: 2}
+  - {fileID: 11400000, guid: babfc66df92cebf47ba505b5c05937d2, type: 2}
   requiredDigSkill: 0
+  introduceDepth: 1
+  backgroundDepth: 1
+  disappearDepthStart: 30
+  disappearDepthEnd: 40
+  maxClusterSize: 3
