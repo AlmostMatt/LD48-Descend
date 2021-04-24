@@ -44,5 +44,6 @@ public class GameLoopController : MonoBehaviour
         // Load the Computer scene
         singleton.isComputerScene = true;
         singleton.computerView.gameObject.SetActive(true);
+        singleton.computerView.GetComponentInChildren<WebBrowser>().SetTab(2);
     }
 }

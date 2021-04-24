@@ -21,13 +21,19 @@ public class WebBrowser : MonoBehaviour
     {
         Debug.Log("Started WebBrowser");
         int defaultTabIndex = 2;
+        SetTab(defaultTabIndex);
+    }
+
+    public void SetTab(int tabIndex)
+    {
         // Initially disable all other views
-        for (int i=0; i< contentViewsParent.childCount; i++)
+        for (int i = 0; i < contentViewsParent.childCount; i++)
         {
-            contentViewsParent.GetChild(i).gameObject.SetActive(i == defaultTabIndex);
+            contentViewsParent.GetChild(i).gameObject.SetActive(i == tabIndex);
         }
         // Then select the first tab
-        tabContainer.GetChild(defaultTabIndex).GetComponent<Toggle>().isOn = true;
+        tabContainer.GetChild(tabIndex).GetComponent<Toggle>().isOn = true;
+        tabContainer.GetChild(tabIndex).GetComponent<Toggle>().Select();
     }
 
     public void SelectTab(TabButton tab)
