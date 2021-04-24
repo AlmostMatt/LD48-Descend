@@ -16,5 +16,7 @@ public class SaveData
 
     public int digSkill = 0;
 
-    public int[] inventory = new int[(int)ItemType.NUM_TYPES];    
+    public int[] inventory = new int[(int)ItemType.NUM_TYPES];
+
+    public float debt = 1000;
 }

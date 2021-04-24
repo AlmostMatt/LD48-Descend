@@ -4,7 +4,12 @@ using UnityEngine;
 
 public enum ItemType
 {
-    METAL,
-    GEM,
+    IRON,
+    COPPER,
+    ZINC,
+    TUNGSTEN,
+    EMERALD,
+    RUBY,
+    DIAMOND,
     NUM_TYPES // leave at end
 }

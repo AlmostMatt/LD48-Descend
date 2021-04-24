@@ -10,12 +10,17 @@ public class MapGenerator : MonoBehaviour
     public TileManager manager;
     public Tilemap tilemap;
 
+    public List<ItemData> gems;
+
     private List<TileData> mTileDatas;
+
+    private int mMaxDepth;
 
     public void Awake()
     {
         mTileDatas = manager.tileDatas;
         GenerateMap();
+        SpawnGems();
     }
 
     void GenerateMap()
@@ -49,6 +54,7 @@ public class MapGenerator : MonoBehaviour
             if(tileData.disappearDepthEnd > clusterEndDepth)
             {
                 clusterEndDepth = tileData.disappearDepthEnd;
+                mMaxDepth = clusterEndDepth;
             }
         }
 
@@ -66,11 +72,84 @@ public class MapGenerator : MonoBehaviour
                     clusterChance = 1 - ((depth - tileData.disappearDepthStart) / (float)(tileData.disappearDepthEnd - tileData.disappearDepthStart));
                 }
                 
-                if(clusterChance > 0 && clusterChance <= 1 && Random.Range(0f, 1f) > clusterChance)
+                if(clusterChance > 0 && clusterChance <= 1 && Random.Range(0f, 1f) <= clusterChance)
                 {
                     int x = Random.Range(minX, maxX);
                     MakeCluster(x, depth, tileData);
                     break;
+                }
+            }
+        }
+    }
+
+    private int GetDebtForStage(int stage)
+    {
+        // TODO: base these off of the prices of the digging upgrades
+        switch(stage)
+        {
+            case 0:
+                return 1000;
+            case 1:
+                return 5000;
+            case 2:
+                return 10000;
+        }
+
+        return 0;
+    }
+
+    void SpawnGems()
+    {
+        int[] itemCounts = new int[(int)ItemType.NUM_TYPES];
+        foreach(ItemData gemData in gems)
+        {
+            int maxValue = Mathf.CeilToInt(GetDebtForStage(gemData.stage) * 0.9f);
+            int value = gemData.storeValue;
+
+            int maxToSpawn = Mathf.CeilToInt(maxValue / (float)value);
+            itemCounts[(int)gemData.itemType] = maxToSpawn;
+        }
+
+        for(int depth = 1; depth <= mMaxDepth; ++depth)
+        {
+            foreach(ItemData gemData in gems)
+            {
+                if(itemCounts[(int)gemData.itemType] == 0) continue;
+
+                if(depth >= gemData.minDepth && depth < gemData.maxDepth)
+                {
+                    float peakChance = 2 / (float)(gemData.maxDepth - gemData.minDepth);
+                    float spawnChance = 0f;
+                    if(depth < gemData.peakDepth)
+                    {
+                        float t = depth - gemData.minDepth;
+                        spawnChance = t * peakChance / (gemData.peakDepth - gemData.minDepth);
+                    }
+                    else
+                    {
+                        float t = depth - gemData.maxDepth;
+                        spawnChance = t * peakChance / (gemData.peakDepth - gemData.maxDepth);
+                    }
+
+                    if(spawnChance > 0f)
+                    {
+                        for(int x = minX; x < maxX; ++x)
+                        {
+                            if(Random.Range(0f, 1f) <= spawnChance)
+                            {
+                                Vector3 worldPosition = tilemap.CellToWorld(new Vector3Int(x, -depth, 0));
+                                worldPosition.x += 0.5f;
+                                worldPosition.y += 0.5f;
+                                worldPosition.z = -1f;
+                                Instantiate(gemData.prefabObject, worldPosition, Quaternion.identity);
+
+                                if(--itemCounts[(int)gemData.itemType] <= 0)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
