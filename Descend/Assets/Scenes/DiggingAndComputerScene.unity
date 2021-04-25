@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 403111678}
   - component: {fileID: 403111680}
   - component: {fileID: 403111679}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2350,7 +2350,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 728925678}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 793d1aa0a9b6e5c46b9b27794ab1d980, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2413,7 +2413,7 @@ GameObject:
   - component: {fileID: 1127204226}
   - component: {fileID: 1127204225}
   - component: {fileID: 1127204227}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5750,7 +5750,7 @@ GameObject:
   - component: {fileID: 1297579026}
   - component: {fileID: 1297579028}
   - component: {fileID: 1297579027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BkgTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6304,7 +6304,7 @@ GameObject:
   - component: {fileID: 2080872716}
   - component: {fileID: 2080872718}
   - component: {fileID: 2080872717}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FogTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ public class DiggingPlayer : MonoBehaviour
 
     public float horizontalSpeed = 4f;
     public float verticalSpeed = 4f;
-    private static float JUMP_SPEED = 5f;
+    private static float JUMP_SPEED = 10f;
 
     private Rigidbody2D mRigidbody;
     private BoxCollider2D mBoxCollider;
@@ -78,17 +78,21 @@ public class DiggingPlayer : MonoBehaviour
         float vertSpeed = momentum.y;
 
         // JUMP
-        if (Input.GetButton("Jump"))
+        Bounds bounds = mBoxCollider.bounds;
+        Vector2 playerFeet = new Vector2(bounds.center.x, bounds.min.y);
+        float groundDetectionDepth = 0.1f; 
+        Collider2D collision = Physics2D.OverlapBox(
+            new Vector2(playerFeet.x, playerFeet.y - groundDetectionDepth/2f),
+            new Vector2(bounds.size.x * 0.9f, groundDetectionDepth),
+            0f,
+            LayerMask.GetMask("Ground"));
+        bool onGround = collision != null;
+        if (Input.GetButton("Jump") && onGround)
         {
             vertSpeed = JUMP_SPEED;
         }
 
         mRigidbody.velocity = new Vector2(horzSpeed, vertSpeed);
-
-        // TODO: check in the direction of motion, not just down
-        Vector2 pos = transform.position;
-
-        Bounds bounds = mBoxCollider.bounds;
     }
 
     void DigTile(Vector3Int position)
