@@ -5559,6 +5559,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8376296313825908093, guid: e3852043c36b6d44bb4574409dd262ac,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 728925681}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3852043c36b6d44bb4574409dd262ac, type: 3}
 --- !u!1 &1226565051
@@ -6365,6 +6370,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3382348013331727414, guid: 96a23d18045c1f94a946ef293d7ee424,
+        type: 3}
+      propertyPath: tileManager
+      value: 
+      objectReference: {fileID: 1299804786}
+    - target: {fileID: 3382348013331727414, guid: 96a23d18045c1f94a946ef293d7ee424,
+        type: 3}
+      propertyPath: dirtTilemap
+      value: 
+      objectReference: {fileID: 1127204226}
+    - target: {fileID: 3382348013331727414, guid: 96a23d18045c1f94a946ef293d7ee424,
+        type: 3}
+      propertyPath: fogTilemap
+      value: 
+      objectReference: {fileID: 2080872718}
     - target: {fileID: 3382348013331727415, guid: 96a23d18045c1f94a946ef293d7ee424,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6420,20 +6440,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3382348013331727414, guid: 96a23d18045c1f94a946ef293d7ee424,
-        type: 3}
-      propertyPath: tileManager
-      value: 
-      objectReference: {fileID: 1299804786}
-    - target: {fileID: 3382348013331727414, guid: 96a23d18045c1f94a946ef293d7ee424,
-        type: 3}
-      propertyPath: dirtTilemap
-      value: 
-      objectReference: {fileID: 1127204226}
-    - target: {fileID: 3382348013331727414, guid: 96a23d18045c1f94a946ef293d7ee424,
-        type: 3}
-      propertyPath: fogTilemap
-      value: 
-      objectReference: {fileID: 2080872718}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96a23d18045c1f94a946ef293d7ee424, type: 3}
