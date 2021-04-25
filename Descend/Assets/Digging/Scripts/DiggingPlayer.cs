@@ -394,6 +394,11 @@ public class DiggingPlayer : MonoBehaviour
         mStamina = maxStamina;
     }
 
+    public float GetStaminaPct()
+    {
+        return mStamina / (float)maxStamina;
+    }
+
     private void OnDrawGizmos()
     {
         if(mBoxCollider != null)
