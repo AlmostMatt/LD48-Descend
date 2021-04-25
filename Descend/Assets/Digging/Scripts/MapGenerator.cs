@@ -8,7 +8,13 @@ public class MapGenerator : MonoBehaviour
     public int minX;
     public int maxX;
     public TileManager manager;
-    public Tilemap tilemap;
+
+    public Tilemap bkgTilemap;
+    public Tilemap mainTilemap;
+    public Tilemap fogTilemap;
+    public TileBase[] bkgTiles;
+    public TileData dirtTile;
+    public TileBase[] fogTiles;
 
     public List<ItemData> gems;
 
@@ -25,11 +31,18 @@ public class MapGenerator : MonoBehaviour
 
     void GenerateMap()
     {
+        // First, totally fill out the bkg, main, and fog tilemaps
+        int minY = -100; // TODO: add more tiles as the player explores
+        int maxY = 0;
+        FillTilemap(bkgTilemap, bkgTiles, minX, maxX, minY, maxY);
+        FillTilemap(mainTilemap, dirtTile.tiles, minX, maxX, minY, maxY);
+        FillTilemap(fogTilemap, fogTiles, minX, maxX, minY, maxY);
+
         int clusterStartDepth = 1000000;
         int clusterEndDepth = 0;
         foreach(TileData tileData in mTileDatas)
         {
-            // fill out any background region tiles first...
+            // fill out "layers" of tile types
             int backgroundSize = (tileData.disappearDepthStart - tileData.backgroundDepth);
             if(backgroundSize > 0)
             {
@@ -40,7 +53,7 @@ public class MapGenerator : MonoBehaviour
                     tiles[i] = tileData.tiles[Random.Range(0, tileData.tiles.Length)];
                 }
                 BoundsInt area = new BoundsInt(minX, -tileData.disappearDepthStart, 0, width, backgroundSize, 1);
-                tilemap.SetTilesBlock(area, tiles);
+                mainTilemap.SetTilesBlock(area, tiles);
             }
 
             if(tileData.introduceDepth != tileData.backgroundDepth)
@@ -58,6 +71,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
+        // Spawn clusters
         for(int depth = clusterStartDepth; depth <= clusterEndDepth; ++depth)
         {
             foreach(TileData tileData in mTileDatas)
@@ -137,7 +151,7 @@ public class MapGenerator : MonoBehaviour
                         {
                             if(Random.Range(0f, 1f) <= spawnChance)
                             {
-                                Vector3 worldPosition = tilemap.CellToWorld(new Vector3Int(x, -depth, 0));
+                                Vector3 worldPosition = mainTilemap.CellToWorld(new Vector3Int(x, -depth, 0));
                                 worldPosition.x += 0.5f;
                                 worldPosition.y += 0.5f;
                                 worldPosition.z = -1f;
@@ -153,6 +167,20 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    void FillTilemap(Tilemap tilemap, TileBase[] possibleTiles, int minX, int maxX, int minY, int maxY)
+    {
+        int width = (maxX - minX);
+        int height = (maxY - minY);
+        TileBase[] tiles = new TileBase[width * height];
+        for (int i = 0; i < tiles.Length; ++i)
+        {
+            tiles[i] = possibleTiles[Random.Range(0, possibleTiles.Length)];
+        }
+        BoundsInt area = new BoundsInt(minX, minY, 0, width, height, 1);
+        tilemap.SetTilesBlock(area, tiles);
+
     }
 
     void MakeCluster(int x, int depth, TileData data)
@@ -188,7 +216,7 @@ public class MapGenerator : MonoBehaviour
                 TileBase tile = data.tiles[Random.Range(0, data.tiles.Length)];
                 tilePos.x = j;
                 tilePos.y = -y;
-                tilemap.SetTile(tilePos, tile);
+                mainTilemap.SetTile(tilePos, tile);
             }
         }
     }

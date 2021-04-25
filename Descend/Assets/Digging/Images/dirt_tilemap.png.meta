@@ -20,6 +20,15 @@ TextureImporter:
   - first:
       213: 9169339054629687971
     second: dirt_tilemap_5
+  - first:
+      213: 5020419567549141861
+    second: dirt_tilemap_6
+  - first:
+      213: -4495502761694854171
+    second: dirt_tilemap_7
+  - first:
+      213: -213207060552507586
+    second: dirt_tilemap_8
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -139,17 +148,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1969ecc9eef3f9d45a012e42ffd1df65
+      spriteID: 698d94a2995b13247aeb09b7844badba
       internalID: 4081250848729413190
       vertices: []
       indices: 
@@ -160,17 +169,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f45e8b0c4e68ddd4d9061d934d51b626
+      spriteID: 2fbb3b9178697084c9ec9c016dd092e8
       internalID: -7267915606590425967
       vertices: []
       indices: 
@@ -181,17 +190,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10d42e2561693be4880c025dcccccbd2
+      spriteID: 98bb3eb015f33224685a0be280e48a73
       internalID: -4547133712299897190
       vertices: []
       indices: 
@@ -202,17 +211,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd4089f9e1c8c5b43a8f7401a4ff8a49
+      spriteID: 1ae29b8b5f8f27f4e9d0b38929cc3be7
       internalID: -7777131566133119812
       vertices: []
       indices: 
@@ -223,17 +232,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a8329420e3bea748ba237fc452b889b
+      spriteID: 8468b1d3d344e504486e9c91b2ff5d0f
       internalID: -1799059679399921812
       vertices: []
       indices: 
@@ -244,18 +253,81 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa1f1f3768b9db64d9f7ed35af511f60
+      spriteID: 95ba77b4c827c1c45b887e0d1c6108e7
       internalID: 9169339054629687971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tilemap_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04a2426a3b9fb6145b5d8c88d1207fc7
+      internalID: 5020419567549141861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tilemap_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58ecbc64d73f03b4db4f1b371cfe8eb0
+      internalID: -4495502761694854171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tilemap_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b861347e5721e0940896baa9d45ba5d3
+      internalID: -213207060552507586
       vertices: []
       indices: 
       edges: []
