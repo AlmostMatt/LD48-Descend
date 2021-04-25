@@ -34,7 +34,7 @@ public class DiggingPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Ignore input and stuff while not in the digging scene
         if (!GameLoopController.isDiggingScene())
@@ -42,19 +42,32 @@ public class DiggingPlayer : MonoBehaviour
             return;
         }
 
+        HandleMovement();
+
+        // reveal nearby tiles
+        Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
+        bottomLeft.x -= 2;
+        bottomLeft.y -= 2;
+        BoundsInt revealArea = new BoundsInt(bottomLeft, new Vector3Int(5, 7, 1));
+        TileBase[] emptyTiles = new TileBase[35];
+        fogTilemap.SetTilesBlock(revealArea, emptyTiles);
+    }
+
+    void HandleMovement()
+    {
         float horz = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
 
         float horzSpeed = horz != 0 ? horizontalSpeed * Mathf.Sign(horz) : 0f;
-        
+
         float vertSpeed = vert != 0 ? verticalSpeed * Mathf.Sign(vert) : 0f;
 
-        if(transform.position.y >= GROUND_HEIGHT)
+        if (transform.position.y >= GROUND_HEIGHT)
         {
             // can't move up when above ground
             vertSpeed = Mathf.Min(0, vertSpeed);
 
-            if(transform.position.y > GROUND_HEIGHT)
+            if (transform.position.y > GROUND_HEIGHT)
                 transform.position = new Vector3(transform.position.x, GROUND_HEIGHT, 0);
         }
 
@@ -64,7 +77,7 @@ public class DiggingPlayer : MonoBehaviour
         Vector2 pos = transform.position;
 
         Bounds bounds = mBoxCollider.bounds;
-        if(vertSpeed != 0)
+        if (vertSpeed != 0)
         {
             Vector2 checkPos = transform.position;
             checkPos.y = vertSpeed > 0 ? bounds.max.y + 0.1f : bounds.min.y - 0.1f;
@@ -75,20 +88,20 @@ public class DiggingPlayer : MonoBehaviour
 
             checkPos.x = bounds.min.x;
             Vector3Int minBlockingTile = dirtTilemap.WorldToCell(checkPos);
-            if(minBlockingTile != centerBlockingTile)
+            if (minBlockingTile != centerBlockingTile)
             {
                 DigTile(minBlockingTile);
             }
 
             checkPos.x = bounds.max.x;
             Vector3Int maxBlockingTile = dirtTilemap.WorldToCell(checkPos);
-            if(maxBlockingTile != centerBlockingTile && maxBlockingTile != minBlockingTile)
+            if (maxBlockingTile != centerBlockingTile && maxBlockingTile != minBlockingTile)
             {
                 DigTile(maxBlockingTile);
             }
         }
 
-        if(horzSpeed != 0)
+        if (horzSpeed != 0)
         {
             Vector2 checkPos = transform.position;
             checkPos.x = horzSpeed > 0 ? bounds.max.x + 0.1f : bounds.min.x - 0.1f;
@@ -99,27 +112,18 @@ public class DiggingPlayer : MonoBehaviour
 
             checkPos.y = bounds.center.y;
             Vector3Int centerBlockingTile = dirtTilemap.WorldToCell(checkPos);
-            if(centerBlockingTile != minBlockingTile)
+            if (centerBlockingTile != minBlockingTile)
             {
                 DigTile(centerBlockingTile);
             }
 
             checkPos.y = bounds.max.y;
             Vector3Int maxBlockingTile = dirtTilemap.WorldToCell(checkPos);
-            if(maxBlockingTile != minBlockingTile && maxBlockingTile != centerBlockingTile)
+            if (maxBlockingTile != minBlockingTile && maxBlockingTile != centerBlockingTile)
             {
                 DigTile(maxBlockingTile);
             }
         }
-
-
-        // reveal nearby tiles
-        Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
-        bottomLeft.x -= 2;
-        bottomLeft.y -= 2;
-        BoundsInt revealArea = new BoundsInt(bottomLeft, new Vector3Int(5, 7, 1));
-        TileBase[] emptyTiles = new TileBase[35];
-        fogTilemap.SetTilesBlock(revealArea, emptyTiles);
     }
 
     void DigTile(Vector3Int position)
