@@ -9,6 +9,7 @@ public class GemSaleView : MonoBehaviour
     public Transform gemSaleRowContainer;
     public Text totalPriceText;
     public Button sellButton;
+    public Text currentBalanceText;
 
     private RenderableGroup<InventoryEntry> mSaleRowGroup;
     private List<InventoryEntry> invList = new List<InventoryEntry>();
@@ -29,6 +30,8 @@ public class GemSaleView : MonoBehaviour
         int totalPrice = GetTotalInventoryValue();
         totalPriceText.text = "$" + totalPrice.ToString();
         sellButton.interactable = (totalPrice > 0);
+        // current balance
+        currentBalanceText.text = "Balance: $" + PlayerState.Get().GetBalance(); ;
     }
 
     public void SellGems()
