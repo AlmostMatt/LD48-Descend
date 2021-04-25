@@ -6175,6 +6175,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9287c343bedb71e4e98a297aafbd868a, type: 2}
   - {fileID: 11400000, guid: 30f0eb98ba92b0e4db705bbd5d7d60e7, type: 2}
   - {fileID: 11400000, guid: 700f482529c68164d93721d25745e6f6, type: 2}
+  premadeTilemaps:
+  - {fileID: 11400000, guid: 037be76b03b386047a2398f2d9081db8, type: 2}
 --- !u!4 &1810598624
 Transform:
   m_ObjectHideFlags: 0

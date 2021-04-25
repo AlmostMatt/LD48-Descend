@@ -18,6 +18,8 @@ public class MapGenerator : MonoBehaviour
 
     public List<ItemData> gems;
 
+    public List<PremadeTilemapData> premadeTilemaps;
+
     private List<TileData> mTileDatas;
 
     private int mMaxDepth;
@@ -86,6 +88,19 @@ public class MapGenerator : MonoBehaviour
                     break;
                 }
             }
+        }
+
+        // place premade stuff
+        foreach(PremadeTilemapData data in premadeTilemaps)
+        {
+            Tilemap premadeTilemap = data.tilemapObject.GetComponentInChildren<Tilemap>();
+            BoundsInt bounds = premadeTilemap.cellBounds;
+            TileBase[] allTiles = premadeTilemap.GetTilesBlock(bounds);
+
+            int x = data.x;
+            int y = data.y;
+            BoundsInt targetBounds = new BoundsInt(new Vector3Int(x, y, 0), bounds.size);
+            mainTilemap.SetTilesBlock(targetBounds, allTiles);
         }
     }
 
