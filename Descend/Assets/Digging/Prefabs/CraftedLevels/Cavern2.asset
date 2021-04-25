@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3698a31b09905354fabfaf410c876b7e, type: 3}
+  m_Name: Cavern2
+  m_EditorClassIdentifier: 
+  tilemapObject: {fileID: 6686651711203783186, guid: 50845dffa7614cb4fa00e5ede914c39a,
+    type: 3}
+  x: -4
+  y: -33

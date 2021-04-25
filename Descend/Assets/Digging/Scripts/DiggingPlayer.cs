@@ -38,6 +38,7 @@ public class DiggingPlayer : MonoBehaviour
     private float mDigTimer;
     private Dictionary<Vector3Int, float> mDigProgress = new Dictionary<Vector3Int, float>();
 
+    private LineRenderer mGrappleLineRenderer;
     private const int GRAPPLE_NONE = 0;
     private const int GRAPPLE_EXTEND = 1;
     private const int GRAPPLE_RETRACT = 2;
@@ -55,6 +56,8 @@ public class DiggingPlayer : MonoBehaviour
         mBoxCollider = GetComponent<BoxCollider2D>();
 
         GROUND_LAYER_MASK = LayerMask.GetMask("Ground");
+
+        mGrappleLineRenderer = GetComponent<LineRenderer>();
     }
 
     // Start is called before the first frame update
@@ -299,11 +302,19 @@ public class DiggingPlayer : MonoBehaviour
         float vert = Input.GetAxis("Vertical");
         if(vert < 0)
         {
+            mGrappleLineRenderer.positionCount = 0;
             mGrappleState = GRAPPLE_NONE;
         }
 
         if(mGrappleState == GRAPPLE_EXTEND)
         {
+            Vector3 grappleHeadPos = mGrappleTarget;
+            Vector3[] positions = new Vector3[2];
+            positions[0] = mBoxCollider.bounds.center;
+            positions[1] = grappleHeadPos;
+            mGrappleLineRenderer.positionCount = 2;
+            mGrappleLineRenderer.SetPositions(positions);
+
             if(mGrappleTimer >= 0f)
             {
                 mGrappleTimer -= Time.deltaTime;
@@ -315,6 +326,13 @@ public class DiggingPlayer : MonoBehaviour
         }
         else if(mGrappleState == GRAPPLE_RETRACT)
         {
+            Vector3 grappleHeadPos = mGrappleTarget;
+            Vector3[] positions = new Vector3[2];
+            positions[0] = mBoxCollider.bounds.center;
+            positions[1] = grappleHeadPos;
+            mGrappleLineRenderer.positionCount = 2;
+            mGrappleLineRenderer.SetPositions(positions);
+
             if(Vector2.Distance(mBoxCollider.bounds.center, mGrappleTarget) <= 0.3f)
             {
                 Debug.Log("grapple hang");
