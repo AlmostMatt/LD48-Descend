@@ -2268,7 +2268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   computerView: {fileID: 1970315446}
   digOverlay: {fileID: 565094909}
-  isComputerScene: 1
+  isComputerScene: 0
 --- !u!1 &728925678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2303,7 +2303,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
