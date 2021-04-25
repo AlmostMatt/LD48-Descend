@@ -9,6 +9,8 @@ public class DiggingPlayer : MonoBehaviour
     public Tilemap dirtTilemap;
     public Tilemap fogTilemap;
 
+    public ParticleSystem digEffect;
+
     public float horizontalSpeed = 4f;
     public float verticalSpeed = 4f;
     private static float JUMP_SPEED = 10f;
@@ -37,6 +39,8 @@ public class DiggingPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        bool isDigging = false;
+
         // Ignore input and stuff while not in the digging scene
         if (!GameLoopController.isDiggingScene())
         {
@@ -55,7 +59,9 @@ public class DiggingPlayer : MonoBehaviour
             Vector3 digTrajectory = mouseInWorld - closestPlayerPoint;
             digTrajectory.Normalize();
             Vector3Int targetTile = dirtTilemap.WorldToCell(closestPlayerPoint + digTrajectory);
+            isDigging = tileManager.GetTileData(targetTile) != null;
             DigTile(targetTile);
+            digEffect.transform.position = closestPlayerPoint + digTrajectory;
         }
 
         // reveal nearby tiles
@@ -65,6 +71,9 @@ public class DiggingPlayer : MonoBehaviour
         BoundsInt revealArea = new BoundsInt(bottomLeft, new Vector3Int(5, 7, 1));
         TileBase[] emptyTiles = new TileBase[35];
         fogTilemap.SetTilesBlock(revealArea, emptyTiles);
+
+        var emission = digEffect.emission;
+        emission.enabled = isDigging;
     }
 
     void HandleMovement()
