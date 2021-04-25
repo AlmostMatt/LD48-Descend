@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityBaseCode.Rendering;
 
 public struct InventoryEntry
 {
@@ -20,6 +21,7 @@ public struct InventoryEntry
         // uiObject.SetActive(GameData.singleton.potionsUnlocked[(int)report.PotionType] || report.numSold > 0);
 
         uiObject.transform.Find("H/Name").GetComponent<Text>().text = string.Format("{0}\nPotion", entry.itemType.GetName());
+        uiObject.transform.Find("H/Icon").GetComponent<Image>().sprite = SpriteDictionary.GetSprite(entry.itemType.GetImage());
         uiObject.transform.Find("H/Icon").GetComponent<Image>().color = entry.itemType.GetColor();
 
         uiObject.transform.Find("H/Sales").GetComponent<Text>().text = string.Format("{0}x", entry.itemCount);

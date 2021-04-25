@@ -18,7 +18,13 @@ public static class TypeExtensions
 {
     public static string GetImage(this ItemType itemType)
     {
-        return "iron";
+        switch (itemType)
+        {
+            case ItemType.RUBY:
+                return "ruby";
+            default:
+                return "iron";
+        }
     }
 
     public static string GetName(this ItemType itemType)
