@@ -12,10 +12,22 @@ public class DiggingPlayer : MonoBehaviour
     public ParticleSystem digEffect;
 
     public float horizontalSpeed = 4f;
-    public float verticalSpeed = 4f;
+    public float climbSpeed = 4f;
     private static float JUMP_SPEED = 10f;
+    private static float WALL_JUMP_HORZ_SPEED = 5f;
+    private static float WALL_JUMP_VERT_SPEED = 8f;
     public float grappleExtendSpeed = 30f;
     public float grappleRetractSpeed = 10f;
+
+    /** state variables (for animation and also for logic) **/
+    private bool mOnGround;
+    private bool mJumping;
+    private bool mWallClimbingLeft;
+    private bool mWallClimbingRight;
+    private static float COYOTE_TIME_DURATION = 0.05f;
+    private float mCanJumpGroundTimer = 0f;
+    private float mCanJumpLeftWallTimer = 0f;
+    private float mCanJumpRightWallTimer = 0f;
 
     private Rigidbody2D mRigidbody;
     private BoxCollider2D mBoxCollider;
@@ -101,6 +113,8 @@ public class DiggingPlayer : MonoBehaviour
 
         HandleMovement();
 
+        mRigidbody.gravityScale = (mWallClimbingLeft || mWallClimbingRight || mGrappleState != GRAPPLE_NONE) ? 0f : 1f;
+
         // reveal nearby tiles
         Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
         bottomLeft.x -= 2;
@@ -126,34 +140,151 @@ public class DiggingPlayer : MonoBehaviour
 
         Vector2 momentum = mRigidbody.velocity;
 
-        float horz = Input.GetAxis("Horizontal");
-        float vert = Input.GetAxis("Vertical");
+        float horzInput = Input.GetAxis("Horizontal");
+        float vertInput = Input.GetAxis("Vertical");
 
-        float horzSpeed = horz != 0 ? horizontalSpeed * Mathf.Sign(horz) : 0f;
-        float vertSpeed = momentum.y;
-
-        // JUMP
+        // Instantaneous things should set immediateVx
+        // Things that accel or decel over time should set desiredVx
+        float immediateVx = momentum.x;
+        float immediateVy = momentum.y;
+        float desiredVx = horzInput != 0 ? horizontalSpeed * Mathf.Sign(horzInput) : 0f;
         Bounds bounds = mBoxCollider.bounds;
+
+        /**
+         * Check on-ground and against-wall
+         **/
         Vector2 playerFeet = new Vector2(bounds.center.x, bounds.min.y);
-        float groundDetectionDepth = 0.1f; 
-        Collider2D collision = Physics2D.OverlapBox(
-            new Vector2(playerFeet.x, playerFeet.y - groundDetectionDepth/2f),
+        float groundDetectionDepth = 0.1f;
+        Vector2 bottomOffset = new Vector2(0f, groundDetectionDepth / 2f); ;
+        Collider2D groundCollision = Physics2D.OverlapBox(
+            playerFeet - bottomOffset,
             new Vector2(bounds.size.x * 0.9f, groundDetectionDepth),
             0f,
             LayerMask.GetMask("Ground"));
-        bool onGround = collision != null;
-        if (Input.GetButton("Jump") && onGround)
+        mOnGround = (!mWallClimbingLeft && !mWallClimbingRight) && groundCollision != null && momentum.y <= 0f;
+        float wallDetectionDepth = 0.1f;
+        Vector2 playerRight = new Vector2(bounds.max.x, bounds.center.y);
+        Vector2 playerLeft = new Vector2(bounds.min.x, bounds.center.y);
+        Vector2 sideOffset = new Vector2(wallDetectionDepth / 2f, 0f);
+        Vector2 detectionSize = new Vector2(wallDetectionDepth, bounds.size.y * 0.9f);
+        Collider2D leftCollision = Physics2D.OverlapBox(
+            playerLeft - sideOffset, detectionSize, 0f, LayerMask.GetMask("Ground"));
+        Collider2D rightCollision = Physics2D.OverlapBox(
+            playerRight + sideOffset, detectionSize, 0f, LayerMask.GetMask("Ground"));
+
+        // WALL CLIMB
+        // Start a wall climb when falling and pressed against a wall
+        if (!mWallClimbingLeft && leftCollision != null && (horzInput < 0f || momentum.x < 0f) && momentum.y <= 0f)
         {
-            vertSpeed = JUMP_SPEED;
+            Debug.Log("now on left wall");
+            mWallClimbingLeft = true;
+        }
+        if (!mWallClimbingRight && rightCollision != null && (horzInput > 0f || momentum.x > 0f) && momentum.y <= 0f)
+        {
+            Debug.Log("now on right wall");
+            mWallClimbingRight = true;
+        }
+        // Check if no longer touching the wall
+        if (mWallClimbingLeft && leftCollision == null)
+        {
+            Debug.Log("no longer touching wall");
+            mWallClimbingLeft = false;
+        }
+        if (mWallClimbingRight && rightCollision == null)
+        {
+            Debug.Log("no longer touching wall");
+            mWallClimbingRight = false;
+        }
+        // Left and right arrows can let go of the wall
+        if (mWallClimbingLeft && horzInput > 0f)
+        {
+            Debug.Log("let go of wall");
+            mWallClimbingLeft = false;
+        }
+        if (mWallClimbingRight && horzInput < 0f)
+        {
+            Debug.Log("let go of wall");
+            mWallClimbingRight = false;
+        }
+        // Up/down input to climb on the wall
+        if (mWallClimbingLeft || mWallClimbingRight)
+        {
+            immediateVy = vertInput != 0 ? climbSpeed * Mathf.Sign(vertInput) : 0f;
         }
 
-        mRigidbody.velocity = new Vector2(horzSpeed, vertSpeed);
+        mCanJumpLeftWallTimer -= Time.fixedDeltaTime;
+        mCanJumpRightWallTimer -= Time.fixedDeltaTime;
+        mCanJumpGroundTimer -= Time.fixedDeltaTime;
+        if (mWallClimbingLeft)
+        {
+            mCanJumpLeftWallTimer = COYOTE_TIME_DURATION;
+        }
+        if (mWallClimbingRight)
+        {
+            mCanJumpRightWallTimer = COYOTE_TIME_DURATION;
+        }
+        if (mOnGround)
+        {
+            mCanJumpGroundTimer = COYOTE_TIME_DURATION;
+        }
+
+        if (Input.GetButton("Jump"))
+        {
+            // JUMP FROM WALL
+            if (mCanJumpLeftWallTimer > 0f || mCanJumpRightWallTimer > 0f)
+            {
+                Debug.Log("jumped off of wall");
+                if (mCanJumpLeftWallTimer > 0f)
+                {
+                    mWallClimbingLeft = false;
+                    mCanJumpLeftWallTimer = 0f;
+                    immediateVx = WALL_JUMP_HORZ_SPEED;
+                    desiredVx = WALL_JUMP_HORZ_SPEED;
+                }
+                else
+                {
+                    mWallClimbingRight = false;
+                    mCanJumpRightWallTimer = 0f;
+                    immediateVx = -WALL_JUMP_HORZ_SPEED;
+                    desiredVx = -WALL_JUMP_HORZ_SPEED;
+                }
+                immediateVy = WALL_JUMP_VERT_SPEED;
+                mJumping = true;
+            }
+            // JUMP FROM GROUND
+            else if (mCanJumpGroundTimer > 0f)
+            {
+                Debug.Log("jumped from ground");
+                immediateVy = JUMP_SPEED;
+                mJumping = true;
+            }
+        }
+
+        // Check if still in "jumping" state.
+        if (mJumping)
+        {
+            mJumping = (momentum.y >= 0f);
+        }
+
+        Vector2 desiredV = new Vector2(desiredVx, immediateVy);
+        float hAccel = 1000000f;
+        if (!mOnGround)
+        {
+            hAccel = 20f;
+        }
+        // Horizontal acceleration. Accel*time = deltav, so accel =deltav/time
+        float deltaV = (desiredV.x - immediateVx);
+        //if (Mathf.Abs(deltaV) > 3f) {
+        //    Debug.Log(deltaV);
+        //}
+        float desiredAccel = deltaV/Time.fixedDeltaTime;
+        float actualAccel = Mathf.Clamp(desiredAccel, -hAccel, hAccel);
+        mRigidbody.velocity = new Vector2(immediateVx + (actualAccel * Time.fixedDeltaTime), desiredV.y);
     }
 
     private void StartGrapple(Vector2 targetPoint, Vector2 toTarget)
     {
         mGrappleState = GRAPPLE_EXTEND;
-        mRigidbody.gravityScale = 0;
         mGrappleDirection = toTarget.normalized;
         mGrappleTarget = targetPoint;
         Debug.Log("grapple target: " + mGrappleTarget);
@@ -169,7 +300,6 @@ public class DiggingPlayer : MonoBehaviour
         if(vert < 0)
         {
             mGrappleState = GRAPPLE_NONE;
-            mRigidbody.gravityScale = 1;
         }
 
         if(mGrappleState == GRAPPLE_EXTEND)
