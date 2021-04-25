@@ -20,15 +20,18 @@ public class ShopView : MonoBehaviour
 
     private void InitializeShopItems()
     {
-        shopItemList.Add(new ShopItem("Fancy pickaxe", "Lets you dig 25% faster", "pickaxeImage", 100));
-        shopItemList.Add(new ShopItem("Fancier pickaxe", "Lets you dig 50% faster", "pickaxeImage", 300));
-        shopItemList.Add(new ShopItem("Fanciest pickaxe", "Lets you dig 100% faster", "pickaxeImage", 500));
-        shopItemList.Add(new ShopItem("Fancy pickaxe", "Lets you dig 25% faster", "pickaxeImage", 100));
-        shopItemList.Add(new ShopItem("Fancier pickaxe", "Lets you dig 50% faster", "pickaxeImage", 300));
-        shopItemList.Add(new ShopItem("Fanciest pickaxe", "Lets you dig 100% faster", "pickaxeImage", 500));
-        shopItemList.Add(new ShopItem("Fancy pickaxe", "Lets you dig 25% faster", "pickaxeImage", 100));
-        shopItemList.Add(new ShopItem("Fancier pickaxe", "Lets you dig 50% faster", "pickaxeImage", 300));
-        shopItemList.Add(new ShopItem("Fanciest pickaxe", "Lets you dig 100% faster", "pickaxeImage", 500));
+        shopItemList.Add(new ShopItem("Fancy pickaxe", "Gives dig skill 1", "pickaxeImage", 100, "DigSkill", 1));
+        shopItemList.Add(new ShopItem("Fancier pickaxe", "Gives DigSkill 2", "pickaxeImage", 300, "DigSkill", 2));
+        shopItemList.Add(new ShopItem("Fanciest pickaxe", "Gives DigSkill 3", "pickaxeImage", 500, "DigSkill", 3));
+        shopItemList.Add(new ShopItem("Fancy pickaxe", "Gives dig skill 1", "pickaxeImage", 100, "DigSkill", 1));
+        shopItemList.Add(new ShopItem("Fancier pickaxe", "Gives DigSkill 2", "pickaxeImage", 300, "DigSkill", 2));
+        shopItemList.Add(new ShopItem("Fanciest pickaxe", "Gives DigSkill 3", "pickaxeImage", 500, "DigSkill", 3));
+        shopItemList.Add(new ShopItem("Fancy pickaxe", "Gives dig skill 1", "pickaxeImage", 100, "DigSkill", 1));
+        shopItemList.Add(new ShopItem("Fancier pickaxe", "Gives DigSkill 2", "pickaxeImage", 300, "DigSkill", 2));
+        shopItemList.Add(new ShopItem("Fanciest pickaxe", "Gives DigSkill 3", "pickaxeImage", 500, "DigSkill", 3));
+        shopItemList.Add(new ShopItem("Fancy pickaxe", "Gives dig skill 1", "pickaxeImage", 100, "DigSkill", 1));
+        shopItemList.Add(new ShopItem("Fancier pickaxe", "Gives DigSkill 2", "pickaxeImage", 300, "DigSkill", 2));
+        shopItemList.Add(new ShopItem("Fanciest pickaxe", "Gives DigSkill 3", "pickaxeImage", 500, "DigSkill", 3));
         UpdateForSale();
     }
 
@@ -51,8 +54,16 @@ public class ShopView : MonoBehaviour
         int itemIndex = shopItemButton.transform.GetSiblingIndex();
         ShopItem item = shopItemList[itemIndex];
         PlayerState.Get().DecreaseBalance(item.priceInDollars);
-        shopItemList[itemIndex] = new ShopItem(item.name, item.description, item.imageName, item.priceInDollars, true);
-        // TODO: find the corresponding ShopItemButton struct
-        // TODO: purchase the corresponding item
+        shopItemList[itemIndex] = new ShopItem(item.name, item.description, item.imageName, item.priceInDollars, item.effectType, item.effectValue, true);
+        // The effect of the item
+        switch (item.effectType)
+        {
+            case "DigSkill":
+                SaveData.Get().digSkill = Mathf.Max(SaveData.Get().digSkill, item.effectValue);
+                break;
+            default:
+                Debug.LogError("Purchase an item with unknown effect type: " + item.effectType);
+                break;
+        }
     }
 }

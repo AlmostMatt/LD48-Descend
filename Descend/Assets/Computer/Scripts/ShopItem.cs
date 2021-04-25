@@ -4,19 +4,30 @@ using UnityEngine.UI;
 
 public struct ShopItem
 {
-    public ShopItem(string name, string description, string imageName, int priceInDollars, bool isOwned=false)
+    public ShopItem(
+        string name,
+        string description,
+        string imageName,
+        int priceInDollars,
+        string effectType,
+        int effectValue,
+        bool isOwned=false)
     {
         this.name = name;
         this.description = description;
         this.imageName = imageName;
         this.priceInDollars = priceInDollars;
         this.isOwned = isOwned;
+        this.effectType = effectType;
+        this.effectValue = effectValue;
     }
     public string name;
     public string description;
     public string imageName;
     public int priceInDollars;
     public bool isOwned;
+    public string effectType;
+    public int effectValue;
 
     public static void RenderToListOfShopItems(ShopItem shopItem, GameObject uiObject)
     {
