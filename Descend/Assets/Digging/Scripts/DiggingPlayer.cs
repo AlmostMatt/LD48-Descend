@@ -167,17 +167,17 @@ public class DiggingPlayer : MonoBehaviour
          **/
         Vector2 playerFeet = new Vector2(bounds.center.x, bounds.min.y);
         float groundDetectionDepth = 0.1f;
-        Vector2 bottomOffset = new Vector2(0f, groundDetectionDepth / 2f); ;
+        Vector2 bottomOffset = Vector2.zero; // new Vector2(0f, groundDetectionDepth / 2f); ;
         Collider2D groundCollision = Physics2D.OverlapBox(
             playerFeet - bottomOffset,
             new Vector2(bounds.size.x * 0.9f, groundDetectionDepth),
             0f,
             LayerMask.GetMask("Ground"));
         mOnGround = groundCollision != null && momentum.y <= 0f;
-        float wallDetectionDepth = 0.1f;
+        float wallDetectionDepth = 0.05f;
         Vector2 playerRight = new Vector2(bounds.max.x, bounds.center.y);
         Vector2 playerLeft = new Vector2(bounds.min.x, bounds.center.y);
-        Vector2 sideOffset = new Vector2(wallDetectionDepth / 2f, 0f);
+        Vector2 sideOffset = Vector2.zero; // new Vector2(wallDetectionDepth / 2f, 0f);
         Vector2 detectionSize = new Vector2(wallDetectionDepth, bounds.size.y * 0.9f);
         Collider2D leftCollision = Physics2D.OverlapBox(
             playerLeft - sideOffset, detectionSize, 0f, LayerMask.GetMask("Ground"));
