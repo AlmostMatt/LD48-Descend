@@ -75,7 +75,24 @@ public class DiggingPlayer : MonoBehaviour
     // Input and animation can happen here
     private void Update()
     {
+        // Ignore input and stuff while not in the digging scene
+        if (!GameLoopController.isDiggingScene())
+        {
+            return;
+        }
+        HandleMouseInput();
         UpdateAnimationState();
+
+        // reveal nearby tiles
+        Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
+        bottomLeft.x -= 2;
+        bottomLeft.y -= 2;
+        BoundsInt revealArea = new BoundsInt(bottomLeft, new Vector3Int(5, 7, 1));
+        TileBase[] emptyTiles = new TileBase[35];
+        fogTilemap.SetTilesBlock(revealArea, emptyTiles);
+
+        var emission = digEffect.emission;
+        emission.enabled = mIsDigging;
     }
 
     // Movement and physics should happen here
@@ -90,9 +107,16 @@ public class DiggingPlayer : MonoBehaviour
             return;
         }
 
+        HandleMovement();
+
+        mRigidbody.gravityScale = (mWallClimbingLeft || mWallClimbingRight || mGrappleState != GRAPPLE_NONE) ? 0f : 1f;
+    }
+
+    void HandleMouseInput()
+    {
         // mouse digging
         bool mouse0 = Input.GetMouseButton(0);
-        if(mouse0)
+        if (mouse0)
         {
             Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseInWorld = new Vector3(mouseInWorld.x, mouseInWorld.y, 0f);
@@ -109,38 +133,23 @@ public class DiggingPlayer : MonoBehaviour
 
         // grappling
         bool mouse1 = Input.GetMouseButtonDown(1);
-        if(mouse1)
+        if (mouse1)
         {
             Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 playerCenter = mBoxCollider.bounds.center;
 
             Vector3 grappleTrajectory = mouseInWorld - playerCenter;
             RaycastHit2D hit = Physics2D.Raycast(playerCenter, grappleTrajectory, 20f, GROUND_LAYER_MASK);
-            if(hit.collider != null)
+            if (hit.collider != null)
             {
                 StartGrapple(hit.point, grappleTrajectory);
             }
         }
 
-        if(mGrappleState > 0)
+        if (mGrappleState > 0)
         {
             UpdateGrapple();
-        }        
-
-        HandleMovement();
-
-        mRigidbody.gravityScale = (mWallClimbingLeft || mWallClimbingRight || mGrappleState != GRAPPLE_NONE) ? 0f : 1f;
-
-        // reveal nearby tiles
-        Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
-        bottomLeft.x -= 2;
-        bottomLeft.y -= 2;
-        BoundsInt revealArea = new BoundsInt(bottomLeft, new Vector3Int(5, 7, 1));
-        TileBase[] emptyTiles = new TileBase[35];
-        fogTilemap.SetTilesBlock(revealArea, emptyTiles);
-
-        var emission = digEffect.emission;
-        emission.enabled = mIsDigging;
+        }
     }
 
     void HandleMovement()
