@@ -44,7 +44,7 @@ public static class TypeExtensions
             case ItemType.IRON:
                 return Color.white;
             case ItemType.COPPER:
-                return Color.yellow;
+                return new Color(209/255f,117/255f,31/255f);
             case ItemType.ZINC:
                 return Color.cyan;
             case ItemType.TUNGSTEN:
