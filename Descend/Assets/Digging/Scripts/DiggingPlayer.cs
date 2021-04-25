@@ -150,6 +150,9 @@ public class DiggingPlayer : MonoBehaviour
             if(mGrappleState == GRAPPLE_RETRACT)
             {
                 mRigidbody.velocity = (mGrappleTarget - mBoxCollider.bounds.center).normalized * grappleRetractSpeed;
+            } else if (mGrappleState == GRAPPLE_HANG)
+            {
+                mRigidbody.velocity = Vector2.zero;
             }
             return;
         }
@@ -403,7 +406,10 @@ public class DiggingPlayer : MonoBehaviour
             mGrappleLineRenderer.positionCount = 2;
             mGrappleLineRenderer.SetPositions(positions);
 
-            if(Vector2.Distance(mBoxCollider.bounds.center, mGrappleTarget) <= 0.3f)
+            // Optional: check from middle of side/top/bot of player instead of entire player box
+            // That would make player slide a bit closer to the point
+            Vector3 closestPlayerPoint = mBoxCollider.bounds.ClosestPoint(mGrappleTarget);
+            if (Vector2.Distance(closestPlayerPoint, mGrappleTarget) <= 0.05f)
             {
                 Debug.Log("grapple hang");
                 mGrappleState = GRAPPLE_HANG;
