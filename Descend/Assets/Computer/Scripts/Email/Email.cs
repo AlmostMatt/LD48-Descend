@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Email
 {
     public string sender;
-    public string senderEmail;
+    public string senderEmail = "email unknown";
     public string subject;
     public string body;
     public string linkText;
@@ -25,7 +25,7 @@ public class Email
 
     public static void RenderToEmailMainView(Email email, GameObject uiObject)
     {
-        uiObject.transform.Find("Sender").GetComponent<Text>().text = email.sender;
+        uiObject.transform.Find("Sender").GetComponent<Text>().text = string.Format("from: {0} ({1})", email.sender, email.senderEmail);
         uiObject.transform.Find("Subject").GetComponent<Text>().text = email.subject;
         uiObject.transform.Find("Body").GetComponent<Text>().text = email.body;
 

@@ -39,7 +39,10 @@ public class SaveData
 
     public void MarkEmailRead(Email e)
     {
-        e.read = true;
-        --unreadEmails;
+        if(!e.read)
+        {
+            e.read = true;
+            --unreadEmails;
+        }
     }
 }

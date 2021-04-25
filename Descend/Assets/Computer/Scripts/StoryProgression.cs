@@ -28,7 +28,7 @@ public class StoryProgression
                             "For example, {2} is currently running at ${3} apiece." +
                             "We hope you are excited to start your mining journey with us!";
                             
-        e.subject = string.Format(mainBody, GameConfig.playerName, GameConfig.gemBuyerName, ItemType.IRON, ItemType.IRON.GetValue());
+        e.body = string.Format(mainBody, GameConfig.playerName, GameConfig.gemBuyerName, ItemType.IRON, ItemType.IRON.GetValue());
 
         return e;
     }
