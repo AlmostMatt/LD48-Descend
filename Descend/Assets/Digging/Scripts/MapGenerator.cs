@@ -94,13 +94,25 @@ public class MapGenerator : MonoBehaviour
         foreach(PremadeTilemapData data in premadeTilemaps)
         {
             Tilemap premadeTilemap = data.tilemapObject.GetComponentInChildren<Tilemap>();
+            premadeTilemap.CompressBounds();
             BoundsInt bounds = premadeTilemap.cellBounds;
             TileBase[] allTiles = premadeTilemap.GetTilesBlock(bounds);
 
             int x = data.x;
             int y = data.y;
-            BoundsInt targetBounds = new BoundsInt(new Vector3Int(x, y, 0), bounds.size);
+            Vector3Int newMin = new Vector3Int(x, y, 0);
+            BoundsInt targetBounds = new BoundsInt(newMin, bounds.size);
             mainTilemap.SetTilesBlock(targetBounds, allTiles);
+
+            Transform spawnParent = data.tilemapObject.transform.Find("SpawnObjects");
+            if(spawnParent != null)
+            {
+                for(int i = 0; i < spawnParent.childCount; ++i)
+                {
+                    GameObject child = spawnParent.GetChild(i).gameObject;
+                    Instantiate(child, newMin + (child.transform.position - bounds.min), child.transform.rotation);
+                }
+            }
         }
     }
 
