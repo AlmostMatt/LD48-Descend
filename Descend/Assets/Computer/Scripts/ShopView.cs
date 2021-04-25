@@ -30,8 +30,6 @@ public class ShopView : MonoBehaviour
         shopItemList.Add(new ShopItem("Fancier pickaxe", "Gives DigSkill 2", "pickaxeImage", 300, "DigSkill", 2));
         shopItemList.Add(new ShopItem("Fanciest pickaxe", "Gives DigSkill 3", "pickaxeImage", 500, "DigSkill", 3));
         shopItemList.Add(new ShopItem("Fancy pickaxe", "Gives dig skill 1", "pickaxeImage", 100, "DigSkill", 1));
-        shopItemList.Add(new ShopItem("Fancier pickaxe", "Gives DigSkill 2", "pickaxeImage", 300, "DigSkill", 2));
-        shopItemList.Add(new ShopItem("Fanciest pickaxe", "Gives DigSkill 3", "pickaxeImage", 500, "DigSkill", 3));
         UpdateForSale();
     }
 
