@@ -24,6 +24,7 @@ public class SaveData
     public int unreadEmails = 0;
 
     // progression for emails
+    public bool hasTutorialEmail = false;
     public int dirtTypeAttempted = 0;
     public int lastAdvertisementEmail = 0;
 

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Email
 {
     public string sender;
+    public string senderEmail;
     public string subject;
     public string body;
     public string linkText;

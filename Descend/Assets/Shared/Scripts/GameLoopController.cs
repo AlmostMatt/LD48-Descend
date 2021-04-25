@@ -42,6 +42,7 @@ public class GameLoopController : MonoBehaviour
     public static void StopDigging()
     {
         // check for any emails to send
+        StoryProgression.UpdateProgression();
         AdvertisementProgression.CheckEmails();
 
         // Load the Computer scene

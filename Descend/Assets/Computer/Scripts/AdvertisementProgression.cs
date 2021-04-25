@@ -19,7 +19,7 @@ public class AdvertisementProgression
     {
         Email e = new Email();
         e.emailType = EmailType.ADVERTISEMENT;
-        e.sender = "Prospector's World";
+        e.sender = GameConfig.shopName;
 
         switch(dirtType)
         {
