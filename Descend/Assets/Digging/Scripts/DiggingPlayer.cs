@@ -17,7 +17,10 @@ public class DiggingPlayer : MonoBehaviour
 
     private float GROUND_HEIGHT = 0.04f;
     private int mDigSkill;
-    
+
+    private float mDigTimer;
+    private Dictionary<Vector3Int, float> mDigProgress = new Dictionary<Vector3Int, float>();
+
     private void Awake()
     {
         mRigidbody = GetComponent<Rigidbody2D>();
@@ -67,16 +70,22 @@ public class DiggingPlayer : MonoBehaviour
             checkPos.y = vertSpeed > 0 ? bounds.max.y + 0.1f : bounds.min.y - 0.1f;
 
             checkPos.x = bounds.center.x;
-            Vector3Int blockingTile = dirtTilemap.WorldToCell(checkPos);
-            DigTile(blockingTile);
+            Vector3Int centerBlockingTile = dirtTilemap.WorldToCell(checkPos);
+            DigTile(centerBlockingTile);
 
             checkPos.x = bounds.min.x;
-            blockingTile = dirtTilemap.WorldToCell(checkPos);
-            DigTile(blockingTile);
+            Vector3Int minBlockingTile = dirtTilemap.WorldToCell(checkPos);
+            if(minBlockingTile != centerBlockingTile)
+            {
+                DigTile(minBlockingTile);
+            }
 
             checkPos.x = bounds.max.x;
-            blockingTile = dirtTilemap.WorldToCell(checkPos);
-            DigTile(blockingTile);
+            Vector3Int maxBlockingTile = dirtTilemap.WorldToCell(checkPos);
+            if(maxBlockingTile != centerBlockingTile && maxBlockingTile != minBlockingTile)
+            {
+                DigTile(maxBlockingTile);
+            }
         }
 
         if(horzSpeed != 0)
@@ -85,16 +94,22 @@ public class DiggingPlayer : MonoBehaviour
             checkPos.x = horzSpeed > 0 ? bounds.max.x + 0.1f : bounds.min.x - 0.1f;
 
             checkPos.y = bounds.min.y;
-            Vector3Int blockingTile = dirtTilemap.WorldToCell(checkPos);
-            DigTile(blockingTile);
+            Vector3Int minBlockingTile = dirtTilemap.WorldToCell(checkPos);
+            DigTile(minBlockingTile);
 
             checkPos.y = bounds.center.y;
-            blockingTile = dirtTilemap.WorldToCell(checkPos);
-            DigTile(blockingTile);
+            Vector3Int centerBlockingTile = dirtTilemap.WorldToCell(checkPos);
+            if(centerBlockingTile != minBlockingTile)
+            {
+                DigTile(centerBlockingTile);
+            }
 
             checkPos.y = bounds.max.y;
-            blockingTile = dirtTilemap.WorldToCell(checkPos);
-            DigTile(blockingTile);
+            Vector3Int maxBlockingTile = dirtTilemap.WorldToCell(checkPos);
+            if(maxBlockingTile != minBlockingTile && maxBlockingTile != centerBlockingTile)
+            {
+                DigTile(maxBlockingTile);
+            }
         }
 
 
@@ -112,9 +127,28 @@ public class DiggingPlayer : MonoBehaviour
         TileData tileData = tileManager.GetTileData(position);
         if(tileData != null)
         {
-            if(tileData.requiredDigSkill <= SaveData.Get().digSkill)
+            float digSkill = SaveData.Get().digSkill;
+            if(tileData.requiredDigSkill <= digSkill)
             {
-                dirtTilemap.SetTile(position, null);
+                float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 0.6f;
+                float progress;
+                if(mDigProgress.TryGetValue(position, out progress))
+                {
+                    progress += Time.deltaTime * digSpeed;
+                    if(progress < 1f)
+                    {
+                        mDigProgress[position] = progress;
+                    }
+                    else
+                    {
+                        dirtTilemap.SetTile(position, null);
+                        mDigProgress.Remove(position);
+                    }
+                }
+                else
+                {
+                    mDigProgress[position] = 0f;
+                }
             }
         }
     }
