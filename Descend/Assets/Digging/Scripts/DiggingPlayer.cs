@@ -70,14 +70,16 @@ public class DiggingPlayer : MonoBehaviour
         if(mouse0)
         {
             Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseInWorld = new Vector3(mouseInWorld.x, mouseInWorld.y, 0f);
             Vector3 closestPlayerPoint = mBoxCollider.bounds.ClosestPoint(mouseInWorld);
 
+            float MAX_DIG_RANGE = 0.7f;
             Vector3 digTrajectory = mouseInWorld - closestPlayerPoint;
-            digTrajectory.Normalize();
-            Vector3Int targetTile = dirtTilemap.WorldToCell(closestPlayerPoint + digTrajectory);
-            isDigging = tileManager.GetTileData(targetTile) != null;
+            Vector3 digPos = closestPlayerPoint + (Mathf.Min(digTrajectory.magnitude, MAX_DIG_RANGE)) * digTrajectory.normalized;
+            Vector3Int targetTile = dirtTilemap.WorldToCell(digPos);
+            isDigging = true; // tileManager.GetTileData(targetTile) != null;
             DigTile(targetTile);
-            digEffect.transform.position = closestPlayerPoint + digTrajectory;
+            digEffect.transform.position = digPos;
         }
 
         // grappling
