@@ -21,6 +21,7 @@ public class DiggingPlayer : MonoBehaviour
     public int maxStamina = 100;
 
     /** state variables (for animation and also for logic) **/
+    private bool mIsDigging;
     private bool mOnGround;
     private bool mJumping;
     private bool mWallClimbingLeft;
@@ -67,10 +68,16 @@ public class DiggingPlayer : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // Input and animation can happen here
+    private void Update()
+    {
+        UpdateAnimationState();
+    }
+
+    // Movement and physics should happen here
     void FixedUpdate()
     {
-        bool isDigging = false;
+        mIsDigging = false;
 
         // Ignore input and stuff while not in the digging scene
         if (!GameLoopController.isDiggingScene())
@@ -90,7 +97,7 @@ public class DiggingPlayer : MonoBehaviour
             Vector3 digTrajectory = mouseInWorld - closestPlayerPoint;
             Vector3 digPos = closestPlayerPoint + (Mathf.Min(digTrajectory.magnitude, MAX_DIG_RANGE)) * digTrajectory.normalized;
             Vector3Int targetTile = dirtTilemap.WorldToCell(digPos);
-            isDigging = true; // tileManager.GetTileData(targetTile) != null;
+            mIsDigging = true; // tileManager.GetTileData(targetTile) != null;
             DigTile(targetTile);
             digEffect.transform.position = digPos;
         }
@@ -128,7 +135,7 @@ public class DiggingPlayer : MonoBehaviour
         fogTilemap.SetTilesBlock(revealArea, emptyTiles);
 
         var emission = digEffect.emission;
-        emission.enabled = isDigging;
+        emission.enabled = mIsDigging;
     }
 
     void HandleMovement()
@@ -284,6 +291,17 @@ public class DiggingPlayer : MonoBehaviour
         float desiredAccel = deltaV/Time.fixedDeltaTime;
         float actualAccel = Mathf.Clamp(desiredAccel, -hAccel, hAccel);
         mRigidbody.velocity = new Vector2(immediateVx + (actualAccel * Time.fixedDeltaTime), desiredV.y);
+    }
+
+    void UpdateAnimationState()
+    {
+        // Animation state should depend on state variables:
+        // mOnGround
+        // mWallClimbingLeft
+        // mWallClimbingRight
+        // mRigidbody.velocity
+        // mIsDigging
+        // mJumping
     }
 
     private void StartGrapple(Vector2 targetPoint, Vector2 toTarget)
