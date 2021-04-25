@@ -12,6 +12,8 @@ public class DiggingPlayer : MonoBehaviour
     public float horizontalSpeed = 4f;
     public float verticalSpeed = 4f;
     private static float JUMP_SPEED = 10f;
+    public float grappleExtendSpeed = 30f;
+    public float grappleRetractSpeed = 10f;
 
     private Rigidbody2D mRigidbody;
     private BoxCollider2D mBoxCollider;
@@ -21,6 +23,15 @@ public class DiggingPlayer : MonoBehaviour
 
     private float mDigTimer;
     private Dictionary<Vector3Int, float> mDigProgress = new Dictionary<Vector3Int, float>();
+
+    private const int GRAPPLE_NONE = 0;
+    private const int GRAPPLE_EXTEND = 1;
+    private const int GRAPPLE_RETRACT = 2;
+    private const int GRAPPLE_HANG = 3;
+    private int mGrappleState = GRAPPLE_NONE;
+    private float mGrappleTimer = -1f;
+    private Vector3 mGrappleDirection;
+    private Vector3 mGrappleTarget;
 
     private void Awake()
     {
@@ -43,8 +54,6 @@ public class DiggingPlayer : MonoBehaviour
             return;
         }
 
-        HandleMovement();
-
         // mouse digging
         bool mouse0 = Input.GetMouseButton(0);
         if(mouse0)
@@ -58,6 +67,29 @@ public class DiggingPlayer : MonoBehaviour
             DigTile(targetTile);
         }
 
+        // grappling
+        bool mouse1 = Input.GetMouseButtonDown(1);
+        if(mouse1)
+        {
+            Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 playerCenter = mBoxCollider.bounds.center;
+
+            Vector3 grappleTrajectory = mouseInWorld - playerCenter;
+            // RaycastHit2D hit = Physics2D.Raycast(playerCenter, grappleTrajectory, 100, LAYER_ENVIRONMENT);
+            RaycastHit2D hit = Physics2D.Raycast(playerCenter, grappleTrajectory);
+            if(hit.collider != null)
+            {
+                StartGrapple(hit.point, grappleTrajectory);
+            }
+        }
+
+        if(mGrappleState > 0)
+        {
+            UpdateGrapple();
+        }        
+
+        HandleMovement();
+
         // reveal nearby tiles
         Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
         bottomLeft.x -= 2;
@@ -69,6 +101,15 @@ public class DiggingPlayer : MonoBehaviour
 
     void HandleMovement()
     {
+        if(mGrappleState > 0)
+        {
+            if(mGrappleState == GRAPPLE_RETRACT)
+            {
+                mRigidbody.velocity = (mGrappleTarget - mBoxCollider.bounds.center).normalized * grappleRetractSpeed;
+            }
+            return;
+        }
+
         Vector2 momentum = mRigidbody.velocity;
 
         float horz = Input.GetAxis("Horizontal");
@@ -93,6 +134,49 @@ public class DiggingPlayer : MonoBehaviour
         }
 
         mRigidbody.velocity = new Vector2(horzSpeed, vertSpeed);
+    }
+
+    private void StartGrapple(Vector2 targetPoint, Vector2 toTarget)
+    {
+        mGrappleState = GRAPPLE_EXTEND;
+        mRigidbody.gravityScale = 0;
+        mGrappleDirection = toTarget.normalized;
+        mGrappleTarget = targetPoint;
+        Debug.Log("grapple target: " + mGrappleTarget);
+
+        float grappleDistance = toTarget.magnitude;
+        float timeToExtend = grappleDistance / grappleExtendSpeed;
+        mGrappleTimer = timeToExtend;
+    }
+
+    private void UpdateGrapple()
+    {
+        float vert = Input.GetAxis("Vertical");
+        if(vert < 0)
+        {
+            mGrappleState = GRAPPLE_NONE;
+            mRigidbody.gravityScale = 1;
+        }
+
+        if(mGrappleState == GRAPPLE_EXTEND)
+        {
+            if(mGrappleTimer >= 0f)
+            {
+                mGrappleTimer -= Time.deltaTime;
+                if(mGrappleTimer < 0f)
+                {
+                    mGrappleState = GRAPPLE_RETRACT;
+                }
+            }
+        }
+        else if(mGrappleState == GRAPPLE_RETRACT)
+        {
+            if(Vector2.Distance(mBoxCollider.bounds.center, mGrappleTarget) <= 0.3f)
+            {
+                Debug.Log("grapple hang");
+                mGrappleState = GRAPPLE_HANG;
+            }
+        }
     }
 
     void DigTile(Vector3Int position)
@@ -137,5 +221,13 @@ public class DiggingPlayer : MonoBehaviour
     public void CollectItem(Collectible c)
     {
         SaveData.Get().inventory[(int)c.itemType] += 1;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(mBoxCollider != null)
+        {
+            Gizmos.DrawLine(mBoxCollider.bounds.center, mGrappleTarget);
+        }
     }
 }
