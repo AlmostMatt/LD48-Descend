@@ -6,6 +6,7 @@ public class GameLoopController : MonoBehaviour
 {
     public Canvas computerView;
     public Canvas digOverlay;
+    public DiggingPlayer player;
 
     private static GameLoopController singleton;
     public bool isComputerScene = true;
@@ -37,6 +38,8 @@ public class GameLoopController : MonoBehaviour
         // Load the Digging scene
         singleton.isComputerScene = false;
         singleton.computerView.gameObject.SetActive(false);
+
+        singleton.player.StartNewDigDay();
     }
 
     public static void StopDigging()

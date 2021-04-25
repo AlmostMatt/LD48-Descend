@@ -16,13 +16,14 @@ public class DiggingPlayer : MonoBehaviour
     private static float JUMP_SPEED = 10f;
     public float grappleExtendSpeed = 30f;
     public float grappleRetractSpeed = 10f;
+    public int maxStamina = 100;
 
     private Rigidbody2D mRigidbody;
     private BoxCollider2D mBoxCollider;
 
     private float GROUND_HEIGHT = 0.04f;
-    private int mDigSkill;
-
+    private int mStamina;
+    
     private float mDigTimer;
     private Dictionary<Vector3Int, float> mDigProgress = new Dictionary<Vector3Int, float>();
 
@@ -213,6 +214,8 @@ public class DiggingPlayer : MonoBehaviour
 
     void DigTile(Vector3Int position)
     {
+        if(mStamina <= 0) return; // TODO: communicate somehow
+
         TileData tileData = tileManager.GetTileData(position);
         if(tileData != null)
         {
@@ -234,6 +237,7 @@ public class DiggingPlayer : MonoBehaviour
                         {
                             dirtTilemap.SetTile(position, null);
                             mDigProgress.Remove(position);
+                            --mStamina;
                         }
                     }
                     else
@@ -253,6 +257,11 @@ public class DiggingPlayer : MonoBehaviour
     public void CollectItem(Collectible c)
     {
         SaveData.Get().inventory[(int)c.itemType] += 1;
+    }
+
+    public void StartNewDigDay()
+    {
+        mStamina = maxStamina;
     }
 
     private void OnDrawGizmos()

@@ -2280,6 +2280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   computerView: {fileID: 1970315446}
   digOverlay: {fileID: 565094909}
+  player: {fileID: 728925681}
   isComputerScene: 0
 --- !u!1 &728925678
 GameObject:
@@ -2358,6 +2359,7 @@ MonoBehaviour:
   verticalSpeed: 4
   grappleExtendSpeed: 30
   grappleRetractSpeed: 10
+  maxStamina: 100
 --- !u!61 &728925682
 BoxCollider2D:
   m_ObjectHideFlags: 0
