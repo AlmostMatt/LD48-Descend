@@ -5692,7 +5692,7 @@ Transform:
   m_GameObject: {fileID: 1297579025}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 403111677}
   m_RootOrder: 0
@@ -5775,23 +5775,23 @@ Tilemap:
     m_Data:
       e00: NaN
       e01: NaN
-      e02: 2.373212e-36
-      e03: 4.805624e+10
+      e02: 1
+      e03: 1
       e10: NaN
       e11: NaN
-      e12: 5.09e-43
-      e13: 5.09e-43
-      e20: 3.1e-44
-      e21: 6.1e-43
-      e22: 1.1564824e+24
-      e23: 6.1e-43
+      e12: 0
+      e13: 2.1e-44
+      e20: 0
+      e21: 0
+      e22: 0
+      e23: 0
       e30: 0
       e31: 0
-      e32: 4.591e-41
+      e32: 0
       e33: 0
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 7.582671e-17, g: 7.582671e-17, b: 7.582671e-17, a: 7.582671e-17}
+    m_Data: {r: -0.005055003, g: -0.005055003, b: -0.005055003, a: -0.005055003}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -22, y: -129, z: 0}
