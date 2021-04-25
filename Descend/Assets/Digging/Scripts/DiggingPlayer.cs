@@ -18,7 +18,7 @@ public class DiggingPlayer : MonoBehaviour
     private static float WALL_JUMP_VERT_SPEED = 8f;
     public float grappleExtendSpeed = 30f;
     public float grappleRetractSpeed = 10f;
-    public int maxStamina = 100;
+    public int maxStamina = 5;
 
     /** state variables (for animation and also for logic) **/
     private bool mIsDigging;
@@ -36,6 +36,7 @@ public class DiggingPlayer : MonoBehaviour
 
     private float GROUND_HEIGHT = 0.04f;
     private int mStamina;
+    private bool mUsingStamina;
     
     private float mDigTimer;
     private Dictionary<Vector3Int, float> mDigProgress = new Dictionary<Vector3Int, float>();
@@ -60,6 +61,8 @@ public class DiggingPlayer : MonoBehaviour
         GROUND_LAYER_MASK = LayerMask.GetMask("Ground");
 
         mGrappleLineRenderer = GetComponent<LineRenderer>();
+
+        mStamina = maxStamina;
     }
 
     // Start is called before the first frame update
@@ -77,6 +80,7 @@ public class DiggingPlayer : MonoBehaviour
     // Movement and physics should happen here
     void FixedUpdate()
     {
+        mUsingStamina = false;
         mIsDigging = false;
 
         // Ignore input and stuff while not in the digging scene
@@ -362,7 +366,12 @@ public class DiggingPlayer : MonoBehaviour
 
     void DigTile(Vector3Int position)
     {
-        if(mStamina <= 0) return; // TODO: communicate somehow
+        mUsingStamina = true;
+
+        if(mStamina <= 0)
+        {
+            return; // TODO: communicate somehow
+        }
 
         TileData tileData = tileManager.GetTileData(position);
         if(tileData != null)
@@ -417,6 +426,11 @@ public class DiggingPlayer : MonoBehaviour
     public float GetStaminaPct()
     {
         return mStamina / (float)maxStamina;
+    }
+
+    public bool IsUsingStamina()
+    {
+        return mUsingStamina;
     }
 
     private void OnDrawGizmos()
