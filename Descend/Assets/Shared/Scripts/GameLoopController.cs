@@ -41,6 +41,9 @@ public class GameLoopController : MonoBehaviour
 
     public static void StopDigging()
     {
+        // check for any emails to send
+        AdvertisementProgression.CheckEmails();
+
         // Load the Computer scene
         singleton.isComputerScene = true;
         singleton.computerView.gameObject.SetActive(true);
