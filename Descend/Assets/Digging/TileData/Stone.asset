@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 11400000, guid: e0328a702c4ac77478bc5d24f767c986, type: 2}
+  - {fileID: 11400000, guid: 510631d1ccb63df499944344c2d36eda, type: 2}
   requiredDigSkill: 1
   introduceDepth: 15
   backgroundDepth: 30
