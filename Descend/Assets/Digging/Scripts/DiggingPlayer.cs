@@ -18,7 +18,7 @@ public class DiggingPlayer : MonoBehaviour
     private static float WALL_JUMP_VERT_SPEED = 8f;
     public float grappleExtendSpeed = 30f;
     public float grappleRetractSpeed = 10f;
-    public int maxStamina = 100;
+    public int maxStamina = 5;
 
     /** state variables (for animation and also for logic) **/
     private int mFacing = 1;
@@ -37,6 +37,7 @@ public class DiggingPlayer : MonoBehaviour
 
     private float GROUND_HEIGHT = 0.04f;
     private int mStamina;
+    private bool mUsingStamina;
     
     private float mDigTimer;
     private Dictionary<Vector3Int, float> mDigProgress = new Dictionary<Vector3Int, float>();
@@ -61,6 +62,8 @@ public class DiggingPlayer : MonoBehaviour
         GROUND_LAYER_MASK = LayerMask.GetMask("Ground");
 
         mGrappleLineRenderer = GetComponent<LineRenderer>();
+
+        mStamina = maxStamina;
     }
 
     // Start is called before the first frame update
@@ -78,6 +81,7 @@ public class DiggingPlayer : MonoBehaviour
     // Movement and physics should happen here
     void FixedUpdate()
     {
+        mUsingStamina = false;
         mIsDigging = false;
 
         // Ignore input and stuff while not in the digging scene
@@ -167,17 +171,17 @@ public class DiggingPlayer : MonoBehaviour
          **/
         Vector2 playerFeet = new Vector2(bounds.center.x, bounds.min.y);
         float groundDetectionDepth = 0.1f;
-        Vector2 bottomOffset = new Vector2(0f, groundDetectionDepth / 2f); ;
+        Vector2 bottomOffset = Vector2.zero; // new Vector2(0f, groundDetectionDepth / 2f); ;
         Collider2D groundCollision = Physics2D.OverlapBox(
             playerFeet - bottomOffset,
             new Vector2(bounds.size.x * 0.9f, groundDetectionDepth),
             0f,
             LayerMask.GetMask("Ground"));
         mOnGround = groundCollision != null && momentum.y <= 0f;
-        float wallDetectionDepth = 0.1f;
+        float wallDetectionDepth = 0.05f;
         Vector2 playerRight = new Vector2(bounds.max.x, bounds.center.y);
         Vector2 playerLeft = new Vector2(bounds.min.x, bounds.center.y);
-        Vector2 sideOffset = new Vector2(wallDetectionDepth / 2f, 0f);
+        Vector2 sideOffset = Vector2.zero; // new Vector2(wallDetectionDepth / 2f, 0f);
         Vector2 detectionSize = new Vector2(wallDetectionDepth, bounds.size.y * 0.9f);
         Collider2D leftCollision = Physics2D.OverlapBox(
             playerLeft - sideOffset, detectionSize, 0f, LayerMask.GetMask("Ground"));
@@ -336,6 +340,7 @@ public class DiggingPlayer : MonoBehaviour
         anim.SetBool("GrappleExtend", mGrappleState == GRAPPLE_EXTEND);
         anim.SetBool("GrappleRetract", mGrappleState == GRAPPLE_RETRACT);
         anim.SetBool("GrappleHang", mGrappleState == GRAPPLE_HANG);
+        anim.SetBool("GrappleNone", mGrappleState == GRAPPLE_NONE);
 
         // Digging state
         anim.SetBool("Digging", mIsDigging);
@@ -408,7 +413,12 @@ public class DiggingPlayer : MonoBehaviour
 
     void DigTile(Vector3Int position)
     {
-        if(mStamina <= 0) return; // TODO: communicate somehow
+        mUsingStamina = true;
+
+        if(mStamina <= 0)
+        {
+            return; // TODO: communicate somehow
+        }
 
         TileData tileData = tileManager.GetTileData(position);
         if(tileData != null)
@@ -463,6 +473,11 @@ public class DiggingPlayer : MonoBehaviour
     public float GetStaminaPct()
     {
         return mStamina / (float)maxStamina;
+    }
+
+    public bool IsUsingStamina()
+    {
+        return mUsingStamina;
     }
 
     private void OnDrawGizmos()
