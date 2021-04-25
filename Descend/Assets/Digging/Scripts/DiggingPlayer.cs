@@ -35,10 +35,14 @@ public class DiggingPlayer : MonoBehaviour
     private Vector3 mGrappleDirection;
     private Vector3 mGrappleTarget;
 
+    private int GROUND_LAYER_MASK;
+
     private void Awake()
     {
         mRigidbody = GetComponent<Rigidbody2D>();
         mBoxCollider = GetComponent<BoxCollider2D>();
+
+        GROUND_LAYER_MASK = LayerMask.GetMask("Ground");
     }
 
     // Start is called before the first frame update
@@ -81,8 +85,7 @@ public class DiggingPlayer : MonoBehaviour
             Vector3 playerCenter = mBoxCollider.bounds.center;
 
             Vector3 grappleTrajectory = mouseInWorld - playerCenter;
-            // RaycastHit2D hit = Physics2D.Raycast(playerCenter, grappleTrajectory, 100, LAYER_ENVIRONMENT);
-            RaycastHit2D hit = Physics2D.Raycast(playerCenter, grappleTrajectory);
+            RaycastHit2D hit = Physics2D.Raycast(playerCenter, grappleTrajectory, 20f, GROUND_LAYER_MASK);
             if(hit.collider != null)
             {
                 StartGrapple(hit.point, grappleTrajectory);
