@@ -21,6 +21,7 @@ public class DiggingPlayer : MonoBehaviour
     public int maxStamina = 5;
 
     /** state variables (for animation and also for logic) **/
+    private int mFacing = 1;
     private bool mIsDigging;
     private bool mOnGround;
     private bool mJumping;
@@ -176,7 +177,7 @@ public class DiggingPlayer : MonoBehaviour
             new Vector2(bounds.size.x * 0.9f, groundDetectionDepth),
             0f,
             LayerMask.GetMask("Ground"));
-        mOnGround = (!mWallClimbingLeft && !mWallClimbingRight) && groundCollision != null && momentum.y <= 0f;
+        mOnGround = groundCollision != null && momentum.y <= 0f;
         float wallDetectionDepth = 0.1f;
         Vector2 playerRight = new Vector2(bounds.max.x, bounds.center.y);
         Vector2 playerLeft = new Vector2(bounds.min.x, bounds.center.y);
@@ -243,10 +244,17 @@ public class DiggingPlayer : MonoBehaviour
             mCanJumpGroundTimer = COYOTE_TIME_DURATION;
         }
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && !mJumping)
         {
+            // JUMP FROM GROUND
+            if (mCanJumpGroundTimer > 0f)
+            {
+                Debug.Log("jumped from ground");
+                immediateVy = JUMP_SPEED;
+                mJumping = true;
+            }
             // JUMP FROM WALL
-            if (mCanJumpLeftWallTimer > 0f || mCanJumpRightWallTimer > 0f)
+            else if (mCanJumpLeftWallTimer > 0f || mCanJumpRightWallTimer > 0f)
             {
                 Debug.Log("jumped off of wall");
                 if (mCanJumpLeftWallTimer > 0f)
@@ -266,12 +274,14 @@ public class DiggingPlayer : MonoBehaviour
                 immediateVy = WALL_JUMP_VERT_SPEED;
                 mJumping = true;
             }
-            // JUMP FROM GROUND
-            else if (mCanJumpGroundTimer > 0f)
+            if (mJumping)
             {
-                Debug.Log("jumped from ground");
-                immediateVy = JUMP_SPEED;
-                mJumping = true;
+                // Don't allow another jump or climb command next frame
+                mCanJumpLeftWallTimer = 0f;
+                mCanJumpRightWallTimer = 0f;
+                mCanJumpGroundTimer = 0f;
+                mWallClimbingLeft = false;
+                mWallClimbingRight = false;
             }
         }
 
@@ -297,6 +307,12 @@ public class DiggingPlayer : MonoBehaviour
         mRigidbody.velocity = new Vector2(immediateVx + (actualAccel * Time.fixedDeltaTime), desiredV.y);
     }
 
+    private void SetFacingDirection(int facingDirection)
+    {
+        mFacing = facingDirection;
+        transform.localScale = new Vector3(mFacing * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
     void UpdateAnimationState()
     {
         // Animation state should depend on state variables:
@@ -306,6 +322,36 @@ public class DiggingPlayer : MonoBehaviour
         // mRigidbody.velocity
         // mIsDigging
         // mJumping
+        Animator anim = GetComponentInChildren<Animator>();
+        float stopThreshold = 0.1f;
+        if (mRigidbody.velocity.x > stopThreshold)
+        {
+            SetFacingDirection(1);
+        }
+        else if (mRigidbody.velocity.x < -stopThreshold)
+        {
+            SetFacingDirection(-1);
+        }
+
+        // TODO: adjust walking/running threshold in the animation state machine
+        anim.SetFloat("Speed", Mathf.Abs(mRigidbody.velocity.x));
+
+        // Grapple state
+        anim.SetBool("GrappleExtend", mGrappleState == GRAPPLE_EXTEND);
+        anim.SetBool("GrappleRetract", mGrappleState == GRAPPLE_RETRACT);
+        anim.SetBool("GrappleHang", mGrappleState == GRAPPLE_HANG);
+
+        // Digging state
+        anim.SetBool("Digging", mIsDigging);
+
+        // TODO: if climbing, jumping, falling, etc can have multiple true, set the one that is most relevant to animation
+        anim.SetBool("Climbing", (mWallClimbingLeft || mWallClimbingRight) && !mOnGround);
+        anim.SetBool("Jumping", mJumping);
+        anim.SetBool("Falling", !mOnGround && !mJumping && !mWallClimbingLeft && !mWallClimbingRight && mGrappleState == GRAPPLE_NONE);
+
+        // This is relevant to whether climbing animation should play or be paused.
+        bool movingVertically = Mathf.Abs(mRigidbody.velocity.y) > 0.1f;
+        anim.SetFloat("ClimbSpeed", movingVertically ? 1f : 0f);
     }
 
     private void StartGrapple(Vector2 targetPoint, Vector2 toTarget)
