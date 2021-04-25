@@ -128,26 +128,34 @@ public class DiggingPlayer : MonoBehaviour
         if(tileData != null)
         {
             float digSkill = SaveData.Get().digSkill;
-            if(tileData.requiredDigSkill <= digSkill)
+            if(tileData.requiredDigSkill >= 0)
             {
-                float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 0.9f;
-                float progress;
-                if(mDigProgress.TryGetValue(position, out progress))
+                if(tileData.requiredDigSkill <= digSkill)
                 {
-                    progress += Time.deltaTime * digSpeed;
-                    if(progress < 1f)
+                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 300f;
+                    float progress;
+                    if(mDigProgress.TryGetValue(position, out progress))
                     {
-                        mDigProgress[position] = progress;
+                        progress += Time.deltaTime * digSpeed;
+                        if(progress < 1f)
+                        {
+                            mDigProgress[position] = progress;
+                        }
+                        else
+                        {
+                            dirtTilemap.SetTile(position, null);
+                            mDigProgress.Remove(position);
+                        }
                     }
                     else
                     {
-                        dirtTilemap.SetTile(position, null);
-                        mDigProgress.Remove(position);
+                        mDigProgress[position] = 0f;
                     }
                 }
                 else
                 {
-                    mDigProgress[position] = 0f;
+                    // mark that we should receive an email advertising the item that digs through this
+                    SaveData.Get().dirtTypeAttempted = tileData.requiredDigSkill;
                 }
             }
         }
