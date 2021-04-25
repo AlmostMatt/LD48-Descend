@@ -68,7 +68,7 @@ public class DiggingPlayer : MonoBehaviour
             Vector3 digTrajectory = mouseInWorld - closestPlayerPoint;
             digTrajectory.Normalize();
             Vector3Int targetTile = dirtTilemap.WorldToCell(closestPlayerPoint + digTrajectory);
-            isDigging = tileManager.GetTileData(targetTile) != null;
+            isDigging = true; // tileManager.GetTileData(targetTile) != null;
             DigTile(targetTile);
             digEffect.transform.position = closestPlayerPoint + digTrajectory;
         }
