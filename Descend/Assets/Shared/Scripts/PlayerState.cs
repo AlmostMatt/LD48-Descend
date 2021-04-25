@@ -22,6 +22,13 @@ public class PlayerState
 
     public void DecreaseBalance(int amount)
     {
+        // TODO: money spending sound effect
         mBalance -= amount;
+    }
+
+    public void IncreaseBalance(int amount)
+    {
+        // TODO: money earned sound effect
+        mBalance += amount;
     }
 }
