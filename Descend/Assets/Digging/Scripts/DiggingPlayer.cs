@@ -97,9 +97,9 @@ public class DiggingPlayer : MonoBehaviour
             Vector3 digTrajectory = mouseInWorld - closestPlayerPoint;
             Vector3 digPos = closestPlayerPoint + (Mathf.Min(digTrajectory.magnitude, MAX_DIG_RANGE)) * digTrajectory.normalized;
             Vector3Int targetTile = dirtTilemap.WorldToCell(digPos);
-            mIsDigging = true; // tileManager.GetTileData(targetTile) != null;
-            DigTile(targetTile);
+            // tileManager.GetTileData(targetTile) != null;
             digEffect.transform.position = digPos;
+            DigTile(targetTile);
         }
 
         // grappling
@@ -372,7 +372,9 @@ public class DiggingPlayer : MonoBehaviour
             {
                 if(tileData.requiredDigSkill <= digSkill)
                 {
-                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 300f;
+                    mIsDigging = true;
+
+                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 1f;
                     float progress;
                     if(mDigProgress.TryGetValue(position, out progress))
                     {
