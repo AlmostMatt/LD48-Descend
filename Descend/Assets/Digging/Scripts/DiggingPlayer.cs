@@ -130,7 +130,7 @@ public class DiggingPlayer : MonoBehaviour
             float digSkill = SaveData.Get().digSkill;
             if(tileData.requiredDigSkill <= digSkill)
             {
-                float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 0.6f;
+                float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 0.9f;
                 float progress;
                 if(mDigProgress.TryGetValue(position, out progress))
                 {
