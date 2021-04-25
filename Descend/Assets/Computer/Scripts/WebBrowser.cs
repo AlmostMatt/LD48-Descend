@@ -11,6 +11,7 @@ public class WebBrowser : MonoBehaviour
     public Transform tabContainer;
 
     private string[] tabUrls = new string[] {
+        "www.gemstonemarket.com",
         "www.email.com",
         "www.search.com",
         "www.shopping.com"
@@ -20,8 +21,6 @@ public class WebBrowser : MonoBehaviour
     public void Start()
     {
         Debug.Log("Started WebBrowser");
-        int defaultTabIndex = 2;
-        SetTab(defaultTabIndex);
     }
 
     public void SetTab(int tabIndex)
