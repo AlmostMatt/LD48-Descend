@@ -16,7 +16,10 @@ public class TileManager : MonoBehaviour
         {
             foreach(TileBase tileBase in tileData.tiles)
             {
-                tileToData.Add(tileBase, tileData);
+                if (!tileToData.ContainsKey(tileBase))
+                {
+                    tileToData.Add(tileBase, tileData);
+                }
             }
         }
     }

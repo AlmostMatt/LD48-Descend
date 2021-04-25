@@ -35,7 +35,7 @@ public class MapGenerator : MonoBehaviour
         int minY = -100; // TODO: add more tiles as the player explores
         int maxY = 0;
         FillTilemap(bkgTilemap, bkgTiles, minX, maxX, minY, maxY);
-        FillTilemap(mainTilemap, dirtTile.tiles, minX, maxX, minY, maxY);
+        FillTilemap(mainTilemap, dirtTile.tiles, minX, maxX, minY, maxY, false, true);
         FillTilemap(fogTilemap, fogTiles, minX, maxX, minY, maxY);
 
         int clusterStartDepth = 1000000;
@@ -46,7 +46,7 @@ public class MapGenerator : MonoBehaviour
             int backgroundSize = (tileData.disappearDepthStart - tileData.backgroundDepth);
             if(backgroundSize > 0)
             {
-                FillTilemap(mainTilemap, tileData.tiles, minX, maxX, -tileData.disappearDepthStart, -tileData.backgroundDepth);
+                FillTilemap(mainTilemap, tileData.tiles, minX, maxX, -tileData.disappearDepthStart, -tileData.backgroundDepth, false, true);
             }
 
             if(tileData.introduceDepth != tileData.backgroundDepth)
@@ -191,7 +191,7 @@ public class MapGenerator : MonoBehaviour
             int rightSize = baseSize + Random.Range(0,2);
             for(int j = x - leftSize; j < x + rightSize; ++j)
             {
-                SetTile(mainTilemap, data, j, -y, true, true);
+                SetTile(mainTilemap, data, j, -y, false, true);
             }
         }
     }
