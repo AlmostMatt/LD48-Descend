@@ -46,14 +46,7 @@ public class MapGenerator : MonoBehaviour
             int backgroundSize = (tileData.disappearDepthStart - tileData.backgroundDepth);
             if(backgroundSize > 0)
             {
-                int width = (maxX - minX);
-                TileBase[] tiles = new TileBase[width * backgroundSize];
-                for(int i = 0; i < tiles.Length; ++i)
-                {
-                    tiles[i] = tileData.tiles[Random.Range(0, tileData.tiles.Length)];
-                }
-                BoundsInt area = new BoundsInt(minX, -tileData.disappearDepthStart, 0, width, backgroundSize, 1);
-                mainTilemap.SetTilesBlock(area, tiles);
+                FillTilemap(mainTilemap, tileData.tiles, minX, maxX, -tileData.disappearDepthStart, -tileData.backgroundDepth);
             }
 
             if(tileData.introduceDepth != tileData.backgroundDepth)
@@ -169,20 +162,6 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    void FillTilemap(Tilemap tilemap, TileBase[] possibleTiles, int minX, int maxX, int minY, int maxY)
-    {
-        int width = (maxX - minX);
-        int height = (maxY - minY);
-        TileBase[] tiles = new TileBase[width * height];
-        for (int i = 0; i < tiles.Length; ++i)
-        {
-            tiles[i] = possibleTiles[Random.Range(0, possibleTiles.Length)];
-        }
-        BoundsInt area = new BoundsInt(minX, minY, 0, width, height, 1);
-        tilemap.SetTilesBlock(area, tiles);
-
-    }
-
     void MakeCluster(int x, int depth, TileData data)
     {
         if(depth < data.introduceDepth) return;
@@ -205,7 +184,6 @@ public class MapGenerator : MonoBehaviour
 
         Debug.Log("cluster size at " + depth + ": " + clusterSize);
 
-        Vector3Int tilePos = new Vector3Int();
         for(int y = depth - (clusterSize / 2); y <= depth + (clusterSize / 2); ++y)
         {
             int baseSize = clusterSize - Mathf.Abs(y - depth);
@@ -213,11 +191,58 @@ public class MapGenerator : MonoBehaviour
             int rightSize = baseSize + Random.Range(0,2);
             for(int j = x - leftSize; j < x + rightSize; ++j)
             {
-                TileBase tile = data.tiles[Random.Range(0, data.tiles.Length)];
-                tilePos.x = j;
-                tilePos.y = -y;
-                mainTilemap.SetTile(tilePos, tile);
+                SetTile(mainTilemap, data, j, -y, true, true);
             }
         }
+    }
+
+    // Sets individual tiles (possibly rotating or reflecting tiles)
+    void SetTile(Tilemap tilemap, TileData tiledata, int x, int y, bool allowRotation = true, bool allowReflection = true)
+    {
+        Vector3Int tilePos = new Vector3Int(x, y, 0);
+        TileBase tile = tiledata.tiles[Random.Range(0, tiledata.tiles.Length)];
+        tilemap.SetTile(tilePos, tile);
+        tilemap.SetTransformMatrix(tilePos, CreateMatrix(allowRotation, allowReflection));
+    }
+
+    // Fills a rectangular region (possibly rotating or reflecting tiles)
+    void FillTilemap(Tilemap tilemap, TileBase[] possibleTiles, int minX, int maxX, int minY, int maxY, bool allowRotation = true, bool allowReflection = true)
+    {
+        int width = (maxX - minX);
+        int height = (maxY - minY);
+        TileBase[] tiles = new TileBase[width * height];
+        for (int i = 0; i < tiles.Length; ++i)
+        {
+            tiles[i] = possibleTiles[Random.Range(0, possibleTiles.Length)];
+        }
+        BoundsInt area = new BoundsInt(minX, minY, 0, width, height, 1);
+        tilemap.SetTilesBlock(area, tiles);
+        for (int x = minX; x < maxX; x++)
+        {
+            for (int y = minY; y < maxY; y++)
+            {
+                int z = 0;
+                tilemap.SetTransformMatrix(new Vector3Int(x, y, z), CreateMatrix(allowRotation, allowReflection));
+            }
+        }
+    }
+
+    private Matrix4x4 CreateMatrix(bool allowRotation, bool allowReflection)
+    {
+
+        Vector3 scale = Vector3.one;
+        Quaternion rotation = Quaternion.Euler(0f, 0f, 0f);
+        if (allowRotation)
+        {
+            rotation = Quaternion.Euler(0f, 0f, 90f * Random.Range(0, 4)); // max exclusive
+        }
+        if (allowReflection)
+        {
+            if (Random.Range(0f, 1f) < 0.5f)
+            {
+                scale = new Vector3(-1f, 1f, 1f);
+            }
+        }
+        return Matrix4x4.TRS(Vector3.zero, rotation, scale);
     }
 }
