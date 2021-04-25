@@ -45,6 +45,19 @@ public class DiggingPlayer : MonoBehaviour
 
         HandleMovement();
 
+        // mouse digging
+        bool mouse0 = Input.GetMouseButton(0);
+        if(mouse0)
+        {
+            Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 closestPlayerPoint = mBoxCollider.bounds.ClosestPoint(mouseInWorld);
+
+            Vector3 digTrajectory = mouseInWorld - closestPlayerPoint;
+            digTrajectory.Normalize();
+            Vector3Int targetTile = dirtTilemap.WorldToCell(closestPlayerPoint + digTrajectory);
+            DigTile(targetTile);
+        }
+
         // reveal nearby tiles
         Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
         bottomLeft.x -= 2;

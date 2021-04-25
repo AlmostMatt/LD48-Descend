@@ -182,7 +182,7 @@ public class MapGenerator : MonoBehaviour
         float a = 4 * (1 - maxClusterSize);
         int clusterSize = Mathf.FloorToInt(a * depthLerp * (depthLerp - 1) + 1);
 
-        Debug.Log("cluster size at " + depth + ": " + clusterSize);
+        // Debug.Log("cluster size at " + depth + ": " + clusterSize);
 
         for(int y = depth - (clusterSize / 2); y <= depth + (clusterSize / 2); ++y)
         {
