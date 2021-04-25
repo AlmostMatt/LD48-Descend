@@ -336,6 +336,7 @@ public class DiggingPlayer : MonoBehaviour
         anim.SetBool("GrappleExtend", mGrappleState == GRAPPLE_EXTEND);
         anim.SetBool("GrappleRetract", mGrappleState == GRAPPLE_RETRACT);
         anim.SetBool("GrappleHang", mGrappleState == GRAPPLE_HANG);
+        anim.SetBool("GrappleNone", mGrappleState == GRAPPLE_NONE);
 
         // Digging state
         anim.SetBool("Digging", mIsDigging);
