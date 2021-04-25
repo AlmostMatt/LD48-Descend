@@ -7,6 +7,11 @@ public static class GameConfig
     public const string playerName = "mrcouteau";
     public const string playerEmail = "jk.couteau@cmail.com";
 
+    public const string debtCollectorName = "Bank of Ancadia";
+    public const string debtCollectorEmail = "accounts-do-not-reply@boa.com";
+
+    public const string financialRegulatoryBody = "SEC";
+
     public const string gemBuyerName = "Minecorps";
     public const string gemBuyerEmail = "sales-do-not-reply@minecorps.com";
 
@@ -15,7 +20,4 @@ public static class GameConfig
 
     public const string conspiratorName = "X";
     public const string conspiratorEmail = "darksword22@yeehaw.com";
-
-
-
 }

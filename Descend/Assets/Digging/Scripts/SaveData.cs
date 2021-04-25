@@ -18,13 +18,18 @@ public class SaveData
 
     public int[] inventory = new int[(int)ItemType.NUM_TYPES];
 
-    public float debt = 1000;
+    public int debt = 1000;
+    public int GetMinimumPayment()
+    {
+        return 100;
+    }
 
     public List<Email> emails = new List<Email>();
     public int unreadEmails = 0;
 
     // progression for emails
-    public bool hasTutorialEmail = false;
+    public bool hasMiningTutorialEmail = false;
+    public bool hasDebtTutorialEmail = false;
     public int dirtTypeAttempted = 0;
     public int lastAdvertisementEmail = 0;
 

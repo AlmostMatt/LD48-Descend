@@ -5294,11 +5294,6 @@ PrefabInstance:
       propertyPath: m_FontData.m_Alignment
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4163893568077553801, guid: 3ebec428a28f445428fd61ad0593ad7d,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4989496572170998607, guid: 3ebec428a28f445428fd61ad0593ad7d,
         type: 3}
       propertyPath: m_AnchorMin.y
