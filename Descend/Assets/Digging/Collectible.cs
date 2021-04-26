@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public ItemType itemType;
+    public ItemData itemData;
+
     public void Start()
     {
-        GetComponentInChildren<SpriteRenderer>().color = itemType.GetColor();
-        GetComponentInChildren<SpriteRenderer>().sprite = SpriteDictionary.GetSprite(itemType.GetImage());
+        GetComponentInChildren<SpriteRenderer>().color = itemData.itemType.GetColor();
+        GetComponentInChildren<SpriteRenderer>().sprite = SpriteDictionary.GetSprite(itemData.itemType.GetImage());
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DiggingPlayer player = collision.GetComponent<DiggingPlayer>();

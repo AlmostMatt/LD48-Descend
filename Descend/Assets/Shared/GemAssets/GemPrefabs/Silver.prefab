@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 166988493405889633}
   - component: {fileID: 4209883597745486162}
   m_Layer: 0
-  m_Name: Tungsten
+  m_Name: Silver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6094437d990630b4e8d7b8711f85956d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 3
+  itemData: {fileID: 11400000, guid: 30f0eb98ba92b0e4db705bbd5d7d60e7, type: 2}

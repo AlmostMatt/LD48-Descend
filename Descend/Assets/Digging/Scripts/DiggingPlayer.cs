@@ -79,8 +79,8 @@ public class DiggingPlayer : MonoBehaviour
     // Input and animation can happen here
     private void Update()
     {
-        // Ignore input and stuff while not in the digging scene
-        if (!GameLoopController.isDiggingScene())
+        // Ignore input and stuff while not in the digging scene, or if there's a popup
+        if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible())
         {
             return;
         }
@@ -505,7 +505,15 @@ public class DiggingPlayer : MonoBehaviour
 
     public void CollectItem(Collectible c)
     {
-        SaveData.Get().inventory[(int)c.itemType] += 1;
+        SaveData saveData = SaveData.Get();
+        ItemData itemData = c.itemData;
+        saveData.inventory[(int)itemData.itemType] += 1;
+
+        if(!saveData.FoundItemType(itemData.itemType))
+        {
+            DiggingUIOverlay.ShowPopup(itemData.description, itemData.image);
+            saveData.SetFoundItemType(itemData.itemType);
+        }
     }
 
     public void StartNewDigDay()
