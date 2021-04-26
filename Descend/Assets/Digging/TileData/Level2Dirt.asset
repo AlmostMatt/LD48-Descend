@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c64ea9571b14df409f3dcd0b13492d3, type: 3}
-  m_Name: Level0Stone
+  m_Name: Level2Dirt
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 11400000, guid: 733b25e0d4dbd8242b8ffa657d0e8eaf, type: 2}
+  - {fileID: 11400000, guid: d925c42745aa2f44f8628502db9fcc67, type: 2}
   tileDecorations:
   - {fileID: 497531530116570117, guid: 9a795b4fdcf671844a0390bd8d6ba5d0, type: 3}
   - {fileID: 3765299188541767970, guid: 5777d25ea5421904392908bae52d1feb, type: 3}
@@ -41,9 +41,9 @@ MonoBehaviour:
   - {fileID: 8899596150975887174, guid: e2bb1a4e7e0cdb54bba4c755bb0bfca7, type: 3}
   - {fileID: 3021213153290450270, guid: ac080808bb69ecf4b9e855ea2e5184de, type: 3}
   - {fileID: 5596521502795458590, guid: d51c34742f48f5943806e509766f8ea7, type: 3}
-  requiredDigSkill: 1
-  introduceDepth: 20
-  backgroundDepth: 20
-  disappearDepthStart: 30
-  disappearDepthEnd: 40
-  maxClusterSize: 5
+  requiredDigSkill: 4
+  introduceDepth: 60
+  backgroundDepth: 65
+  disappearDepthStart: 70
+  disappearDepthEnd: 80
+  maxClusterSize: 3

@@ -20381,9 +20381,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1127204226}
   tileDatas:
+  - {fileID: 11400000, guid: aa8af5d53945f7648a75fbb8fe169b2c, type: 2}
   - {fileID: 11400000, guid: 21cd80ce01971984aaeea86cff09c74f, type: 2}
   - {fileID: 11400000, guid: 2761381a5b19dc641850de2cb19f9008, type: 2}
-  - {fileID: 11400000, guid: aa8af5d53945f7648a75fbb8fe169b2c, type: 2}
+  - {fileID: 11400000, guid: 061ee9b6a17d24d46ae66741908fc321, type: 2}
+  - {fileID: 11400000, guid: e7d6328e6825fe04a91ee155514ff169, type: 2}
+  - {fileID: 11400000, guid: 75116c41f40e0034b8b5ca72e6a71bed, type: 2}
+  - {fileID: 11400000, guid: 9873af0143a5dc2429e286cf5b0f11b4, type: 2}
+  - {fileID: 11400000, guid: 39e315b239f1bfc45b6bd3460c2ec529, type: 2}
+  - {fileID: 11400000, guid: f9138287f593a734da28bf08a462d216, type: 2}
 --- !u!4 &1299804787
 Transform:
   m_ObjectHideFlags: 0
