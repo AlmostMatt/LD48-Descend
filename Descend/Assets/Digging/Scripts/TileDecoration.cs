@@ -32,4 +32,6 @@ public class TileDecoration : MonoBehaviour
 
     public bool isTall = false; // needs an empty tile above
     public bool isHanging = false; // needs an empty tile below
+
+    public bool hasLight = false; // can't spawn below 200 depth
 }

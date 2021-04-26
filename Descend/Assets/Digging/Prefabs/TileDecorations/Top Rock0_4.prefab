@@ -133,6 +133,7 @@ MonoBehaviour:
   probability: 0.08
   isTall: 1
   isHanging: 0
+  hasLight: 1
 --- !u!1001 &3308028608482403837
 PrefabInstance:
   m_ObjectHideFlags: 0

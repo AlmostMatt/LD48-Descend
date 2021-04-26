@@ -51,6 +51,7 @@ MonoBehaviour:
   probability: 0.06
   isTall: 1
   isHanging: 0
+  hasLight: 1
 --- !u!1 &6929593414066523068
 GameObject:
   m_ObjectHideFlags: 0
