@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Silver
   m_EditorClassIdentifier: 
   itemType: 1
-  prefabObject: {fileID: 7122171687837787948, guid: 823f2aaa73e1184469cca7de98c8da84,
+  prefabObject: {fileID: 7122171687837787948, guid: a572d15ff35b45e4ea972dadc06cdc25,
     type: 3}
   stage: 3
   storeValue: 350

@@ -43,4 +43,31 @@ public class NewsProgression
             + "(It's dated June 24)\r\n";
         return d;
     }
+
+    // triggered by touching an artifacts
+    public static Document ParallelResearchNews()
+    {
+
+        Document d = new Document();
+        d.name = "[News] Experimental Research Projects Paused ";
+        d.body = string.Format("{0}'s experimental research projects have been paused.\r\n" +
+         "Their laboratory on {1} was rebuilt into a mining facility earlier this year, and the land has been restored.\r\n" +
+         "It is currently being occupied by {0}’s employees to conduct daily mining procedures.\r\n",
+            GameConfig.gemBuyerName, GameConfig.playerAddress);
+        return d;
+    }
+
+    public static Document AddSpaceTearNews()
+    {
+        // TODO
+        Document d = new Document();
+        return d;
+    }
+
+    public static Document AddEquilibriumNews()
+    {
+        // TODO
+        Document d = new Document();
+        return d;
+    }
 }

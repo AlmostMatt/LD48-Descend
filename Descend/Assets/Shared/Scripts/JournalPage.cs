@@ -32,6 +32,14 @@ public class JournalPage : MonoBehaviour
             case 2:
                 d = JournalDocumentTwo();
                 break;
+            case 3:
+                d = JournalDocumentThree();
+                break;
+            case 4:
+                d = JournalDocumentFour();
+                break;
+            // TODO:
+            // journal 5: showpopup
         }
 
         if(d != null)
@@ -62,8 +70,7 @@ public class JournalPage : MonoBehaviour
             "Unfruitful digging today, I am going to go deeper tomorrow.\r\n";
         return d;
     }
-
-    // fill in other content here...
+    
     private Document JournalDocumentTwo()
     {
         Document d = new Document();
@@ -82,8 +89,32 @@ public class JournalPage : MonoBehaviour
             "\r\n" +
             "June 23:\r\n" +
             "I will start bright and early today and work a long day!\r\n";
-
         return d;
     }
 
+    private Document JournalDocumentThree()
+    {
+        NewsProgression.AddNewsForNextDay(NewsProgression.AddSpaceTearNews());
+        Document d = new Document();
+        d.name = "[Journal] June 6";
+        d.body = "June 6:\r\n" +
+            "Who am I?\r\n" +
+            "Where am I!?\r\n" +
+            "What am I doing here ?!!?!\r\n" +
+            "Don’t panic, don’t panic, don’t panic…";
+        return d;
+    }
+
+    private Document JournalDocumentFour()
+    {
+        NewsProgression.AddNewsForNextDay(NewsProgression.AddEquilibriumNews());
+        Document d = new Document();
+        d.name = "[Journal] June 7";
+        d.body = "June 7:\r\n" +
+            "Today is the second day since I lost my memory.\r\n" + 
+            "It’s good that I have this journal to give me an idea of my past, but I can’t seem to find my way back...\r\n" + 
+            "Am I just stuck here forever?\r\n" +
+            "Oh wait, there's some sort of pattern to these lights!";
+        return d;
+    }
 }

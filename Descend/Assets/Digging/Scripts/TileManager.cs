@@ -167,9 +167,14 @@ public class TileManager : MonoBehaviour
         // Spawn a random tile dec for each possible type
         if (possibleDecs.Count > 0)
         {
-            float randomRoll = Random.Range(0f, 1f);
+            float totalProb = 0f;
             float cumulativeProb = 0f;
             TileDecoration chosenDec = null;
+            foreach (TileDecoration tileDec in possibleDecs)
+            {
+                totalProb += tileDec.probability;
+            }
+            float randomRoll = Random.Range(0f, Mathf.Max(1f, totalProb));
             foreach (TileDecoration tileDec in possibleDecs)
             {
                 cumulativeProb += tileDec.probability;

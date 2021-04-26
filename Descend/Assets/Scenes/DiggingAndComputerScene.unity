@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10760,6 +10760,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpriteDictionary
       objectReference: {fileID: 0}
+    - target: {fileID: 5330438328275763290, guid: ee138266ee9a52944aa8617782e97e33,
+        type: 3}
+      propertyPath: namedImages2.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330438328275763290, guid: ee138266ee9a52944aa8617782e97e33,
+        type: 3}
+      propertyPath: namedImages2.Array.data[3].name
+      value: artifact
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330438328275763290, guid: ee138266ee9a52944aa8617782e97e33,
+        type: 3}
+      propertyPath: namedImages2.Array.data[3].sprite
+      value: 
+      objectReference: {fileID: -5736412046406169799, guid: 7a3d31f4c509fc1459d7e17c0d53e242,
+        type: 3}
     - target: {fileID: 5330438328275763291, guid: ee138266ee9a52944aa8617782e97e33,
         type: 3}
       propertyPath: m_RootOrder

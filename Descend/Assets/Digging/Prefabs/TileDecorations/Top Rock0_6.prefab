@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2252703194971460457}
   - component: {fileID: 2361832725813563837}
   m_Layer: 0
-  m_Name: Rock0_6
+  m_Name: Top Rock0_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,6 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7dc87272acbee4c98c90b9256ab8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTrim: 0
   relativePos: 0
   createTiming: 2
-  probability: 0.4
+  probability: 0.2
+  isTall: 0
+  isHanging: 0

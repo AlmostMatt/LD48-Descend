@@ -41,6 +41,8 @@ MonoBehaviour:
   - {fileID: 8899596150975887174, guid: e2bb1a4e7e0cdb54bba4c755bb0bfca7, type: 3}
   - {fileID: 3021213153290450270, guid: ac080808bb69ecf4b9e855ea2e5184de, type: 3}
   - {fileID: 5596521502795458590, guid: d51c34742f48f5943806e509766f8ea7, type: 3}
+  - {fileID: 4044507017288046934, guid: 6d1da49eca1566e41b91cc0d5bab0748, type: 3}
+  - {fileID: 3249533537364274630, guid: ce2371cce6d6f6345ba916e6daf0e553, type: 3}
   requiredDigSkill: 3
   introduceDepth: 66
   backgroundDepth: 90
