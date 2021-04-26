@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca7116565e3ab784fb2e7d1c07f9e325, type: 3}
-  m_Name: Zinc
+  m_Name: Gold
   m_EditorClassIdentifier: 
-  itemType: 2
-  prefabObject: {fileID: 7122171687837787948, guid: a572d15ff35b45e4ea972dadc06cdc25,
+  itemType: 4
+  prefabObject: {fileID: 7122171687837787948, guid: 20b7d530be8e30e459894479cd918c4f,
     type: 3}
   stage: 2
   storeValue: 200
