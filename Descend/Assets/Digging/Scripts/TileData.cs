@@ -12,9 +12,9 @@ public class TileData : ScriptableObject
     public int requiredDigSkill = 0;
 
     // for proc gen
-    public int introduceDepth;
-    public int backgroundDepth;
-    public int disappearDepthStart;
-    public int disappearDepthEnd;
+    public int introduceDepth; // depth at which it is possible for clusters to exist
+    public int backgroundDepth; // depth at which it becomes the default tile
+    public int disappearDepthStart; // depth at which cluster frequency begins to fade
+    public int disappearDepthEnd; // depth at which cluster frequency is 0
     public int maxClusterSize;
 }

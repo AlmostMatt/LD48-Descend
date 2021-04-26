@@ -44,6 +44,6 @@ MonoBehaviour:
   requiredDigSkill: 0
   introduceDepth: 1
   backgroundDepth: 1
-  disappearDepthStart: 20
+  disappearDepthStart: 15
   disappearDepthEnd: 30
-  maxClusterSize: 3
+  maxClusterSize: 5
