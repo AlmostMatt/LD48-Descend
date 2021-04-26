@@ -105,7 +105,11 @@ public class SaveData
         }
     }
 
+    public int missedDebtPayments = 0;
+
     public int musicStage = 0;
 
-    public int missedDebtPayments = 0;
+    // story progression
+    public bool foundBody;
+    
 }
