@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3698a31b09905354fabfaf410c876b7e, type: 3}
-  m_Name: StoryCavernDig1
+  m_Name: StoryCavernDig3
   m_EditorClassIdentifier: 
-  tilemapObject: {fileID: 6686651711203783186, guid: 657b726403bfeb340994c59e9926197a,
+  tilemapObject: {fileID: 6686651711203783186, guid: 5391e53e85a6fb9458bfc26b8e4922df,
     type: 3}
   x: -8
-  y: -25
+  y: -60
