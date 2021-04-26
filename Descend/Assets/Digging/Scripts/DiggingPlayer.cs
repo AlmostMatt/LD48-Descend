@@ -40,8 +40,10 @@ public class DiggingPlayer : MonoBehaviour
     private float GROUND_HEIGHT = 0.04f;
     private int mStamina;
     private bool mUsingStamina;
-    
-    private float mDigTimer;
+
+    public List<AudioClip> digAudioClips;
+    public List<AudioClip> clankAudioClips;
+    private float mDigSoundTimer;
     private Dictionary<Vector3Int, float> mDigProgress = new Dictionary<Vector3Int, float>();
 
     private LineRenderer mGrappleLineRenderer;
@@ -452,6 +454,13 @@ public class DiggingPlayer : MonoBehaviour
                     float progress;
                     if(mDigProgress.TryGetValue(position, out progress))
                     {
+                        mDigSoundTimer -= Time.deltaTime;
+                        if(mDigSoundTimer <= 0f)
+                        {
+                            PlayDigSound();
+                            mDigSoundTimer = 0.4f;
+                        }
+
                         progress += Time.deltaTime * digSpeed;
                         if(progress < 1f)
                         {
@@ -473,6 +482,13 @@ public class DiggingPlayer : MonoBehaviour
                 {
                     // mark that we should receive an email advertising the item that digs through this
                     SaveData.Get().dirtTypeAttempted = tileData.requiredDigSkill;
+
+                    mDigSoundTimer -= Time.deltaTime;
+                    if(mDigSoundTimer <= 0f)
+                    {
+                        PlayClankSound();
+                        mDigSoundTimer = 0.4f;
+                    }
                 }
             }
         }
@@ -496,6 +512,18 @@ public class DiggingPlayer : MonoBehaviour
     public bool IsUsingStamina()
     {
         return mUsingStamina;
+    }
+
+    private void PlayDigSound()
+    {
+        GetComponent<AudioSource>().clip = digAudioClips[Random.Range(0, digAudioClips.Count)];
+        GetComponent<AudioSource>().Play();
+    }
+
+    private void PlayClankSound()
+    {
+        GetComponent<AudioSource>().clip = clankAudioClips[Random.Range(0, clankAudioClips.Count)];
+        GetComponent<AudioSource>().Play();
     }
 
     private void OnDrawGizmos()
