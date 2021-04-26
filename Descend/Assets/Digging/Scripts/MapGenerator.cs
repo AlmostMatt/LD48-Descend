@@ -252,6 +252,8 @@ public class MapGenerator : MonoBehaviour
     // Sets individual tiles (possibly rotating or reflecting tiles)
     void SetTile(Tilemap tilemap, TileData tiledata, int x, int y, bool allowRotation = true, bool allowReflection = true)
     {
+        if(x < minX || x >= maxX) return;
+
         Vector3Int tilePos = new Vector3Int(x, y, 0);
         TileBase tile = null;
         if (tiledata != null)
