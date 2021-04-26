@@ -192,7 +192,7 @@ public class MapGenerator : MonoBehaviour
                                 worldPosition.x += 0.5f;
                                 worldPosition.y += 0.5f;
                                 worldPosition.z = -1f;
-                                Instantiate(gemData.prefabObject, worldPosition, Quaternion.identity);
+                                // Instantiate(gemData.prefabObject, worldPosition, Quaternion.identity); // broken now? unneeded?
 
                                 if(--itemCounts[(int)gemData.itemType] <= 0)
                                 {
