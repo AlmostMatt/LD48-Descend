@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Impassable
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 11400000, guid: cde6305b349737a479f6b19f0fb1baea, type: 2}
+  - {fileID: 11400000, guid: 8aec63bb6a9fa5c40a100eeb951b07e7, type: 2}
+  tileDecorations: []
   requiredDigSkill: -1
   introduceDepth: 0
   backgroundDepth: 0

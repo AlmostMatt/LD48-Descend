@@ -487,51 +487,48 @@ public class DiggingPlayer : MonoBehaviour
         if(tileData != null)
         {
             float digSkill = SaveData.Get().digSkill;
-            if(tileData.requiredDigSkill >= 0)
+            if (tileData.requiredDigSkill >= 0 && tileData.requiredDigSkill <= digSkill)
             {
-                if(tileData.requiredDigSkill <= digSkill)
+                mIsDigging = true;
+
+                float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.2f + 200f;
+                float progress;
+                if(mDigProgress.TryGetValue(position, out progress))
                 {
-                    mIsDigging = true;
-
-                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.2f + 200f;
-                    float progress;
-                    if(mDigProgress.TryGetValue(position, out progress))
+                    mDigSoundTimer -= Time.deltaTime;
+                    if(mDigSoundTimer <= 0f)
                     {
-                        mDigSoundTimer -= Time.deltaTime;
-                        if(mDigSoundTimer <= 0f)
-                        {
-                            PlayDigSound();
-                            mDigSoundTimer = 0.4f;
-                        }
+                        PlayDigSound();
+                        mDigSoundTimer = 0.4f;
+                    }
 
-                        progress += Time.deltaTime * digSpeed;
-                        if(progress < 1f)
-                        {
-                            mDigProgress[position] = progress;
-                        }
-                        else
-                        {
-                            tileManager.DestroyTile(position);
-                            mDigProgress.Remove(position);
-                            --mStamina;
-                        }
+                    progress += Time.deltaTime * digSpeed;
+                    if(progress < 1f)
+                    {
+                        mDigProgress[position] = progress;
                     }
                     else
                     {
-                        mDigProgress[position] = 0f;
+                        tileManager.DestroyTile(position);
+                        mDigProgress.Remove(position);
+                        --mStamina;
                     }
                 }
                 else
                 {
-                    // mark that we should receive an email advertising the item that digs through this
-                    SaveData.Get().dirtTypeAttempted = tileData.requiredDigSkill;
+                    mDigProgress[position] = 0f;
+                }
+            }
+            else
+            {
+                // mark that we should receive an email advertising the item that digs through this
+                SaveData.Get().dirtTypeAttempted = tileData.requiredDigSkill;
 
-                    mDigSoundTimer -= Time.deltaTime;
-                    if(mDigSoundTimer <= 0f)
-                    {
-                        PlayClankSound();
-                        mDigSoundTimer = 0.4f;
-                    }
+                mDigSoundTimer -= Time.deltaTime;
+                if(mDigSoundTimer <= 0f)
+                {
+                    PlayClankSound();
+                    mDigSoundTimer = 0.4f;
                 }
             }
         }
