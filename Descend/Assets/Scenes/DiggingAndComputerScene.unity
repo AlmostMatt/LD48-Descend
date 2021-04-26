@@ -14794,7 +14794,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 700f482529c68164d93721d25745e6f6, type: 2}
   - {fileID: 11400000, guid: 6c1df512e760e7c41ab311b99c8de697, type: 2}
   premadeTilemaps:
-  - {fileID: 11400000, guid: 037be76b03b386047a2398f2d9081db8, type: 2}
+  - {fileID: 11400000, guid: 72ffd021e5579fc4c8d71cbdd9cc2005, type: 2}
+  - {fileID: 11400000, guid: a64ba2a1a06a6774896b26a1df43cdde, type: 2}
+  - {fileID: 11400000, guid: 7d186fb5fccdffb4aa6a7dd8bc555125, type: 2}
+  - {fileID: 11400000, guid: 510dbdcf3c4b05e4ab93ce5d62d5a144, type: 2}
+  - {fileID: 11400000, guid: 9d7f8e4c7d3eb29488c5214ea5fbfaa8, type: 2}
+  - {fileID: 11400000, guid: 3cbbe0c9b719cd44a9e5fa476240bf30, type: 2}
 --- !u!4 &1810598624
 Transform:
   m_ObjectHideFlags: 0

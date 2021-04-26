@@ -66,6 +66,9 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
+        FillTilemap(mainTilemap, mTileDatas[0].tiles, minX-1, minX, -mMaxDepth, 0);
+        FillTilemap(mainTilemap, mTileDatas[0].tiles, maxX, maxX+1, -mMaxDepth, 0);
+
         // Spawn clusters
         for(int depth = clusterStartDepth; depth <= clusterEndDepth; ++depth)
         {
@@ -252,6 +255,8 @@ public class MapGenerator : MonoBehaviour
     // Sets individual tiles (possibly rotating or reflecting tiles)
     void SetTile(Tilemap tilemap, TileData tiledata, int x, int y, bool allowRotation = true, bool allowReflection = true)
     {
+        if(x < minX || x >= maxX) return;
+
         Vector3Int tilePos = new Vector3Int(x, y, 0);
         TileBase tile = null;
         if (tiledata != null)
