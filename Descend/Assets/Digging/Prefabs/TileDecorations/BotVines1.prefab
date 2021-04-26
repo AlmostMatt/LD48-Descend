@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relativePos: 2
   createTiming: 0
-  probability: 0.5
+  probability: 0.08
   isTall: 0
   isHanging: 1
 --- !u!1 &3616639126350089838
