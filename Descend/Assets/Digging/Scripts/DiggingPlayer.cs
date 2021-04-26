@@ -521,8 +521,11 @@ public class DiggingPlayer : MonoBehaviour
             }
             else
             {
-                // mark that we should receive an email advertising the item that digs through this
-                SaveData.Get().dirtTypeAttempted = tileData.requiredDigSkill;
+                if(tileData.requiredDigSkill >= 0)
+                {
+                    // mark that we should receive an email advertising the item that digs through this
+                    SaveData.Get().dirtTypeAttempted = tileData.requiredDigSkill;
+                }
 
                 mDigSoundTimer -= Time.deltaTime;
                 if(mDigSoundTimer <= 0f)
