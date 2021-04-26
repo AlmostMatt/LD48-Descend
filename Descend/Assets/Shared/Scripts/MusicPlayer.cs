@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MusicPlayer : MonoBehaviour
 {
     public List<AudioClip> clips;
+    public Sprite mutedImage;
+    public Sprite unmutedImage;
+    public GameObject muteButton;
 
     private static MusicPlayer sSingleton;
 
@@ -29,6 +33,8 @@ public class MusicPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        muteButton.GetComponent<Image>().sprite = mMuted ? mutedImage : unmutedImage;
+
         if(mFadingOut)
         {
             mAudioSource.volume -= Time.deltaTime * mFadeOutSpeed;
@@ -59,9 +65,9 @@ public class MusicPlayer : MonoBehaviour
         mAudioSource.clip = clip;
         mFadingOut = false;
         mPlaying = true;
+        mAudioSource.volume = mOriginalVolume;
         if(!mMuted)
         {
-            mAudioSource.volume = mOriginalVolume;
             mAudioSource.Play();
         }
     }
