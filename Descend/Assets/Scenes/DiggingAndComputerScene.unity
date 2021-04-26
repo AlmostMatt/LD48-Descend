@@ -2445,7 +2445,7 @@ MonoBehaviour:
   computerView: {fileID: 1970315446}
   digOverlay: {fileID: 565094909}
   player: {fileID: 728925681}
-  isComputerScene: 0
+  isComputerScene: 1
 --- !u!1 &728925678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3382348013331727401, guid: 96a23d18045c1f94a946ef293d7ee424,

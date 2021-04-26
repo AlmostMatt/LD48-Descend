@@ -46,9 +46,6 @@ public class SaveData
         mCash += amount;
     }
 
-    public List<Email> emails = new List<Email>();
-    public int unreadEmails = 0;
-
     private bool[] mFoundItemType = new bool[(int)ItemType.NUM_TYPES];
     public bool FoundItemType(ItemType itemType)
     {
@@ -58,6 +55,9 @@ public class SaveData
     {
         mFoundItemType[(int)itemType] = true;
     }
+
+    public List<Email> emails = new List<Email>();
+    public int unreadEmails = 0;
 
     // progression for emails
     public bool hasMiningTutorialEmail = false;
@@ -84,4 +84,6 @@ public class SaveData
     }
 
     public int musicStage = 0;
+
+    public int missedDebtPayments = 0;
 }

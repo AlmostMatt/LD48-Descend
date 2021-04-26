@@ -11,14 +11,18 @@ public class GameLoopController : MonoBehaviour
     private static GameLoopController singleton;
     public bool isComputerScene = true;
 
+    private bool mGameOver = false;
+
     public void Start()
     {
         singleton = this;
         if (isComputerScene)
         {
+            isComputerScene = false; // pretend we came from digging
             StopDigging();
         } else
         {
+            isComputerScene = true; // pretend we came from computer
             StartDigging();
         }
     }
@@ -35,13 +39,18 @@ public class GameLoopController : MonoBehaviour
 
     public static void StartDigging()
     {
-        // Load the Digging scene
-        singleton.isComputerScene = false;
-        singleton.computerView.gameObject.SetActive(false);
+        DebtProgression.UpdateProgression(); // could cause a game over
 
-        singleton.player.StartNewDigDay();
+        if(!singleton.mGameOver)
+        {
+            // Load the Digging scene
+            singleton.isComputerScene = false;
+            singleton.computerView.gameObject.SetActive(false);
 
-        MusicPlayer.StartPlaying(SaveData.Get().musicStage);
+            singleton.player.StartNewDigDay();
+
+            MusicPlayer.StartPlaying(SaveData.Get().musicStage);
+        }
     }
 
     public static void StopDigging()
@@ -49,6 +58,7 @@ public class GameLoopController : MonoBehaviour
         MusicPlayer.FadeOut();
 
         // check for any emails to send
+        DebtProgression.UpdateProgression();
         StoryProgression.UpdateProgression();
         AdvertisementProgression.CheckEmails();
 
@@ -60,4 +70,12 @@ public class GameLoopController : MonoBehaviour
         // Go to the "gem sale" tab
         singleton.computerView.GetComponentInChildren<WebBrowser>().SetTab(0);
     }
+
+    public static void GameOver()
+    {
+        // go to a gameover scene? or a title scene?
+        singleton.mGameOver = true;
+        Debug.Log("GAME OVER");
+    }
+
 }

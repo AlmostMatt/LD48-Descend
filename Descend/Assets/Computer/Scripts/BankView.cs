@@ -15,6 +15,8 @@ public class BankView : MonoBehaviour
     InputField mPaymentField;
     Button mPaymentButton;
 
+    private bool mNeedPaymentFieldReset = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,12 +46,13 @@ public class BankView : MonoBehaviour
         {
             mPaymentField.readOnly = false;
             mPaymentButton.interactable = true;
-            // hack to only reset stuff once
-            if(mMessage.text.Length > 0)
+            if(mNeedPaymentFieldReset)
             {
-                mMessage.text = "";
+                mNeedPaymentFieldReset = false;
                 mPaymentField.text = saveData.GetMinimumPayment().ToString();
             }
+
+            mMessage.text = saveData.missedDebtPayments == 0 ? "" : "FAILURE TO PAY WILL RESULT IN IMMEDIATE ARREST";
             
             mName.text = GameConfig.playerName;            
             mMinimumPayment.text = saveData.GetMinimumPayment().ToString();
@@ -100,5 +103,7 @@ public class BankView : MonoBehaviour
         saveData.debt -= paymentAmount;
 
         mMessage.text = "Thank you! Payment received.";
+
+        mNeedPaymentFieldReset = true;
     }
 }
