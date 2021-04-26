@@ -397,7 +397,7 @@ public class DiggingPlayer : MonoBehaviour
         {
             Vector3 grappleHeadPos = mGrappleTarget;
             Vector3[] positions = new Vector3[2];
-            positions[0] = mBoxCollider.bounds.center;
+            positions[0] = transform.Find("GrappleHandPos").position;// mBoxCollider.bounds.center;
             positions[1] = grappleHeadPos;
             mGrappleLineRenderer.positionCount = 2;
             mGrappleLineRenderer.SetPositions(positions);
@@ -415,7 +415,7 @@ public class DiggingPlayer : MonoBehaviour
         {
             Vector3 grappleHeadPos = mGrappleTarget;
             Vector3[] positions = new Vector3[2];
-            positions[0] = mBoxCollider.bounds.center;
+            positions[0] = transform.Find("GrappleHandPos").position; // mBoxCollider.bounds.center;
             positions[1] = grappleHeadPos;
             mGrappleLineRenderer.positionCount = 2;
             mGrappleLineRenderer.SetPositions(positions);
@@ -427,6 +427,11 @@ public class DiggingPlayer : MonoBehaviour
             {
                 Debug.Log("grapple hang");
                 mGrappleState = GRAPPLE_HANG;
+                positions = new Vector3[2];
+                positions[0] = mBoxCollider.bounds.center;
+                positions[1] = grappleHeadPos;
+                mGrappleLineRenderer.positionCount = 2;
+                mGrappleLineRenderer.SetPositions(positions);
             }
         }
     }
