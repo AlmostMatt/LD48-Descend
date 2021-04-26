@@ -17,6 +17,7 @@ MonoBehaviour:
     type: 3}
   stage: 0
   storeValue: 25
-  minDepth: 3
-  peakDepth: 10
-  maxDepth: 30
+  description: 
+  minDepth: 5
+  peakDepth: 20
+  maxDepth: 40
