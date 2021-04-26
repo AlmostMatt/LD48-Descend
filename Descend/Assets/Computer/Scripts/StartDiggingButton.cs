@@ -7,5 +7,6 @@ public class StartDiggingButton : MonoBehaviour
     public void StartDigging()
     {
         GameLoopController.StartDigging();
+        gameObject.SetActive(false);
     }
 }

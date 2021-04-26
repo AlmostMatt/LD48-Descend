@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BankView : MonoBehaviour
 {
+    public GameObject startDiggingButton;
+
     Text mName;
     Text mCash;
     Text mDebt;
@@ -15,7 +17,7 @@ public class BankView : MonoBehaviour
     InputField mPaymentField;
     Button mPaymentButton;
 
-    private bool mNeedPaymentFieldReset = true;
+    private int mDay = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -46,10 +48,12 @@ public class BankView : MonoBehaviour
         {
             mPaymentField.readOnly = false;
             mPaymentButton.interactable = true;
-            if(mNeedPaymentFieldReset)
+            if(mDay != saveData.currentDay)
             {
-                mNeedPaymentFieldReset = false;
+                // one-time code for the first time this tab is opened each day
+                mDay = saveData.currentDay;
                 mPaymentField.text = saveData.GetMinimumPayment().ToString();
+                startDiggingButton.SetActive(true);
             }
 
             mMessage.text = saveData.missedDebtPayments == 0 ? "" : "FAILURE TO PAY WILL RESULT IN IMMEDIATE ARREST";
@@ -103,7 +107,5 @@ public class BankView : MonoBehaviour
         saveData.debt -= paymentAmount;
 
         mMessage.text = "Thank you! Payment received.";
-
-        mNeedPaymentFieldReset = true;
     }
 }

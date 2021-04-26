@@ -43,6 +43,8 @@ public class GameLoopController : MonoBehaviour
 
         if(!singleton.mGameOver)
         {
+            SaveData.Get().currentDay++;
+
             // Load the Digging scene
             singleton.isComputerScene = false;
             singleton.computerView.gameObject.SetActive(false);
