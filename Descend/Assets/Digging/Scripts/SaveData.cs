@@ -27,6 +27,16 @@ public class SaveData
     public List<Email> emails = new List<Email>();
     public int unreadEmails = 0;
 
+    private bool[] mFoundItemType = new bool[(int)ItemType.NUM_TYPES];
+    public bool FoundItemType(ItemType itemType)
+    {
+        return mFoundItemType[(int)itemType];
+    }
+    public void SetFoundItemType(ItemType itemType)
+    {
+        mFoundItemType[(int)itemType] = true;
+    }
+
     // progression for emails
     public bool hasMiningTutorialEmail = false;
     public bool hasDebtTutorialEmail = false;

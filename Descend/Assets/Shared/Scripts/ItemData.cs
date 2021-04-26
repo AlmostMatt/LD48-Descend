@@ -11,7 +11,10 @@ public class ItemData : ScriptableObject
     public int stage;
     public int storeValue;
 
+    public string image;
+    public string description;
+
     public int minDepth;
     public int peakDepth;
-    public int maxDepth;   
+    public int maxDepth;
 }

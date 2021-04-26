@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca7116565e3ab784fb2e7d1c07f9e325, type: 3}
-  m_Name: Tungsten
+  m_Name: Silver
   m_EditorClassIdentifier: 
   itemType: 3
   prefabObject: {fileID: 7831300150868581847, guid: 823f2aaa73e1184469cca7de98c8da84,
     type: 3}
   stage: 3
   storeValue: 350
+  image: 
+  description: 
   minDepth: 70
   peakDepth: 85
   maxDepth: 100
