@@ -106,7 +106,7 @@ public class DiggingPlayer : MonoBehaviour
         mIsDigging = false;
 
         // Ignore input and stuff while not in the digging scene
-        if (!GameLoopController.isDiggingScene())
+        if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible())
         {
             return;
         }
@@ -458,7 +458,7 @@ public class DiggingPlayer : MonoBehaviour
                 {
                     mIsDigging = true;
 
-                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 10f;
+                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.2f + 2f;
                     float progress;
                     if(mDigProgress.TryGetValue(position, out progress))
                     {
