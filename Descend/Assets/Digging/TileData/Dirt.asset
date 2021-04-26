@@ -22,6 +22,9 @@ MonoBehaviour:
   - {fileID: 7103334424921896447, guid: 7816c7fa5dade3747b46aa222e96e4e4, type: 3}
   - {fileID: 5504840599416737677, guid: 44075cb2efc1d654da69b4f431c87a3f, type: 3}
   - {fileID: 2361832725813563837, guid: 693b5ada7dc288f4e8930ea940eb99a7, type: 3}
+  - {fileID: 851493213533333732, guid: 92a3653a132e4c9438d88adecafaf941, type: 3}
+  - {fileID: 6829773814091000487, guid: 31ec54e475718e64aad85fa17fa08684, type: 3}
+  - {fileID: 776551027735535239, guid: 3be8b7c8d28e52a4596a4292cefbbf95, type: 3}
   requiredDigSkill: 0
   introduceDepth: 1
   backgroundDepth: 1
