@@ -34,11 +34,11 @@ public class MapGenerator : MonoBehaviour
     void GenerateMap()
     {
         // First, totally fill out the bkg, main, and fog tilemaps
-        int minY = -180; // Assuming 30 tiles per diggabiltiy and 6 diggability
+        int minY = -249; // Assuming 30 tiles per diggabiltiy and 6 diggability
         int maxY = 0;
-        FillTilemap(bkgTilemap, bkgTiles, minX/2, maxX/2, minY/2, maxY/2, false, true); // bkgTilemap tilemap has a 2x scale and the same origin
+        FillTilemap(bkgTilemap, bkgTiles, minX/2-3, maxX/2+3, minY/2, maxY/2, false, true); // bkgTilemap tilemap has a 2x scale and the same origin
         FillTilemap(mainTilemap, dirtTile.tiles, minX, maxX, minY, maxY, false, true);
-        FillTilemap(fogTilemap, fogTiles, minX*2, maxX * 2, minY * 2, maxY * 2); // fog tilemap has scale 0.5
+        FillTilemap(fogTilemap, fogTiles, minX*2, maxX * 2, minY * 2 + 20, maxY * 2); // fog tilemap has scale 0.5
 
         int clusterStartDepth = 1000000;
         int clusterEndDepth = 0;
@@ -66,8 +66,8 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        FillTilemap(mainTilemap, mTileDatas[0].tiles, minX-1, minX, -mMaxDepth, 0);
-        FillTilemap(mainTilemap, mTileDatas[0].tiles, maxX, maxX+1, -mMaxDepth, 0);
+        FillTilemap(mainTilemap, mTileDatas[0].tiles, minX-3, minX, -mMaxDepth, 0);
+        FillTilemap(mainTilemap, mTileDatas[0].tiles, maxX, maxX+3, -mMaxDepth, 0);
 
         // Spawn clusters
         for(int depth = clusterStartDepth; depth <= clusterEndDepth; ++depth)
