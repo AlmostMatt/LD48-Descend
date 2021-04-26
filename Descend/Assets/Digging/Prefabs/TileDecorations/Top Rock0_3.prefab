@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9056347491188318367}
   - component: {fileID: 4862424963257035688}
   m_Layer: 0
-  m_Name: Rock0_3
+  m_Name: Top Rock0_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,8 @@ MonoBehaviour:
   relativePos: 0
   createTiming: 0
   probability: 0.1
+  isTall: 1
+  isHanging: 0
 --- !u!1 &6929593414066523068
 GameObject:
   m_ObjectHideFlags: 0

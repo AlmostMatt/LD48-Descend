@@ -129,3 +129,5 @@ MonoBehaviour:
   relativePos: 1
   createTiming: 0
   probability: 0.05
+  isTall: 1
+  isHanging: 0

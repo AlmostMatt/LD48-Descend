@@ -28,4 +28,7 @@ public class TileDecoration : MonoBehaviour
     public RelativePosition relativePos = RelativePosition.TOP;
     public CreateTiming createTiming = CreateTiming.EITHER;
     public float probability = 0.1f;
+
+    public bool isTall = false; // needs an empty tile above
+    public bool isHanging = false; // needs an empty tile below
 }

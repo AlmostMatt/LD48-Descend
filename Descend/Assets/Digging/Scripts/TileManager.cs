@@ -65,24 +65,24 @@ public class TileManager : MonoBehaviour
         TileData above = GetTileData(new Vector3Int(pos.x, pos.y + 1, 0));
         if (above != null)
         {
-            DecorateTileSide(new Vector3Int(pos.x, pos.y + 1, 0), RelativePosition.BOTTOM, isGameStart: false);
+            DecorateTileSide(new Vector3Int(pos.x, pos.y + 1, 0), pos, RelativePosition.BOTTOM, isGameStart: false);
         }
         TileData below = GetTileData(new Vector3Int(pos.x, pos.y - 1, 0));
         if (below != null)
         {
-            DecorateTileSide(new Vector3Int(pos.x, pos.y - 1, 0), RelativePosition.TOP, isGameStart: false);
+            DecorateTileSide(new Vector3Int(pos.x, pos.y - 1, 0), pos, RelativePosition.TOP, isGameStart: false);
         }
         TileData left = GetTileData(new Vector3Int(pos.x - 1, pos.y, 0));
         if (left != null)
         {
             // the right side of the tile on the left of this pos
-            DecorateTileSide(new Vector3Int(pos.x - 1, pos.y, 0), RelativePosition.SIDE, isLeft: false, isGameStart: false);
+            DecorateTileSide(new Vector3Int(pos.x - 1, pos.y, 0), pos, RelativePosition.SIDE, isLeft: false, isGameStart: false);
         }
         TileData right = GetTileData(new Vector3Int(pos.x + 1, pos.y, 0));
         if (right != null)
         {
             // the right side of the tile on the left of this pos
-            DecorateTileSide(new Vector3Int(pos.x + 1, pos.y, 0), RelativePosition.SIDE, isLeft: true, isGameStart: false);
+            DecorateTileSide(new Vector3Int(pos.x + 1, pos.y, 0), pos, RelativePosition.SIDE, isLeft: true, isGameStart: false);
         }
     }
 
@@ -101,25 +101,25 @@ public class TileManager : MonoBehaviour
             TileData right = GetTileData(new Vector3Int(pos.x + 1, pos.y, 0));
             if (above == null)
             {
-                DecorateTileSide(pos, RelativePosition.TOP);
+                DecorateTileSide(pos, new Vector3Int(pos.x, pos.y + 1, 0), RelativePosition.TOP);
             }
             if (below == null)
             {
-                DecorateTileSide(pos, RelativePosition.BOTTOM);
+                DecorateTileSide(pos, new Vector3Int(pos.x, pos.y - 1, 0), RelativePosition.BOTTOM);
             }
             if (left == null)
             {
-                DecorateTileSide(pos, RelativePosition.SIDE, isLeft: true);
+                DecorateTileSide(pos, new Vector3Int(pos.x - 1, pos.y, 0), RelativePosition.SIDE, isLeft: true);
             }
             if (right == null)
             {
-                DecorateTileSide(pos, RelativePosition.SIDE, isLeft: false);
+                DecorateTileSide(pos, new Vector3Int(pos.x + 1, pos.y, 0), RelativePosition.SIDE, isLeft: false);
             }
         }
     }
 
     // Precondition: tile[pos] != null and tile[pos+offset] == null
-    public void DecorateTileSide(Vector3Int pos, RelativePosition relPos, bool isLeft = false, bool isGameStart=true)
+    public void DecorateTileSide(Vector3Int pos, Vector3Int offsetPos, RelativePosition relPos, bool isLeft = false, bool isGameStart=true)
     {
         TileData tileData = GetTileData(pos);
         List<TileDecoration> possibleDecs = new List<TileDecoration>();
@@ -135,6 +135,14 @@ public class TileManager : MonoBehaviour
                 isPossible = false;
             }
             if (!isGameStart && tileDec.createTiming == CreateTiming.START_ONLY)
+            {
+                isPossible = false;
+            }
+            if (tileDec.isTall && GetTileData(offsetPos + new Vector3Int(0, 1, 0)) != null)
+            {
+                isPossible = false;
+            }
+            if (tileDec.isHanging && GetTileData(offsetPos + new Vector3Int(0, -1, 0)) != null)
             {
                 isPossible = false;
             }
