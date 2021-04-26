@@ -146,22 +146,36 @@ public class TileManager : MonoBehaviour
         // Spawn a random tile dec for each possible type
         if (possibleDecs.Count > 0)
         {
-            // TODO: weighted probabilities
-            TileDecoration dec = GameObject.Instantiate(possibleDecs[Random.Range(0, possibleDecs.Count)]);
-            dec.transform.position = pos + new Vector3(0.5f, 0.5f, 0.5f);
-            posToDecorations[pos].Add(dec);
-
-            // if top or bottom, randomly reflect
-            if (relPos == RelativePosition.TOP || relPos == RelativePosition.BOTTOM)
+            float randomRoll = Random.Range(0f, 1f);
+            float cumulativeProb = 0f;
+            TileDecoration chosenDec = null;
+            foreach (TileDecoration tileDec in possibleDecs)
             {
-                if (Random.Range(0f, 1f) < 0.5f)
+                cumulativeProb += tileDec.probability;
+                if (cumulativeProb >= randomRoll)
+                {
+                    chosenDec = tileDec;
+                    break;
+                }
+            }
+            if (chosenDec != null)
+            {
+                TileDecoration dec = GameObject.Instantiate(chosenDec);
+                dec.transform.position = pos + new Vector3(0.5f, 0.5f, 0.5f);
+                posToDecorations[pos].Add(dec);
+
+                // if top or bottom, randomly reflect
+                if (relPos == RelativePosition.TOP || relPos == RelativePosition.BOTTOM)
+                {
+                    if (Random.Range(0f, 1f) < 0.5f)
+                    {
+                        dec.transform.localScale = new Vector3(-1f, 1f, 1f);
+                    }
+                }
+                if (relPos == RelativePosition.SIDE && isLeft)
                 {
                     dec.transform.localScale = new Vector3(-1f, 1f, 1f);
                 }
-            }
-            if (relPos == RelativePosition.SIDE && isLeft)
-            {
-                dec.transform.localScale = new Vector3(-1f, 1f, 1f);
             }
         }
     }

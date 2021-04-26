@@ -89,9 +89,23 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+        // Spawn caverns (little empty spaces)
+        for (int depth = minY; depth <= maxY; ++depth)
+        {
+            // Cavern probability as a function of depth
+            // Cavern size as a function of depth
+            float cavProb = 0.1f;
+            int cavSize = Random.Range(1, 3);
+            int x = Random.Range(minX, maxX);
+            if (Random.Range(0f, 1f) <= cavProb)
+            {
+                Debug.Log("Cavern at " + x + ", " + depth);
+                MakeCavern(x, depth, cavSize);
+            }
+        }
 
         // place premade stuff
-        foreach(PremadeTilemapData data in premadeTilemaps)
+        foreach (PremadeTilemapData data in premadeTilemaps)
         {
             Tilemap premadeTilemap = data.tilemapObject.GetComponentInChildren<Tilemap>();
             premadeTilemap.CompressBounds();
@@ -192,6 +206,16 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    void MakeCavern(int x, int depth, int cavernSize)
+    {
+        int clusterSize = cavernSize;
+
+        foreach (Vector3Int pos in GetPositionsForCluster(x, depth, cavernSize))
+        {
+            SetTile(mainTilemap, null, pos.x, pos.y, false, false);
+        }
+    }
+
     void MakeCluster(int x, int depth, TileData data)
     {
         if(depth < data.introduceDepth) return;
@@ -221,7 +245,7 @@ public class MapGenerator : MonoBehaviour
             int rightSize = baseSize + Random.Range(0,2);
             for(int j = x - leftSize; j < x + rightSize; ++j)
             {
-                SetTile(mainTilemap, data, j, -y, false, true);
+                SetTile(mainTilemap, data, j, -y, false, false);
             }
         }
     }
@@ -230,7 +254,11 @@ public class MapGenerator : MonoBehaviour
     void SetTile(Tilemap tilemap, TileData tiledata, int x, int y, bool allowRotation = true, bool allowReflection = true)
     {
         Vector3Int tilePos = new Vector3Int(x, y, 0);
-        TileBase tile = tiledata.tiles[Random.Range(0, tiledata.tiles.Length)];
+        TileBase tile = null;
+        if (tiledata != null)
+        {
+            tile = tiledata.tiles[Random.Range(0, tiledata.tiles.Length)];
+        }
         tilemap.SetTile(tilePos, tile);
         tilemap.SetTransformMatrix(tilePos, CreateMatrix(allowRotation, allowReflection));
     }
@@ -274,5 +302,24 @@ public class MapGenerator : MonoBehaviour
             }
         }
         return Matrix4x4.TRS(Vector3.zero, rotation, scale);
+    }
+
+    private List<Vector3Int> GetPositionsForCluster(int clusterX, int clusterY, int numTiles)
+    {
+        List<Vector3Int> result = new List<Vector3Int>();
+        return result;
+        //
+        List<Vector3Int> possiblePos = new List<Vector3Int>();
+        possiblePos.Add(new Vector3Int(clusterX, clusterY, 0));
+        while (result.Count < numTiles && possiblePos.Count > 0)
+        {
+            // select a random possible tile
+            int i = Random.Range(0, possiblePos.Count);
+            Vector3Int pos = possiblePos[i];
+            // NOTE: this is not efficient. better would be to swap to end or something
+            possiblePos.RemoveAt(i);
+            result.Add(pos);
+        }
+        return result;
     }
 }
