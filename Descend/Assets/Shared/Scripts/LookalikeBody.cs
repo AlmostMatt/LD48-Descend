@@ -11,6 +11,7 @@ public class LookalikeBody : MonoBehaviour
             SaveData saveData = SaveData.Get();
             if(!saveData.foundBody)
             {
+                NewsProgression.AddNewsForNextDay(NewsProgression.EarthquakeNews());
                 saveData.foundBody = true;
                 DiggingUIOverlay.ShowPopup("Goodness gracious, is this a dead body? Why does he look... just like me!?", "deadbody");
 
