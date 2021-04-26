@@ -89,6 +89,7 @@ public class DiggingPlayer : MonoBehaviour
         // Ignore input and stuff while not in the digging scene, or if there's a popup
         if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible())
         {
+            AnimatePausedPlayer();
             return;
         }
         HandleMouseInput();
@@ -356,6 +357,21 @@ public class DiggingPlayer : MonoBehaviour
     {
         mFacing = facingDirection;
         transform.localScale = new Vector3(mFacing * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
+    void AnimatePausedPlayer()
+    {
+        Animator anim = GetComponentInChildren<Animator>();
+        anim.SetFloat("Speed", 0f);
+        anim.SetBool("GrappleExtend", false);
+        anim.SetBool("GrappleRetract", false);
+        anim.SetBool("GrappleHang", false);
+        anim.SetBool("GrappleNone", true); // GrappleNone means it is ok to go to non-grapple states
+        anim.SetBool("Digging", false);
+        anim.SetBool("Climbing", false);
+        anim.SetBool("Jumping", false);
+        anim.SetBool("Falling", false);
+        anim.SetFloat("ClimbSpeed", 0f);
     }
 
     void UpdateAnimationState()
