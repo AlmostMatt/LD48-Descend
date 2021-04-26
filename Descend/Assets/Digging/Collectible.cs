@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityBaseCode.Rendering;
 using UnityEngine;
 
 public class Collectible : MonoBehaviour
@@ -8,6 +9,7 @@ public class Collectible : MonoBehaviour
     public void Start()
     {
         GetComponentInChildren<SpriteRenderer>().color = itemType.GetColor();
+        GetComponentInChildren<SpriteRenderer>().sprite = SpriteDictionary.GetSprite(itemType.GetImage());
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
