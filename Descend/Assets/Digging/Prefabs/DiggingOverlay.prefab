@@ -551,6 +551,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7930352471396343051, guid: 813a7a77a6819ad4e880ab46a05bd5f6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930352471396343051, guid: 813a7a77a6819ad4e880ab46a05bd5f6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 813a7a77a6819ad4e880ab46a05bd5f6, type: 3}
 --- !u!224 &640594819 stripped

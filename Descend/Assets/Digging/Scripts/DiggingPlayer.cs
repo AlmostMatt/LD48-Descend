@@ -204,7 +204,6 @@ public class DiggingPlayer : MonoBehaviour
             new Vector2(bounds.size.x * 0.9f, groundDetectionDepth),
             0f,
             LayerMask.GetMask("Ground"));
-        Debug.Log((groundCollision == null).ToString() + ", " + momentum.y.ToString());
         mOnGround = groundCollision != null && momentum.y <= BASICALLY_ZERO;
         float wallDetectionDepth = 0.05f;
         Vector2 playerRight = new Vector2(bounds.max.x, bounds.center.y);
@@ -459,7 +458,7 @@ public class DiggingPlayer : MonoBehaviour
                 {
                     mIsDigging = true;
 
-                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 1f;
+                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.1f + 10f;
                     float progress;
                     if(mDigProgress.TryGetValue(position, out progress))
                     {
@@ -511,7 +510,12 @@ public class DiggingPlayer : MonoBehaviour
 
         if(!saveData.FoundItemType(itemData.itemType))
         {
-            DiggingUIOverlay.ShowPopup(itemData.description, itemData.image);
+            string text = itemData.description;
+            if (text.Length == 0)
+            {
+                text = "You found " + itemData.itemType.GetName() + "!";
+            }
+            DiggingUIOverlay.ShowPopup(text, itemData.itemType.GetImage());
             saveData.SetFoundItemType(itemData.itemType);
         }
     }

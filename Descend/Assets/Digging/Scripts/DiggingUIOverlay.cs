@@ -47,6 +47,7 @@ public class DiggingUIOverlay : MonoBehaviour
         }
         else
         {
+            Debug.LogWarning("No sprite found for " + image);
             img.gameObject.SetActive(false);
         }
     }
