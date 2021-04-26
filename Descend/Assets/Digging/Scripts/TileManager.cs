@@ -131,6 +131,7 @@ public class TileManager : MonoBehaviour
     {
         TileData tileData = GetTileData(pos);
         List<TileDecoration> possibleDecs = new List<TileDecoration>();
+        List<TileDecoration> possibleTrims = new List<TileDecoration>();
         foreach (TileDecoration tileDec in tileData.tileDecorations)
         {
             bool isPossible = true;
@@ -154,9 +155,13 @@ public class TileManager : MonoBehaviour
             {
                 isPossible = false;
             }
-            if (isPossible)
+            if (isPossible && !tileDec.isTrim)
             {
                 possibleDecs.Add(tileDec);
+            }
+            if (isPossible && tileDec.isTrim)
+            {
+                possibleTrims.Add(tileDec);
             }
         }
         // Spawn a random tile dec for each possible type
@@ -194,6 +199,27 @@ public class TileManager : MonoBehaviour
                 {
                     dec.transform.localScale = new Vector3(-1f, 1f, 1f);
                 }
+            }
+        }
+        // Spawn a random trim (guaranteed, equal prob)
+        if (possibleTrims.Count > 0)
+        {
+            TileDecoration chosenTrim = possibleTrims[Random.Range(0, possibleTrims.Count)];
+            TileDecoration dec = GameObject.Instantiate(chosenTrim);
+            dec.transform.position = pos + new Vector3(0.5f, 0.5f, 0.5f);
+            posToDecorations[pos].Add(dec);
+
+            // if top or bottom, randomly reflect
+            if (relPos == RelativePosition.TOP || relPos == RelativePosition.BOTTOM)
+            {
+                if (Random.Range(0f, 1f) < 0.5f)
+                {
+                    dec.transform.localScale = new Vector3(-1f, 1f, 1f);
+                }
+            }
+            if (relPos == RelativePosition.SIDE && isLeft)
+            {
+                dec.transform.localScale = new Vector3(-1f, 1f, 1f);
             }
         }
     }
