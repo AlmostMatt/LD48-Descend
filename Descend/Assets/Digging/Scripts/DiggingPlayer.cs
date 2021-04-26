@@ -20,6 +20,8 @@ public class DiggingPlayer : MonoBehaviour
     public float grappleRetractSpeed = 10f;
     public int maxStamina = 5;
 
+    private float BASICALLY_ZERO = 0.0001f;
+
     /** state variables (for animation and also for logic) **/
     private int mFacing = 1;
     private bool mIsDigging;
@@ -189,7 +191,8 @@ public class DiggingPlayer : MonoBehaviour
             new Vector2(bounds.size.x * 0.9f, groundDetectionDepth),
             0f,
             LayerMask.GetMask("Ground"));
-        mOnGround = groundCollision != null && momentum.y <= 0f;
+        Debug.Log((groundCollision == null).ToString() + ", " + momentum.y.ToString());
+        mOnGround = groundCollision != null && momentum.y <= BASICALLY_ZERO;
         float wallDetectionDepth = 0.05f;
         Vector2 playerRight = new Vector2(bounds.max.x, bounds.center.y);
         Vector2 playerLeft = new Vector2(bounds.min.x, bounds.center.y);
@@ -202,12 +205,12 @@ public class DiggingPlayer : MonoBehaviour
 
         // WALL CLIMB
         // Start a wall climb when falling and pressed against a wall
-        if (!mWallClimbingLeft && leftCollision != null && (horzInput < 0f || momentum.x < 0f) && momentum.y <= 0f)
+        if (!mWallClimbingLeft && leftCollision != null && (horzInput < 0f || momentum.x < -BASICALLY_ZERO) && momentum.y <= BASICALLY_ZERO)
         {
             Debug.Log("now on left wall");
             mWallClimbingLeft = true;
         }
-        if (!mWallClimbingRight && rightCollision != null && (horzInput > 0f || momentum.x > 0f) && momentum.y <= 0f)
+        if (!mWallClimbingRight && rightCollision != null && (horzInput > 0f || momentum.x > BASICALLY_ZERO) && momentum.y <= BASICALLY_ZERO)
         {
             Debug.Log("now on right wall");
             mWallClimbingRight = true;
@@ -300,7 +303,7 @@ public class DiggingPlayer : MonoBehaviour
         // Check if still in "jumping" state.
         if (mJumping)
         {
-            mJumping = (momentum.y >= 0f);
+            mJumping = (momentum.y >= BASICALLY_ZERO);
         }
 
         Vector2 desiredV = new Vector2(desiredVx, immediateVy);
