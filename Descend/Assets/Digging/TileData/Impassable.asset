@@ -14,7 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 11400000, guid: 8aec63bb6a9fa5c40a100eeb951b07e7, type: 2}
-  tileDecorations: []
+  tileDecorations:
+  - {fileID: 497531530116570117, guid: 9a795b4fdcf671844a0390bd8d6ba5d0, type: 3}
+  - {fileID: 3765299188541767970, guid: 5777d25ea5421904392908bae52d1feb, type: 3}
+  - {fileID: 2779511002677801947, guid: 0bc57103a2d3c5049843109b56aa573b, type: 3}
+  - {fileID: 1533123719803118190, guid: 6a698e20054461b4b9bc4f160d7629d4, type: 3}
+  - {fileID: 4444886878642804861, guid: bbe504081c50db04caf6f6759945dadf, type: 3}
+  - {fileID: 1129194463127689160, guid: ca14c077bc66e63479d17c64af3953e5, type: 3}
+  - {fileID: 1558621986154667839, guid: 259bab174e916724697f3e33f4793665, type: 3}
+  - {fileID: 5435381966022424933, guid: 71799c0514fd87844a99a18db104ce9c, type: 3}
+  - {fileID: 851493213533333732, guid: 92a3653a132e4c9438d88adecafaf941, type: 3}
+  - {fileID: 6829773814091000487, guid: 31ec54e475718e64aad85fa17fa08684, type: 3}
+  - {fileID: 776551027735535239, guid: 3be8b7c8d28e52a4596a4292cefbbf95, type: 3}
+  - {fileID: 9056100837035311484, guid: becfdc975bc269b4ea7661b0db67a55e, type: 3}
+  - {fileID: 4862424963257035688, guid: c7f6550322aaabf46b36c18cd5e19e63, type: 3}
+  - {fileID: 7103334424921896447, guid: 7816c7fa5dade3747b46aa222e96e4e4, type: 3}
+  - {fileID: 5504840599416737677, guid: 44075cb2efc1d654da69b4f431c87a3f, type: 3}
+  - {fileID: 2361832725813563837, guid: 693b5ada7dc288f4e8930ea940eb99a7, type: 3}
+  - {fileID: 4044507017288046934, guid: 2dec5d9186ab84b41a73de01f6d395e5, type: 3}
+  - {fileID: 6794701317345194900, guid: 9a770d394dacdbf488dacdeb079bb095, type: 3}
+  - {fileID: 3492234111554991436, guid: 324f513f90ff7134587371b45e05c350, type: 3}
+  - {fileID: 7284562103135849677, guid: 214e170aa375de54ca80cb7485a61d53, type: 3}
+  - {fileID: 1936220485168167676, guid: 8e47df27c88357b479dd6782a916dc8b, type: 3}
+  - {fileID: 7471028259031722359, guid: b1be421706055794c8861c0aafabf931, type: 3}
+  - {fileID: 5603731435910027785, guid: f3471a284fc180042966af6dbf6921f7, type: 3}
+  - {fileID: 8899596150975887174, guid: e2bb1a4e7e0cdb54bba4c755bb0bfca7, type: 3}
+  - {fileID: 3021213153290450270, guid: ac080808bb69ecf4b9e855ea2e5184de, type: 3}
+  - {fileID: 5596521502795458590, guid: d51c34742f48f5943806e509766f8ea7, type: 3}
   requiredDigSkill: -1
   introduceDepth: 0
   backgroundDepth: 0
