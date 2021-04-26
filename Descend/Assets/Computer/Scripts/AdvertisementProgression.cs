@@ -22,16 +22,39 @@ public class AdvertisementProgression
         e.emailType = EmailType.ADVERTISEMENT;
         e.sender = GameConfig.shopName;
 
-        switch(dirtType)
+        string rockType = "Stone";
+        string pickaxeType = "IRON";
+        switch (dirtType)
         {
+            case 1: // The first time a player needs a tool upgrade
+                rockType = "Stone";
+                pickaxeType = "IRON";
+                break;
+            case 2:
+                rockType = "Frozen dirt";
+                pickaxeType = "STEEL";
+                break;
+            case 3:
+                rockType = "Frozen stone";
+                pickaxeType = "REINFORCED";
+                break;
+            case 4:
+                rockType = "Molten dirt";
+                pickaxeType = "UNBREAKABLE";
+                break;
+            case 5:
+                rockType = "Molten stone";
+                pickaxeType = "DIAMOND-TIPPED";
+                break;
             default:
-                e.subject = "New Pickaxe ON SALE NOW!!";
-                e.body = "Stone giving you a hard time? Try the new IRON PICKAXE, available now for order online!";
-                e.linkText = "CLICK HERE TO ORDER NOW!";
-                // e.image = "pickaxe";
                 break;
         }
-        
+        e.subject = "New " + pickaxeType + " PICKAXE - ON SALE NOW!!";
+        e.body = rockType + " giving you a hard time?\r\n" +
+            "Try the new " + pickaxeType + " PICKAXE, available now from our onine <b>shop</b>!\r\n\r\n" +
+            "Short of cash? No worries!\r\n" +
+            "Just hit the purchase button, and the remaining price will be added to your company loan.";
+        e.linkText = "CLICK HERE TO ORDER NOW!";
         return e;
     }
 }

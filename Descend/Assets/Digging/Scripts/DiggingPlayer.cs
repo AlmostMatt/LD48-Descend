@@ -369,6 +369,7 @@ public class DiggingPlayer : MonoBehaviour
 
     void AnimatePausedPlayer()
     {
+        // TODO: animation speed of 0 and restore to previous speed (or 1)
         Animator anim = GetComponentInChildren<Animator>();
         anim.SetFloat("Speed", 0f);
         anim.SetBool("GrappleExtend", false);
