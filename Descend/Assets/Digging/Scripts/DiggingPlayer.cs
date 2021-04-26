@@ -85,11 +85,13 @@ public class DiggingPlayer : MonoBehaviour
         mIsTryingToDig = false;
         mIsDigging = false;
         mUsingStamina = false;
+        var emission = digEffect.emission;
 
         // Ignore input and stuff while not in the digging scene, or if there's a popup
         if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible())
         {
             AnimatePausedPlayer();
+            emission.enabled = false;
             return;
         }
         HandleMouseInput();
@@ -97,8 +99,7 @@ public class DiggingPlayer : MonoBehaviour
 
         // reveal nearby tiles
         RevealFogTiles();
-
-        var emission = digEffect.emission;
+        
         emission.enabled = mIsDigging;
     }
 
@@ -108,6 +109,8 @@ public class DiggingPlayer : MonoBehaviour
         // Ignore input and stuff while not in the digging scene
         if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible())
         {
+            mRigidbody.velocity = Vector3.zero;
+            mRigidbody.gravityScale = 0f;
             return;
         }
 
