@@ -14,7 +14,8 @@ public class WebBrowser : MonoBehaviour
         "www.gemstonemarket.com",
         "www.email.com",
         "www.search.com",
-        "www.shopping.com"
+        "www.shopping.com",
+        "www.bankofancadia.com"
     };
     private TabButton mSelectedTab = null;
 

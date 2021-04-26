@@ -36,7 +36,7 @@ public class ShopView : MonoBehaviour
     public void Update()
     {
         // Update the current balance
-        balanceText.text = "Balance: $" + PlayerState.Get().GetBalance(); 
+        balanceText.text = "Balance: $" + SaveData.Get().GetCash(); 
 
         // Update the list of items
         UpdateForSale();
@@ -51,7 +51,7 @@ public class ShopView : MonoBehaviour
     {
         int itemIndex = shopItemButton.transform.GetSiblingIndex();
         ShopItem item = shopItemList[itemIndex];
-        PlayerState.Get().DecreaseBalance(item.priceInDollars);
+        SaveData.Get().DecreaseCash(item.priceInDollars);
         shopItemList[itemIndex] = new ShopItem(item.name, item.description, item.imageName, item.priceInDollars, item.effectType, item.effectValue, true);
         // The effect of the item
         switch (item.effectType)
