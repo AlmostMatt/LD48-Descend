@@ -66,6 +66,9 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
+        FillTilemap(mainTilemap, mTileDatas[0].tiles, minX-1, minX, -mMaxDepth, 0);
+        FillTilemap(mainTilemap, mTileDatas[0].tiles, maxX, maxX+1, -mMaxDepth, 0);
+
         // Spawn clusters
         for(int depth = clusterStartDepth; depth <= clusterEndDepth; ++depth)
         {
