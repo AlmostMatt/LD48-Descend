@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class TileManager : MonoBehaviour
 {
+    public static TileManager singleton;
+
     public Tilemap tilemap;
     public List<TileData> tileDatas;
 
@@ -13,7 +15,8 @@ public class TileManager : MonoBehaviour
 
     private void Awake()
     {
-        foreach(TileData tileData in tileDatas)
+        singleton = this;
+        foreach (TileData tileData in tileDatas)
         {
             foreach(TileBase tileBase in tileData.tiles)
             {
@@ -36,6 +39,11 @@ public class TileManager : MonoBehaviour
                 DecorateTile(pos);
             }
         }
+    }
+
+    public TileData GetTileDataWorldPosition(Vector3 worldPos)
+    {
+        return GetTileData(tilemap.WorldToCell(worldPos));
     }
 
     public TileData GetTileData(Vector3Int pos)
