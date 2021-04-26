@@ -158,8 +158,22 @@ public class DiggingPlayer : MonoBehaviour
 
     void HandleMovement()
     {
+        float horzInput = Input.GetAxis("Horizontal");
+        float vertInput = Input.GetAxis("Vertical");
+        bool jumpInput = Input.GetButton("Jump");
+
         if(mGrappleState > 0)
         {
+            if(mGrappleState == GRAPPLE_HANG)
+            {
+                if(horzInput != 0 || vertInput != 0)
+                {
+                    mGrappleLineRenderer.positionCount = 0;
+                    mGrappleState = GRAPPLE_NONE;
+                    return;
+                }
+            }
+
             if(mGrappleState == GRAPPLE_RETRACT)
             {
                 mRigidbody.velocity = (mGrappleTarget - mBoxCollider.bounds.center).normalized * grappleRetractSpeed;
@@ -171,9 +185,6 @@ public class DiggingPlayer : MonoBehaviour
         }
 
         Vector2 momentum = mRigidbody.velocity;
-
-        float horzInput = Input.GetAxis("Horizontal");
-        float vertInput = Input.GetAxis("Vertical");
 
         // Instantaneous things should set immediateVx
         // Things that accel or decel over time should set desiredVx
@@ -261,7 +272,7 @@ public class DiggingPlayer : MonoBehaviour
             mCanJumpGroundTimer = COYOTE_TIME_DURATION;
         }
 
-        if (Input.GetButton("Jump") && !mJumping)
+        if (jumpInput && !mJumping)
         {
             // JUMP FROM GROUND
             if (mCanJumpGroundTimer > 0f)
@@ -386,13 +397,6 @@ public class DiggingPlayer : MonoBehaviour
 
     private void UpdateGrapple()
     {
-        float vert = Input.GetAxis("Vertical");
-        if(vert < 0)
-        {
-            mGrappleLineRenderer.positionCount = 0;
-            mGrappleState = GRAPPLE_NONE;
-        }
-
         if(mGrappleState == GRAPPLE_EXTEND)
         {
             Vector3 grappleHeadPos = mGrappleTarget;
