@@ -43,6 +43,7 @@ public class DiggingUIOverlay : MonoBehaviour
         if(image != null && image.Length != 0)
         {
             img.gameObject.SetActive(true);
+            img.GetComponent<Image>().sprite = null; // clear it out so that unity forgets aspect ratio
             img.GetComponent<Image>().sprite = UnityBaseCode.Rendering.SpriteDictionary.GetSprite(image);
         }
         else
