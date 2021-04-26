@@ -42,8 +42,8 @@ MonoBehaviour:
   - {fileID: 3021213153290450270, guid: ac080808bb69ecf4b9e855ea2e5184de, type: 3}
   - {fileID: 5596521502795458590, guid: d51c34742f48f5943806e509766f8ea7, type: 3}
   requiredDigSkill: 0
-  introduceDepth: 40
-  backgroundDepth: 40
-  disappearDepthStart: 50
-  disappearDepthEnd: 60
-  maxClusterSize: 3
+  introduceDepth: 1
+  backgroundDepth: 15
+  disappearDepthStart: 30
+  disappearDepthEnd: 45
+  maxClusterSize: 5
