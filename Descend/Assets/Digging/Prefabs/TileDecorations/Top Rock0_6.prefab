@@ -129,7 +129,7 @@ MonoBehaviour:
   isTrim: 0
   relativePos: 0
   createTiming: 2
-  probability: 0.4
+  probability: 0.2
   isTall: 0
   isHanging: 0
   hasLight: 0
