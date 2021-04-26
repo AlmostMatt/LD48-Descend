@@ -34,6 +34,7 @@ public class JournalPage : MonoBehaviour
         if(d != null)
         {
             saveData.AddDocument(d);
+            NewsProgression.AddNews(NewsProgression.NewsOne());
         }
     }
 
