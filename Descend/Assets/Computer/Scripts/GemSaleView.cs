@@ -22,7 +22,7 @@ public class GemSaleView : MonoBehaviour
     public void Update()
     {
         invList.Clear();
-        for (int i=0; i<(int)ItemType.NUM_TYPES-1; i++)
+        for (int i=0; i<(int)ItemType.NUM_TYPES; i++)
         {
             invList.Add(new InventoryEntry((ItemType) i, SaveData.Get().inventory[i]));
         }
@@ -39,7 +39,7 @@ public class GemSaleView : MonoBehaviour
         // increase balance
         SaveData.Get().IncreaseCash(GetTotalInventoryValue());
         // clear out inventory
-        for (int i = 0; i < (int)ItemType.NUM_TYPES - 1; i++)
+        for (int i = 0; i < (int)ItemType.NUM_TYPES; i++)
         {
             SaveData.Get().inventory[i] = 0;
         }
@@ -48,7 +48,7 @@ public class GemSaleView : MonoBehaviour
     private int GetTotalInventoryValue()
     {
         int total = 0;
-        for (int i = 0; i < (int)ItemType.NUM_TYPES - 1; i++)
+        for (int i = 0; i < (int)ItemType.NUM_TYPES; i++)
         {
             total += SaveData.Get().inventory[i] * ((ItemType)i).GetValue();
         }

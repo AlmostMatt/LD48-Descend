@@ -463,7 +463,7 @@ public class DiggingPlayer : MonoBehaviour
                 {
                     mIsDigging = true;
 
-                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.2f + 2f;
+                    float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.2f + 200f;
                     float progress;
                     if(mDigProgress.TryGetValue(position, out progress))
                     {

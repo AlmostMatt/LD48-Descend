@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca7116565e3ab784fb2e7d1c07f9e325, type: 3}
-  m_Name: Copper
+  m_Name: Crystal
   m_EditorClassIdentifier: 
-  itemType: 1
+  itemType: 3
   prefabObject: {fileID: 1462959478287279547, guid: 7ff2c0eec69a6a946b60c2d14afe861e,
     type: 3}
   stage: 1
   storeValue: 50
+  description: 
   minDepth: 25
   peakDepth: 40
   maxDepth: 50
