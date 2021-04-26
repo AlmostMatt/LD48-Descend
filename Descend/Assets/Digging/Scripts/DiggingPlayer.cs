@@ -168,7 +168,7 @@ public class DiggingPlayer : MonoBehaviour
 
         if(mGrappleState > 0)
         {
-            if(mGrappleState == GRAPPLE_HANG)
+            // if(mGrappleState == GRAPPLE_HANG)
             {
                 if(horzInput != 0 || vertInput != 0)
                 {
