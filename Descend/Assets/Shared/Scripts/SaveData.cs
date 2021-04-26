@@ -71,7 +71,7 @@ public class SaveData
 
     public void AddEmail(Email e)
     {
-        emails.Add(e);
+        emails.Insert(0, e);
         if(!e.read)
         {
             unreadEmails++;
