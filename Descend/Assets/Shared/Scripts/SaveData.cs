@@ -77,13 +77,31 @@ public class SaveData
             unreadEmails++;
         }
     }
-
     public void MarkEmailRead(Email e)
     {
         if(!e.read)
         {
             e.read = true;
             --unreadEmails;
+        }
+    }
+
+    public List<Document> documents = new List<Document>();
+    public int unreadDocuments = 0;
+    public void AddDocument(Document d)
+    {
+        documents.Add(d);
+        if(!d.read)
+        {
+            unreadDocuments++;
+        }
+    }
+    public void MarkDocumentRead(Document d)
+    {
+        if(!d.read)
+        {
+            d.read = true;
+            --unreadDocuments;
         }
     }
 
