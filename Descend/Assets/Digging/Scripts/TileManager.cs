@@ -155,6 +155,10 @@ public class TileManager : MonoBehaviour
             {
                 isPossible = false;
             }
+            if (tileDec.hasLight && pos.y < -170)
+            {
+                isPossible = false;
+            }
             if (isPossible && !tileDec.isTrim)
             {
                 possibleDecs.Add(tileDec);
