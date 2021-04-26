@@ -481,7 +481,7 @@ public class DiggingPlayer : MonoBehaviour
                         }
                         else
                         {
-                            dirtTilemap.SetTile(position, null);
+                            tileManager.DestroyTile(position);
                             mDigProgress.Remove(position);
                             --mStamina;
                         }

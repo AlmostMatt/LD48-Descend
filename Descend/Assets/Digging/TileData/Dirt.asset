@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 11400000, guid: e78c53aa4c5604e41a4ff9e8fdf0a99b, type: 2}
+  tileDecorations:
+  - {fileID: 4044507017288046934, guid: 2dec5d9186ab84b41a73de01f6d395e5, type: 3}
+  - {fileID: 6794701317345194900, guid: 9a770d394dacdbf488dacdeb079bb095, type: 3}
   requiredDigSkill: 0
   introduceDepth: 1
   backgroundDepth: 1
