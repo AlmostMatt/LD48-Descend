@@ -51,6 +51,11 @@ public class GameLoopController : MonoBehaviour
 
             MusicPlayer.StartPlaying(SaveData.Get().musicStage);
         }
+        else
+        {
+            // TODO: fade nicely, have a sound effect?
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     public static void StopDigging()
@@ -73,9 +78,7 @@ public class GameLoopController : MonoBehaviour
 
     public static void GameOver()
     {
-        // go to a gameover scene? or a title scene?
         singleton.mGameOver = true;
-        Debug.Log("GAME OVER");
     }
 
 }

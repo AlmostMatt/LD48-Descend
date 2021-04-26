@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: 
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/ComputerScene.unity
+    path: 
     guid: 62dce8e2ebdf9be45a26944e810cc121
   - enabled: 0
-    path: Assets/Scenes/DiggingWithOverlay.unity
+    path: 
     guid: f5aeb8d4886b7224fad9c3df45ad893d
   - enabled: 0
     path: Assets/Scenes/Digging.unity
@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DiggingAndComputerScene.unity
     guid: 8571398171077fd478f4a131a7768303
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: f3eb7fadaa3c62243bc6a206997df65f
   m_configObjects: {}
