@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2949534114095198115}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.70751315
+  m_Size: 0.6976895
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4141,7 +4141,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12:07 AM
+  m_Text: 9:03 AM
 --- !u!1 &9181663554161513742
 GameObject:
   m_ObjectHideFlags: 0
@@ -4295,7 +4295,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jan 17
+  m_Text: July
 --- !u!1 &9181663554286810207
 GameObject:
   m_ObjectHideFlags: 0
@@ -5498,7 +5498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
