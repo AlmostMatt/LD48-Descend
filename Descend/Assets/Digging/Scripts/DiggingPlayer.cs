@@ -118,9 +118,9 @@ public class DiggingPlayer : MonoBehaviour
     void RevealFogTiles()
     {
         // Reveals all tiles in a circle
-        float radius = 4f;
-        int rSteps = 16;
-        int tSteps = 64;
+        float radius = 5.7f; // a little bigger than the players light source
+        int rSteps = 24;
+        int tSteps = 96;
         for (int r = 1; r <= rSteps; r++)
         {
             for (int t = 0; t < tSteps; t++)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7047710234757230912}
   - component: {fileID: 6794701317345194900}
   m_Layer: 0
-  m_Name: Grass2
+  m_Name: TopGrass2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relativePos: 0
   createTiming: 0
-  probability: 0.5
+  probability: 0.1
+  isTall: 0
+  isHanging: 0
 --- !u!1 &5896386012096095623
 GameObject:
   m_ObjectHideFlags: 0
