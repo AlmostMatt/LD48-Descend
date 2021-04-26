@@ -17,6 +17,14 @@ MonoBehaviour:
   tileDecorations:
   - {fileID: 4044507017288046934, guid: 2dec5d9186ab84b41a73de01f6d395e5, type: 3}
   - {fileID: 6794701317345194900, guid: 9a770d394dacdbf488dacdeb079bb095, type: 3}
+  - {fileID: 9056100837035311484, guid: becfdc975bc269b4ea7661b0db67a55e, type: 3}
+  - {fileID: 4862424963257035688, guid: c7f6550322aaabf46b36c18cd5e19e63, type: 3}
+  - {fileID: 7103334424921896447, guid: 7816c7fa5dade3747b46aa222e96e4e4, type: 3}
+  - {fileID: 5504840599416737677, guid: 44075cb2efc1d654da69b4f431c87a3f, type: 3}
+  - {fileID: 2361832725813563837, guid: 693b5ada7dc288f4e8930ea940eb99a7, type: 3}
+  - {fileID: 851493213533333732, guid: 92a3653a132e4c9438d88adecafaf941, type: 3}
+  - {fileID: 6829773814091000487, guid: 31ec54e475718e64aad85fa17fa08684, type: 3}
+  - {fileID: 776551027735535239, guid: 3be8b7c8d28e52a4596a4292cefbbf95, type: 3}
   requiredDigSkill: 0
   introduceDepth: 1
   backgroundDepth: 1

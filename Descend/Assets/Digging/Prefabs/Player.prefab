@@ -169,6 +169,12 @@ MonoBehaviour:
   clankAudioClips:
   - {fileID: 8300000, guid: 20c7535fb3949034eac808269e8298dd, type: 3}
   - {fileID: 8300000, guid: 525d77b90783ce74fa69eaab70e43c76, type: 3}
+  collectAudioClips:
+  - {fileID: 8300000, guid: 16ac8085e4651394392a5445fd196fff, type: 3}
+  - {fileID: 8300000, guid: 5d9b7f05110e3794e81f96f1f7458b90, type: 3}
+  - {fileID: 8300000, guid: dfc436f956ffeca4cb8dfeec548b83f0, type: 3}
+  - {fileID: 8300000, guid: 78962f261d500e446917e0275aa63d00, type: 3}
+  - {fileID: 8300000, guid: 6a9ef104ae71aa4489887d9c3e8410d9, type: 3}
 --- !u!50 &3382348013331727400
 Rigidbody2D:
   serializedVersion: 4

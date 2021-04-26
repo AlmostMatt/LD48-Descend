@@ -47,6 +47,8 @@ public class DiggingPlayer : MonoBehaviour
     private float mDigSoundTimer;
     private Dictionary<Vector3Int, float> mDigProgress = new Dictionary<Vector3Int, float>();
 
+    public List<AudioClip> collectAudioClips;
+
     private LineRenderer mGrappleLineRenderer;
     private const int GRAPPLE_NONE = 0;
     private const int GRAPPLE_EXTEND = 1;
@@ -511,6 +513,8 @@ public class DiggingPlayer : MonoBehaviour
         ItemData itemData = c.itemData;
         saveData.inventory[(int)itemData.itemType] += 1;
 
+        PlayCollectSound();
+
         if(!saveData.FoundItemType(itemData.itemType))
         {
             string text = itemData.description;
@@ -540,14 +544,20 @@ public class DiggingPlayer : MonoBehaviour
 
     private void PlayDigSound()
     {
-        GetComponent<AudioSource>().clip = digAudioClips[Random.Range(0, digAudioClips.Count)];
-        GetComponent<AudioSource>().Play();
+        AudioClip clip = digAudioClips[Random.Range(0, digAudioClips.Count)];
+        GetComponent<AudioSource>().PlayOneShot(clip);
     }
 
     private void PlayClankSound()
     {
-        GetComponent<AudioSource>().clip = clankAudioClips[Random.Range(0, clankAudioClips.Count)];
-        GetComponent<AudioSource>().Play();
+        AudioClip clip = clankAudioClips[Random.Range(0, clankAudioClips.Count)];
+        GetComponent<AudioSource>().PlayOneShot(clip);
+    }
+
+    private void PlayCollectSound()
+    {
+        AudioClip clip = collectAudioClips[Random.Range(0, collectAudioClips.Count)];
+        GetComponent<AudioSource>().PlayOneShot(clip);
     }
 
     private void OnDrawGizmos()
