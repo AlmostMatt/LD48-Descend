@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1910520437920132844}
   - component: {fileID: 1910520437920132835}
   m_Layer: 0
-  m_Name: Journal1
+  m_Name: Journal3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7066312959211768063, guid: a4fc181cef7be814f91edeb36c4b770a,
+  m_Sprite: {fileID: 5310412402345240281, guid: a4fc181cef7be814f91edeb36c4b770a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -112,5 +112,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9282ca70a92786646b4f8ae104704f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  journalNum: 1
+  journalNum: 3
   image: journalOne
