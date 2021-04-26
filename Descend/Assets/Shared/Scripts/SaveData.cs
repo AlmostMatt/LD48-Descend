@@ -56,6 +56,8 @@ public class SaveData
         mFoundItemType[(int)itemType] = true;
     }
 
+    public int activeShopItem = -1;
+
     public List<Email> emails = new List<Email>();
     public int unreadEmails = 0;
 

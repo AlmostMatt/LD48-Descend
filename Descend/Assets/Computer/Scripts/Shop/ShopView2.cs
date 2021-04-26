@@ -6,6 +6,7 @@ using UnityEngine;
 public class ShopView2 : MonoBehaviour
 {
     public GameObject shopItemDisplay;
+    public GameObject noStockDisplay;
 
     private GameObject mPurchaseMessage;
     private GameObject mBuyButton;
@@ -24,11 +25,24 @@ public class ShopView2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShopItem item = shopItemList[mActiveItem];
-        ShopItem.RenderToSingleShopItem(item, shopItemDisplay);
+        SaveData saveData = SaveData.Get();
+        mActiveItem = saveData.activeShopItem;
 
-        mPurchaseMessage.SetActive(item.isOwned);
-        mBuyButton.SetActive(!item.isOwned);
+        if(mActiveItem >= 0)
+        {
+            noStockDisplay.SetActive(false);
+            shopItemDisplay.SetActive(true);
+
+            ShopItem item = shopItemList[mActiveItem];
+            ShopItem.RenderToSingleShopItem(item, shopItemDisplay);
+            mPurchaseMessage.SetActive(item.isOwned);
+            mBuyButton.SetActive(!item.isOwned);
+        }
+        else
+        {
+            shopItemDisplay.SetActive(false);
+            noStockDisplay.SetActive(true);
+        }
     }
 
     public void PurchaseItem()

@@ -12,6 +12,7 @@ public class AdvertisementProgression
             Email adEmail = GenerateAdEmail(saveData.dirtTypeAttempted);
             saveData.AddEmail(adEmail);
             saveData.lastAdvertisementEmail = saveData.dirtTypeAttempted;
+            saveData.activeShopItem = saveData.dirtTypeAttempted - 1;
         }
     }
 
@@ -25,7 +26,7 @@ public class AdvertisementProgression
         {
             default:
                 e.subject = "New Pickaxe ON SALE NOW!!";
-                e.body = "Stone giving you a hard time? Try the new PICKAXE, available now for order online!";
+                e.body = "Stone giving you a hard time? Try the new IRON PICKAXE, available now for order online!";
                 e.linkText = "CLICK HERE TO ORDER NOW!";
                 // e.image = "pickaxe";
                 break;
