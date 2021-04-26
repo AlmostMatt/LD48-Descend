@@ -24,6 +24,7 @@ public class DiggingPlayer : MonoBehaviour
 
     /** state variables (for animation and also for logic) **/
     private int mFacing = 1;
+    private bool mIsTryingToDig;
     private bool mIsDigging;
     private bool mOnGround;
     private bool mJumping;
@@ -79,6 +80,10 @@ public class DiggingPlayer : MonoBehaviour
     // Input and animation can happen here
     private void Update()
     {
+        mIsTryingToDig = false;
+        mIsDigging = false;
+        mUsingStamina = false;
+
         // Ignore input and stuff while not in the digging scene, or if there's a popup
         if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible())
         {
@@ -102,9 +107,6 @@ public class DiggingPlayer : MonoBehaviour
     // Movement and physics should happen here
     void FixedUpdate()
     {
-        mUsingStamina = false;
-        mIsDigging = false;
-
         // Ignore input and stuff while not in the digging scene
         if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible())
         {
@@ -370,7 +372,7 @@ public class DiggingPlayer : MonoBehaviour
         anim.SetBool("GrappleNone", mGrappleState == GRAPPLE_NONE);
 
         // Digging state
-        anim.SetBool("Digging", mIsDigging);
+        anim.SetBool("Digging", mIsTryingToDig);
 
         // TODO: if climbing, jumping, falling, etc can have multiple true, set the one that is most relevant to animation
         anim.SetBool("Climbing", (mWallClimbingLeft || mWallClimbingRight) && !mOnGround);
@@ -442,12 +444,13 @@ public class DiggingPlayer : MonoBehaviour
     void DigTile(Vector3Int position)
     {
         mUsingStamina = true;
-
+        
         if(mStamina <= 0)
         {
             return; // TODO: communicate somehow
         }
 
+        mIsTryingToDig = true;
         TileData tileData = tileManager.GetTileData(position);
         if(tileData != null)
         {

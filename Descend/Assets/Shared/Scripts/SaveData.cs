@@ -18,10 +18,27 @@ public class SaveData
 
     public int[] inventory = new int[(int)ItemType.NUM_TYPES];
 
-    public int debt = 1000;
+    public bool madePaymentToday = false;
+    public int debt = 10000;
     public int GetMinimumPayment()
     {
         return 100;
+    }
+
+    private int mCash = 1000;
+    public int GetCash()
+    {
+        return mCash;
+    }
+    public void DecreaseCash(int amount)
+    {
+        // TODO: money spending sound effect
+        mCash -= amount;
+    }
+    public void IncreaseCash(int amount)
+    {
+        // TODO: money earned sound effect
+        mCash += amount;
     }
 
     public List<Email> emails = new List<Email>();
