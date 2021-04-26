@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameLoopController : MonoBehaviour
 {
+    private static bool isFirstTimeComputing = true;
+
     public Canvas computerView;
     public Canvas digOverlay;
     public Canvas blackoutOverlay;
@@ -91,7 +93,16 @@ public class GameLoopController : MonoBehaviour
         singleton.isComputerScene = true;
         singleton.computerView.gameObject.SetActive(true);
         // Go to the "gem sale" tab
-        singleton.computerView.GetComponentInChildren<WebBrowser>().SetTab(0);
+        if (isFirstTimeComputing)
+        {
+            // email
+            singleton.computerView.GetComponentInChildren<WebBrowser>().SetTab(1);
+            isFirstTimeComputing = false;
+        } else
+        {
+            // gem selling!
+            singleton.computerView.GetComponentInChildren<WebBrowser>().SetTab(0);
+        }
     }
 
     public static void GameOver()
