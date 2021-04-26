@@ -94,12 +94,11 @@ public class MapGenerator : MonoBehaviour
         {
             // Cavern probability as a function of depth
             // Cavern size as a function of depth
-            float cavProb = 0.1f;
-            int cavSize = Random.Range(1, 3);
+            float cavProb = 0.5f;
+            int cavSize = Random.Range(3, 20);
             int x = Random.Range(minX, maxX);
             if (Random.Range(0f, 1f) <= cavProb)
             {
-                Debug.Log("Cavern at " + x + ", " + depth);
                 MakeCavern(x, depth, cavSize);
             }
         }
@@ -307,18 +306,33 @@ public class MapGenerator : MonoBehaviour
     private List<Vector3Int> GetPositionsForCluster(int clusterX, int clusterY, int numTiles)
     {
         List<Vector3Int> result = new List<Vector3Int>();
-        return result;
-        //
+        HashSet<Vector3Int> posSeen = new HashSet<Vector3Int>();
         List<Vector3Int> possiblePos = new List<Vector3Int>();
-        possiblePos.Add(new Vector3Int(clusterX, clusterY, 0));
+        Vector3Int tile1 = new Vector3Int(clusterX, clusterY, 0);
+        posSeen.Add(tile1);
+        possiblePos.Add(tile1);
         while (result.Count < numTiles && possiblePos.Count > 0)
         {
             // select a random possible tile
             int i = Random.Range(0, possiblePos.Count);
             Vector3Int pos = possiblePos[i];
-            // NOTE: this is not efficient. better would be to swap to end or something
+            // NOTE: this is not the most efficient. slightly better would be to swap to end then pop
             possiblePos.RemoveAt(i);
             result.Add(pos);
+            // Add nearby tiles to possible
+            foreach (Vector3Int neighbor in new Vector3Int[]{
+                new Vector3Int(pos.x+1, pos.y, 0),
+                new Vector3Int(pos.x-1, pos.y, 0),
+                new Vector3Int(pos.x, pos.y+1, 0),
+                new Vector3Int(pos.x, pos.y-1, 0)
+            })
+            {
+                if (!posSeen.Contains(neighbor))
+                {
+                    posSeen.Add(neighbor);
+                    possiblePos.Add(neighbor);
+                }
+            }
         }
         return result;
     }
