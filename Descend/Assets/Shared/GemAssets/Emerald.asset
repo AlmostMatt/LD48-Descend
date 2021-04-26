@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Emerald
   m_EditorClassIdentifier: 
   itemType: 5
-  prefabObject: {fileID: 7122171687837787948, guid: a572d15ff35b45e4ea972dadc06cdc25,
+  prefabObject: {fileID: 7831300150868581847, guid: d1db3d38fde5c974192e162a3a381642,
     type: 3}
   stage: 2
   storeValue: 200
