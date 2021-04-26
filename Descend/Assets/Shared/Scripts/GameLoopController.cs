@@ -48,6 +48,8 @@ public class GameLoopController : MonoBehaviour
         StoryProgression.UpdateProgression();
         AdvertisementProgression.CheckEmails();
 
+        SaveData.Get().madePaymentToday = false; // set this AFTER email checks... just in case we send an email based on missing payments
+
         // Load the Computer scene
         singleton.isComputerScene = true;
         singleton.computerView.gameObject.SetActive(true);

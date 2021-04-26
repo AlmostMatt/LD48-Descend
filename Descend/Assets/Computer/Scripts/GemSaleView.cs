@@ -31,13 +31,13 @@ public class GemSaleView : MonoBehaviour
         totalPriceText.text = "$" + totalPrice.ToString();
         sellButton.interactable = (totalPrice > 0);
         // current balance
-        currentBalanceText.text = "Balance: $" + PlayerState.Get().GetBalance(); ;
+        currentBalanceText.text = "Balance: $" + SaveData.Get().GetCash();
     }
 
     public void SellGems()
     {
         // increase balance
-        PlayerState.Get().IncreaseBalance(GetTotalInventoryValue());
+        SaveData.Get().IncreaseCash(GetTotalInventoryValue());
         // clear out inventory
         for (int i = 0; i < (int)ItemType.NUM_TYPES - 1; i++)
         {

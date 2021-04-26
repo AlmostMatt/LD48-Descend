@@ -45,4 +45,9 @@ public class EmailView : MonoBehaviour
         mSelectedEmail = email;
         SaveData.Get().MarkEmailRead(email);
     }
+
+    public void FollowEmailLink()
+    {
+
+    }
 }
