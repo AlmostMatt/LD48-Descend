@@ -6360,27 +6360,28 @@ Tilemap:
   - m_RefCount: 0
     m_Data:
       e00: NaN
-      e01: NaN
-      e02: 1
-      e03: 1
+      e01: 0
+      e02: 0
+      e03: NaN
       e10: NaN
-      e11: NaN
+      e11: 0
       e12: 0
-      e13: 2.1e-44
-      e20: 0
+      e13: NaN
+      e20: -14352.078
       e21: 0
-      e22: 0
-      e23: 0
-      e30: 0
+      e22: 5.307576e-16
+      e23: -7.8350914e+34
+      e30: 6.25e-43
       e31: 0
-      e32: 0
-      e33: 0
+      e32: 6.25e-43
+      e33: 4.5904e-41
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: -0.005055003, g: -0.005055003, b: -0.005055003, a: -0.005055003}
+    m_Data: {r: -0.0000000026263791, g: -0.0000000026263791, b: -0.0000000026263791,
+      a: -0.0000000026263791}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   m_Origin: {x: -22, y: -129, z: 0}
   m_Size: {x: 45, y: 134, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -6486,11 +6487,10 @@ MonoBehaviour:
   mainTilemap: {fileID: 1127204226}
   fogTilemap: {fileID: 2080872718}
   bkgTiles:
-  - {fileID: 11400000, guid: 50d625185ab4f3447ab0847c47a2734d, type: 2}
-  - {fileID: 11400000, guid: 835c58ee561943f4f9208250891fff7f, type: 2}
+  - {fileID: 11400000, guid: 510631d1ccb63df499944344c2d36eda, type: 2}
   dirtTile: {fileID: 11400000, guid: 21cd80ce01971984aaeea86cff09c74f, type: 2}
   fogTiles:
-  - {fileID: 11400000, guid: dd24d4f1684d1844a8b5f4da188db536, type: 2}
+  - {fileID: 11400000, guid: cde6305b349737a479f6b19f0fb1baea, type: 2}
   gems:
   - {fileID: 11400000, guid: e3897bc089526d34da41b71a1460ee0e, type: 2}
   - {fileID: 11400000, guid: 00f6cbdf4e5a985428613aee0b4ac51e, type: 2}
@@ -6841,27 +6841,28 @@ Tilemap:
   - m_RefCount: 0
     m_Data:
       e00: NaN
-      e01: NaN
-      e02: 1
-      e03: 1
+      e01: 0
+      e02: 0
+      e03: NaN
       e10: NaN
-      e11: NaN
+      e11: 0
       e12: 0
-      e13: 3.9e-44
-      e20: 0
+      e13: NaN
+      e20: -14352.078
       e21: 0
-      e22: 0
-      e23: 0
-      e30: 0
+      e22: 5.307576e-16
+      e23: -7.8350914e+34
+      e30: 6.25e-43
       e31: 0
-      e32: 0
-      e33: 0
+      e32: 6.25e-43
+      e33: 4.5904e-41
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 1.6564534e-16, g: 1.6564534e-16, b: 1.6564534e-16, a: 1.6564534e-16}
+    m_Data: {r: -0.0000000025107454, g: -0.0000000025107454, b: -0.0000000025107454,
+      a: -0.0000000025107454}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.49803922}
   m_Origin: {x: -22, y: -129, z: 0}
   m_Size: {x: 45, y: 134, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}

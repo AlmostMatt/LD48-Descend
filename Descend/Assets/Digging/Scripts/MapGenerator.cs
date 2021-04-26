@@ -36,7 +36,7 @@ public class MapGenerator : MonoBehaviour
         // First, totally fill out the bkg, main, and fog tilemaps
         int minY = -100; // TODO: add more tiles as the player explores
         int maxY = 0;
-        FillTilemap(bkgTilemap, bkgTiles, minX/2, maxX/2, minY/2, maxY/2); // bkgTilemap tilemap has a 2x scale and the same origin
+        FillTilemap(bkgTilemap, bkgTiles, minX/2, maxX/2, minY/2, maxY/2, false, true); // bkgTilemap tilemap has a 2x scale and the same origin
         FillTilemap(mainTilemap, dirtTile.tiles, minX, maxX, minY, maxY, false, true);
         FillTilemap(fogTilemap, fogTiles, minX, maxX, minY, maxY);
 
