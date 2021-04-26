@@ -68,6 +68,7 @@ public class GameLoopController : MonoBehaviour
         DebtProgression.UpdateProgression();
         StoryProgression.UpdateProgression();
         AdvertisementProgression.CheckEmails();
+        NewsProgression.UpdateNews();
 
         SaveData.Get().madePaymentToday = false; // set this AFTER email checks... just in case we send an email based on missing payments
 
