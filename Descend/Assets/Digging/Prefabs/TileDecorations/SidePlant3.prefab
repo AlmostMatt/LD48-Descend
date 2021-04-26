@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relativePos: 1
   createTiming: 0
-  probability: 0.1
+  probability: 0.05
 --- !u!1 &6073702061963034556
 GameObject:
   m_ObjectHideFlags: 0

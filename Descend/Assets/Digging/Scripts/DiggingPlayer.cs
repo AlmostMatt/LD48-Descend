@@ -95,12 +95,7 @@ public class DiggingPlayer : MonoBehaviour
         UpdateAnimationState();
 
         // reveal nearby tiles
-        Vector3Int bottomLeft = fogTilemap.WorldToCell(transform.position);
-        bottomLeft.x -= 2;
-        bottomLeft.y -= 2;
-        BoundsInt revealArea = new BoundsInt(bottomLeft, new Vector3Int(5, 7, 1));
-        TileBase[] emptyTiles = new TileBase[35];
-        fogTilemap.SetTilesBlock(revealArea, emptyTiles);
+        RevealFogTiles();
 
         var emission = digEffect.emission;
         emission.enabled = mIsDigging;
@@ -118,6 +113,25 @@ public class DiggingPlayer : MonoBehaviour
         HandleMovement();
 
         mRigidbody.gravityScale = (mWallClimbingLeft || mWallClimbingRight || mGrappleState != GRAPPLE_NONE) ? 0f : 1f;
+    }
+
+    void RevealFogTiles()
+    {
+        // Reveals all tiles in a circle
+        float radius = 4f;
+        int rSteps = 16;
+        int tSteps = 64;
+        for (int r = 1; r <= rSteps; r++)
+        {
+            for (int t = 0; t < tSteps; t++)
+            {
+                float rad = (radius * r) / rSteps;
+                float angle = (2f * Mathf.PI * t) / tSteps;
+                Vector3 point = mBoxCollider.bounds.center + rad * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
+                Vector3Int tilePos = fogTilemap.WorldToCell(point);
+                fogTilemap.SetTile(tilePos, null);
+            }
+        }
     }
 
     void HandleMouseInput()

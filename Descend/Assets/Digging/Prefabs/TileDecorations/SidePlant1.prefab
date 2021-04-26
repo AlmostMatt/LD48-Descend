@@ -128,4 +128,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relativePos: 1
   createTiming: 0
-  probability: 0.1
+  probability: 0.05

@@ -38,7 +38,7 @@ public class MapGenerator : MonoBehaviour
         int maxY = 0;
         FillTilemap(bkgTilemap, bkgTiles, minX/2, maxX/2, minY/2, maxY/2, false, true); // bkgTilemap tilemap has a 2x scale and the same origin
         FillTilemap(mainTilemap, dirtTile.tiles, minX, maxX, minY, maxY, false, true);
-        FillTilemap(fogTilemap, fogTiles, minX, maxX, minY, maxY);
+        FillTilemap(fogTilemap, fogTiles, minX*2, maxX * 2, minY * 2, maxY * 2); // fog tilemap has scale 0.5
 
         int clusterStartDepth = 1000000;
         int clusterEndDepth = 0;
