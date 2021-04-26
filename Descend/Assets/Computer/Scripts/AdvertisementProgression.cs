@@ -40,7 +40,7 @@ public class AdvertisementProgression
                 break;
             case 4:
                 rockType = "Molten dirt";
-                pickaxeType = "UNBREAKABLE";
+                pickaxeType = "GOLDEN";
                 break;
             case 5:
                 rockType = "Molten stone";

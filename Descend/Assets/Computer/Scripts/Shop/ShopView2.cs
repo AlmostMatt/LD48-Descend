@@ -19,7 +19,16 @@ public class ShopView2 : MonoBehaviour
     {
         mPurchaseMessage = transform.Find("ShopResult/Message").gameObject;
         mBuyButton = transform.Find("ShopResult/BuyButton").gameObject;
-        shopItemList.Add(new ShopItem("Iron pickaxe", "Strong enough to break any stone!", "pickaxeImage", 15000, "DigSkill", 1));
+        // gray
+        shopItemList.Add(new ShopItem("Iron pickaxe", "Strong enough to break stone!", "pickaxeImage1", 1000, "DigSkill", 1));
+        // black
+        shopItemList.Add(new ShopItem("Steel pickaxe", "Strong enough to break frozen dirt!", "pickaxeImage2", 4000, "DigSkill", 2));
+        // red
+        shopItemList.Add(new ShopItem("Reinforced pickaxe", "Strong enough to break frozen stone!", "pickaxeImage3", 8000, "DigSkill", 3));
+        // gold
+        shopItemList.Add(new ShopItem("Golden pickaxe", "Strong enough to break molten dirt!", "pickaxeImage4", 12000, "DigSkill", 4));
+        // diamond
+        shopItemList.Add(new ShopItem("Diamond-tipped pickaxe", "Strong enough to break anymolten stone!", "pickaxeImage5", 16000, "DigSkill", 5));
     }
 
     // Update is called once per frame

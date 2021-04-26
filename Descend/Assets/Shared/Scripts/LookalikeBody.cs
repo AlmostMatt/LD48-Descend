@@ -12,7 +12,7 @@ public class LookalikeBody : MonoBehaviour
             if(!saveData.foundBody)
             {
                 saveData.foundBody = true;
-                DiggingUIOverlay.ShowPopup("A dead body!", "deadbody");
+                DiggingUIOverlay.ShowPopup("Goodness gracious, is this a dead body? Why does he look... just like me!?", "deadbody");
 
                 // todo: email/document
             }
