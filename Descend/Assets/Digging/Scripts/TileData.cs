@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class TileData : ScriptableObject
 {
     public TileBase[] tiles;
+    public TileDecoration[] tileDecorations;
 
     public int requiredDigSkill = 0;
 
