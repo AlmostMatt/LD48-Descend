@@ -14,6 +14,9 @@ public class SaveData
         return sSingleton;
     }
 
+    public bool gameOver = false;
+    public bool wonGame = false;
+
     public int currentDay = 0;
 
     public int digSkill = 0;

@@ -20,6 +20,8 @@ public class DiggingPlayer : MonoBehaviour
     public float grappleRetractSpeed = 10f;
     public int maxStamina = 5;
 
+    private bool mInputDisabled = false;
+
     private float BASICALLY_ZERO = 0.0001f;
 
     /** state variables (for animation and also for logic) **/
@@ -88,7 +90,7 @@ public class DiggingPlayer : MonoBehaviour
         var emission = digEffect.emission;
 
         // Ignore input and stuff while not in the digging scene, or if there's a popup
-        if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible())
+        if (!GameLoopController.isDiggingScene() || DiggingUIOverlay.IsPopupVisible() || mInputDisabled)
         {
             AnimatePausedPlayer();
             emission.enabled = false;
@@ -114,9 +116,12 @@ public class DiggingPlayer : MonoBehaviour
             return;
         }
 
-        HandleMovement();
+        if(!mInputDisabled)
+        {
+            HandleMovement();
 
-        mRigidbody.gravityScale = (mWallClimbingLeft || mWallClimbingRight || mGrappleState != GRAPPLE_NONE) ? 0f : 1f;
+            mRigidbody.gravityScale = (mWallClimbingLeft || mWallClimbingRight || mGrappleState != GRAPPLE_NONE) ? 0f : 1f;
+        }
     }
 
     void RevealFogTiles()
@@ -573,6 +578,11 @@ public class DiggingPlayer : MonoBehaviour
     public bool IsUsingStamina()
     {
         return mUsingStamina;
+    }
+
+    public void DisableInput()
+    {
+        mInputDisabled = true;
     }
 
     private void PlayDigSound()
