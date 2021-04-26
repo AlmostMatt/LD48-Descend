@@ -48,6 +48,8 @@ public class EmailView : MonoBehaviour
 
     public void FollowEmailLink()
     {
-
+        // hardcoded to store page right now
+        int STORE_PAGE = 3;
+        GetComponentInParent<WebBrowser>().SetTab(STORE_PAGE);
     }
 }
