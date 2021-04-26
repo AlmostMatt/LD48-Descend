@@ -1,7 +1,43 @@
 fileFormatVersion: 2
 guid: 90836affe307e8e4a986f83b11168a33
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5830527214089153635
+    second: level3_grass1
+  - first:
+      213: -5912663383530183963
+    second: level3_grass2
+  - first:
+      213: -849184291821511278
+    second: level3_tile1
+  - first:
+      213: -5093016004371024725
+    second: level3_dirt1
+  - first:
+      213: 7868706298575788556
+    second: level3_rock5
+  - first:
+      213: -8641455190558851725
+    second: level3_rock6
+  - first:
+      213: -2117659798253818441
+    second: level3_hanging_rock1
+  - first:
+      213: 2519983757340891164
+    second: level3_hanging_rock2
+  - first:
+      213: -5840533284592885815
+    second: level3_rock4
+  - first:
+      213: 6828987698812377640
+    second: level3_rock3
+  - first:
+      213: 2988547846925340562
+    second: level3_rock2
+  - first:
+      213: -1863724257597019915
+    second: level3_rock1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,11 +145,221 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: level3_tile1
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 398
+        width: 240
+        height: 237
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29d1321c2671734f0800000000000000
+      internalID: -849184291821511278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_dirt1
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 625
+        width: 236
+        height: 230
+      alignment: 9
+      pivot: {x: 0.49677193, y: 0.5011321}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4f5109de8f159b0800000000000000
+      internalID: -5093016004371024725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_rock5
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 222
+        width: 202
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0a1d7830b2433d60800000000000000
+      internalID: 7868706298575788556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_rock6
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 218
+        width: 125
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37db840e942631880800000000000000
+      internalID: -8641455190558851725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_hanging_rock1
+      rect:
+        serializedVersion: 2
+        x: 1414
+        y: 206
+        width: 127
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bda4f122af8c92e0800000000000000
+      internalID: -2117659798253818441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_hanging_rock2
+      rect:
+        serializedVersion: 2
+        x: 1608
+        y: 188
+        width: 126
+        height: 213
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c18de0830e7c8f220800000000000000
+      internalID: 2519983757340891164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_rock4
+      rect:
+        serializedVersion: 2
+        x: 1581
+        y: 404
+        width: 193
+        height: 232
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cfdef01ce142fea0800000000000000
+      internalID: -5840533284592885815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_rock3
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 406
+        width: 218
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82a593b612075ce50800000000000000
+      internalID: 6828987698812377640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_rock2
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 406
+        width: 217
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f4e3ace64797920800000000000000
+      internalID: 2988547846925340562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level3_rock1
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 403
+        width: 241
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8a6a289a8b226e0800000000000000
+      internalID: -1863724257597019915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 76f686856205a8449a707d49f76043ec
+    spriteID: 0ba6011a0bbb43e4c8f545c95229dd9c
     internalID: 0
     vertices: []
     indices: 

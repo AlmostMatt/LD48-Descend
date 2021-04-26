@@ -114,6 +114,9 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+
+        // Place tile decorations
+        manager.DecorateTilemap();
     }
 
     private int GetDebtForStage(int stage)
