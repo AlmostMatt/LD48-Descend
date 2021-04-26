@@ -42,7 +42,7 @@ TextureImporter:
       213: 4935573495775639671
     second: player_swing3
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -96,8 +96,9 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -108,7 +109,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -119,7 +121,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -130,7 +133,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -141,6 +145,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -339,10 +344,10 @@ TextureImporter:
         serializedVersion: 2
         x: 2748
         y: 215
-        width: 385
+        width: 348
         height: 436
       alignment: 9
-      pivot: {x: 0.56191975, y: 0.025753722}
+      pivot: {x: 0.60339004, y: 0.028511992}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -358,12 +363,12 @@ TextureImporter:
       name: player_swing1
       rect:
         serializedVersion: 2
-        x: 3181
+        x: 3117
         y: 196
-        width: 180
-        height: 485
+        width: 244
+        height: 556
       alignment: 9
-      pivot: {x: 0.45339763, y: 0.051296305}
+      pivot: {x: 0.56641024, y: 0.039273158}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -379,12 +384,12 @@ TextureImporter:
       name: player_swing2
       rect:
         serializedVersion: 2
-        x: 3408
+        x: 3395
         y: 194
-        width: 221
-        height: 492
+        width: 234
+        height: 566
       alignment: 9
-      pivot: {x: 0.3470332, y: 0.046435658}
+      pivot: {x: 0.35774636, y: 0.043482967}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -402,10 +407,10 @@ TextureImporter:
         serializedVersion: 2
         x: 3636
         y: 193
-        width: 254
+        width: 353
         height: 378
       alignment: 9
-      pivot: {x: 0.28557822, y: 0.06503986}
+      pivot: {x: 0.20812538, y: 0.06648646}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
