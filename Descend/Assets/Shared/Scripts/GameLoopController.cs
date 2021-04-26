@@ -40,10 +40,14 @@ public class GameLoopController : MonoBehaviour
         singleton.computerView.gameObject.SetActive(false);
 
         singleton.player.StartNewDigDay();
+
+        MusicPlayer.StartPlaying(SaveData.Get().musicStage);
     }
 
     public static void StopDigging()
     {
+        MusicPlayer.FadeOut();
+
         // check for any emails to send
         StoryProgression.UpdateProgression();
         AdvertisementProgression.CheckEmails();

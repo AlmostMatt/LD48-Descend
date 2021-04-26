@@ -77,4 +77,6 @@ public class SaveData
             --unreadEmails;
         }
     }
+
+    public int musicStage = 0;
 }
