@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemapObject: {fileID: 6686651711203783186, guid: 5391e53e85a6fb9458bfc26b8e4922df,
     type: 3}
-  x: -8
-  y: -60
+  x: 3
+  y: -88
