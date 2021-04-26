@@ -55,6 +55,10 @@ public class ShopView2 : MonoBehaviour
         switch (item.effectType)
         {
             case "DigSkill":
+                if (item.effectValue == 1)
+                {
+                    NewsProgression.AddNewsForNextDay(NewsProgression.DebtNews());
+                }
                 SaveData.Get().digSkill = Mathf.Max(SaveData.Get().digSkill, item.effectValue);
                 break;
             default:

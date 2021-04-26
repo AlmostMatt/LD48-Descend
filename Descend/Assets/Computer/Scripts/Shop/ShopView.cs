@@ -4,8 +4,18 @@ using UnityBaseCode.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
+// DEPRECATED
+// DEPRECATED
+// DEPRECATED
+// DEPRECATED
+// DEPRECATED
+// DEPRECATED
 public class ShopView : MonoBehaviour
 {
+    // DEPRECATED
+    // DEPRECATED
+    // DEPRECATED
+    // DEPRECATED
     public Transform shopItemsContainer;
     public Text balanceText;
 
