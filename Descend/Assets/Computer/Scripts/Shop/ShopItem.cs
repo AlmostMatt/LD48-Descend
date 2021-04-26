@@ -40,4 +40,15 @@ public struct ShopItem
         // uiObject.transform.Find("V/Image").GetComponent<Image>();
         uiObject.transform.Find("V/Price").GetComponent<Text>().text = "$" + shopItem.priceInDollars;
     }
+
+    public static void RenderToSingleShopItem(ShopItem shopItem, GameObject uiObject)
+    {
+        uiObject.transform.Find("OwnedOverlay").gameObject.SetActive(shopItem.isOwned);
+
+        uiObject.transform.Find("Name").GetComponent<Text>().text = shopItem.name;
+        uiObject.transform.Find("Description").GetComponent<Text>().text = shopItem.description;
+        // TODO: sprite manager to get image. (maybe in the constructor)
+        // uiObject.transform.Find("V/Image").GetComponent<Image>();
+        uiObject.transform.Find("Price").GetComponent<Text>().text = "$" + shopItem.priceInDollars + " Value";
+    }
 }

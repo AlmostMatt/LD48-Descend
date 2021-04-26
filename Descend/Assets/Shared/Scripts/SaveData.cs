@@ -20,9 +20,14 @@ public class SaveData
 
     public bool madePaymentToday = false;
     public int debt = 10000;
+    private int mMinimumPayment = 100;
     public int GetMinimumPayment()
     {
-        return 100;
+        return mMinimumPayment;
+    }
+    public void IncreaseMinimumPayment(int amt)
+    {
+        mMinimumPayment += amt;
     }
 
     private int mCash = 1000;

@@ -10,6 +10,7 @@ public class BankView : MonoBehaviour
     Text mDebt;
     Text mBalance;
     Text mMessage;
+    Text mMinimumPayment;
 
     InputField mPaymentField;
     Button mPaymentButton;
@@ -22,6 +23,7 @@ public class BankView : MonoBehaviour
         mDebt = transform.Find("Debt").GetComponent<Text>();
         mBalance = transform.Find("Balance").GetComponent<Text>();
         mMessage = transform.Find("Message").GetComponent<Text>();
+        mMinimumPayment = transform.Find("MinPayment").GetComponent<Text>();
 
         mPaymentField = transform.Find("Payment/InputField").GetComponent<InputField>();
         mPaymentButton = transform.Find("PaymentButton").GetComponent<Button>();
@@ -31,6 +33,12 @@ public class BankView : MonoBehaviour
     void Update()
     {
         SaveData saveData = SaveData.Get();
+
+        int cash = saveData.GetCash();
+        int debt = saveData.debt;
+        mCash.text = saveData.GetCash().ToString();
+        mDebt.text = saveData.debt.ToString();
+        mBalance.text = (debt - cash).ToString(); // UI always has a negative sign
 
         if(!saveData.madePaymentToday)
         {
@@ -42,19 +50,16 @@ public class BankView : MonoBehaviour
                 mMessage.text = "";
                 mPaymentField.text = saveData.GetMinimumPayment().ToString();
             }
+            
+            mName.text = GameConfig.playerName;            
+            mMinimumPayment.text = saveData.GetMinimumPayment().ToString();
         }
-
-        mName.text = GameConfig.playerName;
-
-        int cash = saveData.GetCash();
-        int debt = saveData.debt;
-        mCash.text = saveData.GetCash().ToString();
-        mDebt.text = saveData.debt.ToString();
-        mBalance.text = (debt - cash).ToString(); // UI always has a negative sign
     }
 
     public void OnEndEdit()
     {
+        if(mPaymentField.readOnly) return;
+
         mPaymentButton.interactable = false;
         string text = mPaymentField.text;
 
