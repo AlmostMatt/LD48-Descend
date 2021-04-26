@@ -176,6 +176,8 @@ public class TileManager : MonoBehaviour
             }
             if (chosenDec != null)
             {
+                // TODO: guarantee to spawn a trim
+                // and then also chance to spawn other things
                 TileDecoration dec = GameObject.Instantiate(chosenDec);
                 dec.transform.position = pos + new Vector3(0.5f, 0.5f, 0.5f);
                 posToDecorations[pos].Add(dec);

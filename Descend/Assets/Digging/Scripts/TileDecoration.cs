@@ -25,6 +25,7 @@ public class TileDecoration : MonoBehaviour
 
     // I want to guarantee that grass spawns at start and does not spawn later
 
+    public bool isTrim = false;
     public RelativePosition relativePos = RelativePosition.TOP;
     public CreateTiming createTiming = CreateTiming.EITHER;
     public float probability = 0.1f;
