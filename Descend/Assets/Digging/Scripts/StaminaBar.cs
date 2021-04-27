@@ -47,8 +47,13 @@ public class StaminaBar : MonoBehaviour
             if(pct <= 0)
             {
                 Image img = transform.GetChild(0).GetComponent<Image>();
-                img.color = new Color(255, 0, 0);
+                img.color = new Color(255, 0, 0); // red
                 mShakeTimer = 0.25f;
+            } else
+            {
+                // reset color back to normal
+                Image img = transform.GetChild(0).GetComponent<Image>();
+                img.color = Color.white;
             }
         }
 
