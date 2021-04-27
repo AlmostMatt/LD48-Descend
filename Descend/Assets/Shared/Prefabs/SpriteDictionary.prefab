@@ -72,6 +72,9 @@ MonoBehaviour:
   - name: journalbook
     sprite: {fileID: 7066312959211768063, guid: a4fc181cef7be814f91edeb36c4b770a,
       type: 3}
+  - name: artifact
+    sprite: {fileID: -5736412046406169799, guid: 7a3d31f4c509fc1459d7e17c0d53e242,
+      type: 3}
   namedImages3:
   - name: pickaxeImage1
     sprite: {fileID: -742356921291153672, guid: eeb4b6374957f7641b15913f6a100f40,
