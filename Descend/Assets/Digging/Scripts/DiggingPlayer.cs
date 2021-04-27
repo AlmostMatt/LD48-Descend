@@ -491,16 +491,16 @@ public class DiggingPlayer : MonoBehaviour
             return; // TODO: communicate somehow
         }
 
-        mIsTryingToDig = true;
         TileData tileData = tileManager.GetTileData(position);
         if(tileData != null)
         {
+            mIsTryingToDig = true;
             float digSkill = SaveData.Get().digSkill;
             if (tileData.requiredDigSkill >= 0 && tileData.requiredDigSkill <= digSkill)
             {
                 mIsDigging = true;
 
-                float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.2f + 200f;
+                float digSpeed = (digSkill - tileData.requiredDigSkill) * 0.2f + 1f;
                 float progress;
                 if(mDigProgress.TryGetValue(position, out progress))
                 {
