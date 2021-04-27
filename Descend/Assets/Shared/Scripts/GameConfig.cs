@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GameConfig
 {    
-    public const string playerName = "mrcouteau";
+    public const string playerName = "Couteau";
     public const string playerEmail = "jk.couteau@cmail.com";
     public const string playerAddress = "188 Cherry Blossom Lane";
 
