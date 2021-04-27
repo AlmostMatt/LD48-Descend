@@ -13,7 +13,7 @@ public class WebBrowser : MonoBehaviour
     private string[] tabUrls = new string[] {
         "www.gemstonemarket.com",
         "www.email.com",
-        "www.search.com",
+        "www.mydocuments.com",
         "www.shopping.com",
         "www.bankofancadia.com"
     };
