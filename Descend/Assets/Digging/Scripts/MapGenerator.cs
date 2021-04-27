@@ -141,11 +141,17 @@ public class MapGenerator : MonoBehaviour
         switch(stage)
         {
             case 0:
-                return 1000;
-            case 1:
-                return 5000;
-            case 2:
                 return 10000;
+            case 1:
+                return ShopView2.PICKAXE_COST_1;
+            case 2:
+                return ShopView2.PICKAXE_COST_2;
+            case 3:
+                return ShopView2.PICKAXE_COST_3;
+            case 4:
+                return ShopView2.PICKAXE_COST_4;
+            case 5:
+                return ShopView2.PICKAXE_COST_5;
         }
 
         return 0;

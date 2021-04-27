@@ -69,8 +69,10 @@ public class SaveData
     // progression for emails
     public bool hasMiningTutorialEmail = false;
     public bool hasDebtTutorialEmail = false;
-    public int dirtTypeAttempted = 0;
+    // public int dirtTypeAttempted = 0;
     public int lastAdvertisementEmail = 0;
+    public bool foundJournalThree = false;
+    public bool foundJournalFour = false;
 
     public void AddEmail(Email e)
     {
