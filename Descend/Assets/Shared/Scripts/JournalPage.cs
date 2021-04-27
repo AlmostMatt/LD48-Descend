@@ -79,7 +79,7 @@ public class JournalPage : MonoBehaviour
     private Document JournalDocumentOne()
     {
         Document d = new Document();
-        d.name = "[Journal] June 1-5";
+        d.name = "[Found Journal] June 1-5";
         d.body = "June 1:\r\n" +
             "I received the welcome email from the company yesterday and it looks like I just have to make the minimum payment each day to get by.\r\n" +
             "I found iron today, making some money...\r\n" +
@@ -101,7 +101,7 @@ public class JournalPage : MonoBehaviour
     private Document JournalDocumentTwo()
     {
         Document d = new Document();
-        d.name = "[Journal] June 9-23";
+        d.name = "[Found Journal] June 9-23";
         d.body = string.Format("June 9:\r\n" +
             "I still don’t seem to remember much after the incident, my memory draws a blank...but I guess I will keep digging.\r\n" +
             "\r\n" +
@@ -123,7 +123,7 @@ public class JournalPage : MonoBehaviour
     {
         NewsProgression.AddNewsForNextDay(NewsProgression.AddSpaceTearNews());
         Document d = new Document();
-        d.name = "[Journal] June 6";
+        d.name = "[Found Journal] June 6";
         d.body = "June 6:\r\n" +
             "Who am I?\r\n" +
             "Where am I!?\r\n" +
@@ -136,7 +136,7 @@ public class JournalPage : MonoBehaviour
     {
         NewsProgression.AddNewsForNextDay(NewsProgression.AddEquilibriumNews());
         Document d = new Document();
-        d.name = "[Journal] June 7";
+        d.name = "[Found Journal] June 7";
         d.body = "June 7:\r\n" +
             "Today is the second day since I lost my memory.\r\n" + 
             "It’s good that I have this journal to give me an idea of my past, but I can’t seem to find my way back...\r\n" + 
