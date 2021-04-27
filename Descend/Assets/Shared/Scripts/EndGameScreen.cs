@@ -11,7 +11,7 @@ public class EndGameScreen : MonoBehaviour
         bool lost = saveData.gameOver;
         bool won = saveData.wonGame;
 
-        transform.Find("Text").GetComponent<Text>().text = lost ? "GAME OVER" : "THE END";
+        transform.Find("Text").GetComponent<Text>().text = lost ? "GAME OVER\r\n\r\nYou defaulted on your debt." : "THE END";
     }
 
     void Update()
