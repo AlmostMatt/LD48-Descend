@@ -14,7 +14,7 @@ public class EndgamePortal : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(mPlayer != null)
         {
@@ -22,7 +22,7 @@ public class EndgamePortal : MonoBehaviour
             mPlayer.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             mPlayer.GetComponent<Rigidbody2D>().AddForce(playerToHere.normalized * 0.6f);
             mPlayer.GetComponent<Rigidbody2D>().AddTorque(0.2f);
-            mShrinkLerp -= Time.deltaTime * mShrinkRate;
+            mShrinkLerp -= Time.fixedDeltaTime * mShrinkRate;
             mPlayer.transform.localScale = new Vector3(mShrinkLerp, mShrinkLerp, 1);
         }
     }
