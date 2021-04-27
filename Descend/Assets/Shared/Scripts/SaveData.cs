@@ -70,7 +70,7 @@ public class SaveData
     public bool hasMiningTutorialEmail = false;
     public bool hasDebtTutorialEmail = false;
     // public int dirtTypeAttempted = 0;
-    public int lastAdvertisementEmail = 0;
+    public int lastAdvertisementEmail = -1;
     public bool foundJournalThree = false;
     public bool foundJournalFour = false;
 
