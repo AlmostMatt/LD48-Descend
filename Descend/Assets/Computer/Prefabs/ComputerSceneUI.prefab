@@ -4624,6 +4624,7 @@ GameObject:
   - component: {fileID: 9181663554053464683}
   - component: {fileID: 9181663554053464676}
   - component: {fileID: 9181663554053464681}
+  - component: {fileID: 8275181952072617161}
   m_Layer: 0
   m_Name: StartDiggingButton
   m_TagString: Untagged
@@ -4678,8 +4679,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 8234341332490247071, guid: eeb4b6374957f7641b15913f6a100f40,
+    type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4755,6 +4757,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areYouSureBox: {fileID: 250096033154154531}
+--- !u!114 &8275181952072617161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9181663554053464678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &9181663554161139023
 GameObject:
   m_ObjectHideFlags: 0
@@ -5079,7 +5096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9181663554519394213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6330,15 +6347,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73159cad42e1d754681a1c926dbbc9e1, type: 3}
---- !u!1 &9181663555276887709 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5704899398263575088, guid: 73159cad42e1d754681a1c926dbbc9e1,
-    type: 3}
-  m_PrefabInstance: {fileID: 3476793882501104813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9181663555276887708 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5704899398263575089, guid: 73159cad42e1d754681a1c926dbbc9e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3476793882501104813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9181663555276887709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5704899398263575088, guid: 73159cad42e1d754681a1c926dbbc9e1,
     type: 3}
   m_PrefabInstance: {fileID: 3476793882501104813}
   m_PrefabAsset: {fileID: 0}
