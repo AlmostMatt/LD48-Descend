@@ -15,8 +15,17 @@ public class JournalPage : MonoBehaviour
             // update save data flags
             // add document
             string journalDesc = "A page from a journal!"; // TODO: change depending on journal num?
-            DiggingUIOverlay.ShowPopup(journalDesc, image);
-            AddDocument(saveData, journalNum);
+            if (journalNum < 5)
+            {
+                DiggingUIOverlay.ShowPopup(journalDesc, image);
+                AddDocument(saveData, journalNum);
+            } else
+            {
+                // Popup instead of document
+                // TODO: trigger any endgame conditions (unless that is already done elswhere)
+                DiggingUIOverlay.ShowPopup("The journal reads:\r\n"
+                    + "Follow the lights, follow the lights, follow the lights! I’ve found a way to get back to my own world!!!", image);
+            }
             Destroy(gameObject);
         }
     }
@@ -38,8 +47,8 @@ public class JournalPage : MonoBehaviour
             case 4:
                 d = JournalDocumentFour();
                 break;
-            // TODO:
-            // journal 5: showpopup
+            case 5:
+                break;
         }
 
         if(d != null)
@@ -114,7 +123,7 @@ public class JournalPage : MonoBehaviour
             "Today is the second day since I lost my memory.\r\n" + 
             "It’s good that I have this journal to give me an idea of my past, but I can’t seem to find my way back...\r\n" + 
             "Am I just stuck here forever?\r\n" +
-            "Oh wait, there's some sort of pattern to these lights!";
+            "Huh, there's something odd about these lights...";
         return d;
     }
 }

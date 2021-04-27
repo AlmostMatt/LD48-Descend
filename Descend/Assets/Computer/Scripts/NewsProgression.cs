@@ -49,7 +49,7 @@ public class NewsProgression
     {
 
         Document d = new Document();
-        d.name = "[News] Experimental Research Projects Paused ";
+        d.name = "[News] Experimental Research Projects Paused";
         d.body = string.Format("{0}'s experimental research projects have been paused.\r\n" +
          "Their laboratory on {1} was rebuilt into a mining facility earlier this year, and the land has been restored.\r\n" +
          "It is currently being occupied by {0}’s employees to conduct daily mining procedures.\r\n",
@@ -57,17 +57,28 @@ public class NewsProgression
         return d;
     }
 
+    // triggered by journal 3
     public static Document AddSpaceTearNews()
     {
-        // TODO
         Document d = new Document();
+        d.name = "[News] Dangerous Research Project Into Space Channels";
+        d.body = "It has been revealed by an insider today that ABC company’s prior research project was on creation of space channels. "
+            + "The company has allegedly discovered a method to transfer items between parallel worlds. "
+            + "However, this method is widely regarded as dangerous and unreliable by scientists. "
+            + "Potential side effects of such trials include permanent space tears, de-stabilized landmass and "
+            + " random teleportation around trail regions.";
         return d;
     }
 
+    // triggered by journal 4
     public static Document AddEquilibriumNews()
     {
-        // TODO
         Document d = new Document();
+        d.name = "[News] Law of Equilibrium on Space Channels";
+        d.body = "The space scientists have established the Law of Equilibrium on Space Channels. "
+            + "If something is teleported through a space channel, something of similar properties "
+            + "will be teleported back, eventually. The timing of the equilibrium transfer has proven to be"
+            + " unpredictable and can occur many days later.";
         return d;
     }
 }
