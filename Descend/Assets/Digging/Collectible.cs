@@ -25,6 +25,7 @@ public class Collectible : MonoBehaviour
             {
                 // enable gravity and collisions (with ground)
                 GetComponent<Rigidbody2D>().WakeUp();
+                GetComponent<Rigidbody2D>().gravityScale = 1;
                 mInRock = false;
                 // For some reason: collectibles sometimes fall off the bottom of the screen (through the tiles)
             }
