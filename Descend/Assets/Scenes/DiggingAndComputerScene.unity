@@ -704,6 +704,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackoutOverlay
       objectReference: {fileID: 0}
+    - target: {fileID: 4005643061623524100, guid: 9f1809a31e2808a41a891f671da24b3a,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4005643061623524103, guid: 9f1809a31e2808a41a891f671da24b3a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -809,7 +814,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4005643061623524098, guid: 9f1809a31e2808a41a891f671da24b3a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f1809a31e2808a41a891f671da24b3a, type: 3}
 --- !u!223 &422335036 stripped
 Canvas:
