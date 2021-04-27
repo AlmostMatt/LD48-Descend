@@ -162,7 +162,7 @@ MonoBehaviour:
   climbSpeed: 4
   grappleExtendSpeed: 30
   grappleRetractSpeed: 10
-  maxStamina: 100
+  maxStamina: 75
   digAudioClips:
   - {fileID: 8300000, guid: d3ce39e9b118cd143bf04ffe98b5d4c0, type: 3}
   - {fileID: 8300000, guid: fa9e527638ef23e42b22fb7587b5b120, type: 3}
