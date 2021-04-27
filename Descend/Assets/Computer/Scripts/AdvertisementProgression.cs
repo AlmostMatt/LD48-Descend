@@ -7,12 +7,11 @@ public class AdvertisementProgression
     public static void CheckEmails()
     {
         SaveData saveData = SaveData.Get();
-        if(saveData.dirtTypeAttempted > saveData.lastAdvertisementEmail)
+        if(saveData.activeShopItem > saveData.lastAdvertisementEmail)
         {
-            Email adEmail = GenerateAdEmail(saveData.dirtTypeAttempted);
+            Email adEmail = GenerateAdEmail(saveData.activeShopItem+1);
             saveData.AddEmail(adEmail);
-            saveData.lastAdvertisementEmail = saveData.dirtTypeAttempted;
-            saveData.activeShopItem = saveData.dirtTypeAttempted - 1;
+            saveData.lastAdvertisementEmail = saveData.activeShopItem;
         }
     }
 

@@ -28,15 +28,29 @@ public class JournalPage : MonoBehaviour
         {
             case 1:
                 d = JournalDocumentOne();
+                saveData.activeShopItem++;
                 break;
             case 2:
                 d = JournalDocumentTwo();
+                saveData.activeShopItem++;
                 break;
             case 3:
                 d = JournalDocumentThree();
+                saveData.foundJournalThree = true;
+                if(saveData.foundJournalFour)
+                {
+                    saveData.activeShopItem++;
+                    saveData.musicStage++;
+                }
                 break;
             case 4:
                 d = JournalDocumentFour();
+                saveData.foundJournalFour = true;
+                if(saveData.foundJournalThree)
+                {
+                    saveData.activeShopItem++;
+                    saveData.musicStage++;
+                }
                 break;
             // TODO:
             // journal 5: showpopup

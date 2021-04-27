@@ -533,7 +533,10 @@ public class DiggingPlayer : MonoBehaviour
                 if(tileData.requiredDigSkill >= 0)
                 {
                     // mark that we should receive an email advertising the item that digs through this
-                    SaveData.Get().dirtTypeAttempted = tileData.requiredDigSkill;
+                    if(SaveData.Get().activeShopItem == -1)
+                    {
+                        SaveData.Get().activeShopItem = 0;
+                    }
                 }
 
                 mDigSoundTimer -= Time.deltaTime;
