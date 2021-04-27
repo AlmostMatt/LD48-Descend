@@ -15,8 +15,8 @@ MonoBehaviour:
   itemType: 5
   prefabObject: {fileID: 7831300150868581847, guid: d1db3d38fde5c974192e162a3a381642,
     type: 3}
-  stage: 2
-  storeValue: 200
+  stage: 5
+  storeValue: 500
   description: 
   minDepth: 140
   peakDepth: 130
