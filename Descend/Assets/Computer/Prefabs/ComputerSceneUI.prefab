@@ -392,8 +392,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: 0, y: 40}
+  m_AnchoredPosition: {x: 0, y: -47.64}
+  m_SizeDelta: {x: 0, y: 32.35887}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2339524462212158825
 CanvasRenderer:
@@ -1032,7 +1032,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 862.90015, y: 0}
+  m_SizeDelta: {x: 845, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5556417382045563428
 CanvasRenderer:
@@ -1074,7 +1074,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'This is a document
+  m_Text: 'This is a document f ahdgsf jhgsdf jhasdgf jhasdgf jhasfg jhasdfg jasdd
 
     erjglkaerjglkaejrgk
 
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2949534114095198115}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.7097421
+  m_Size: 0.68371373
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2437,7 +2437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7948304451461242163
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3636,7 +3636,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -10}
+  m_AnchoredPosition: {x: -12.8, y: -11.3}
   m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4590541151581605833
@@ -3788,8 +3788,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 40}
+  m_AnchoredPosition: {x: 0, y: 1.0999985}
+  m_SizeDelta: {x: 0, y: 50.54171}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2647933634323954796
 CanvasRenderer:
@@ -3820,7 +3820,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 22
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -3831,7 +3831,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Journal piece #1
+  m_Text: '[Archived News] Earthquake near Cherry Blossom Lane'
 --- !u!1 &8839469454949871469
 GameObject:
   m_ObjectHideFlags: 0

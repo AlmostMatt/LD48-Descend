@@ -14,7 +14,11 @@ public class JournalPage : MonoBehaviour
             SaveData saveData = SaveData.Get();
             // update save data flags
             // add document
-            string journalDesc = "A page from a journal!"; // TODO: change depending on journal num?
+            string journalDesc = "Your found a page from a journal.";
+            if (journalNum < 2)
+            {
+                journalDesc = "You found part of a journal.";
+            }
             if (journalNum < 5)
             {
                 DiggingUIOverlay.ShowPopup(journalDesc, image);
@@ -84,20 +88,20 @@ public class JournalPage : MonoBehaviour
     {
         Document d = new Document();
         d.name = "[Journal] June 9-23";
-        d.body = "June 9:\r\n" +
+        d.body = string.Format("June 9:\r\n" +
             "I still don’t seem to remember much after the incident, my memory draws a blank...but I guess I will keep digging.\r\n" +
             "\r\n" +
             "June 10 - June 20:\r\n" +
             "I'm still recovering…\r\n" +
             "\r\n" +
             "June 21:\r\n" +
-            "I finally remembered my name today...it’s PLAYERNAME, I guess that’s progress?\r\n" +
+            "I finally remembered my name today...it’s {0}, I guess that’s progress?\r\n" +
             "\r\n" +
             "June 22:\r\n" +
             "I continued my digging today, and found some precious gems!This is getting really deep though.\r\n" +
             "\r\n" +
             "June 23:\r\n" +
-            "I will start bright and early today and work a long day!\r\n";
+            "I will start bright and early today and work a long day!\r\n", GameConfig.playerName);
         return d;
     }
 

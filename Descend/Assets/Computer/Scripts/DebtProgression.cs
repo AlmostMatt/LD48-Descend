@@ -54,7 +54,7 @@ public class DebtProgression
         e.senderEmail = GameConfig.debtCollectorEmail;
         e.subject = "FINAL NOTICE -- PAST DUE";
 
-        string mainBody = "Hello {0}, we did not receive a payment towards your outstanding balance.\r\n" +
+        string mainBody = "Hello {0}, we did not receive a payment towards your outstanding balance.\r\n\r\n" +
                     "The {1} has been notified. If you miss another payment, YOU WILL BE ARRESTED.";
         e.body = string.Format(mainBody, GameConfig.playerName, GameConfig.financialRegulatoryBody);
 
