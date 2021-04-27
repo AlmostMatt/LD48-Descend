@@ -194,17 +194,22 @@ public class MapGenerator : MonoBehaviour
                     {
                         for(int x = minX; x < maxX; ++x)
                         {
-                            if(Random.Range(0f, 1f) <= spawnChance)
+                            Vector3Int cellPosition = new Vector3Int(x, -depth, 0);
+                            TileBase tile = mainTilemap.GetTile(cellPosition);
+                            if(tile != null && tile != mTileDatas[0].tiles[0])
                             {
-                                Vector3 worldPosition = mainTilemap.CellToWorld(new Vector3Int(x, -depth, 0));
-                                worldPosition.x += 0.5f;
-                                worldPosition.y += 0.5f;
-                                worldPosition.z = -1f;
-                                Instantiate(gemData.prefabObject, worldPosition, Quaternion.identity); // broken now? unneeded?
-
-                                if(--itemCounts[(int)gemData.itemType] <= 0)
+                                if(Random.Range(0f, 1f) <= spawnChance)
                                 {
-                                    break;
+                                    Vector3 worldPosition = mainTilemap.CellToWorld(cellPosition);
+                                    worldPosition.x += 0.5f;
+                                    worldPosition.y += 0.5f;
+                                    worldPosition.z = -1f;
+                                    Instantiate(gemData.prefabObject, worldPosition, Quaternion.identity); // broken now? unneeded?
+
+                                    if(--itemCounts[(int)gemData.itemType] <= 0)
+                                    {
+                                        break;
+                                    }
                                 }
                             }
                         }
